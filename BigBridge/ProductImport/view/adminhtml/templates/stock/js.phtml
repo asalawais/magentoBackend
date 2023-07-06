@@ -1,0 +1,35 @@
+<script type="text/javascript">
+    require(["jquery"],function($) {
+        $(document).ready(function() {
+            $(document).on('click', '.import-stock', function(e) {
+                e.preventDefault();
+            var url = "<?= $block->getUrl('afas/import/stockimport')?>";
+            alert(url);
+            alert('stock-called');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'html',
+                showLoader: true,
+                data: {
+                    import: true,
+                    formKey: '<?= $block->escapeHtmlAttr($block->getFormKey()) ?>'
+                },
+                success: function(response) {
+                console.log(JSON.stringify(response));
+                $("#update-status").html("Import Result:");
+                $("#log-result").html(response);
+
+
+                },
+                complete: function(response) {
+                },
+                error: function (xhr, status, errorThrown) {
+                    console.log(errorThrown);
+                    console.log('Error happens. Try again.');
+                }
+            });
+            });
+        });
+    });
+</script>

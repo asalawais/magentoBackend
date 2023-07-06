@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<page layout="empty" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<html>
+        <attribute name="class" value="quickview-scroll"/>
+    </html>
+    <body>
+		<attribute name="class" value="quickview-override"/>
+		<referenceContainer name="product.page.products.wrapper" remove="true" />
+        <referenceContainer name="product.info.details" remove="true" />
+        <referenceBlock name="reviews.tab" remove="true" />
+        <referenceBlock name="product.info.details" remove="true" />
+        <referenceBlock name="product.info.description" remove="true" />
+        <referenceBlock name="product.info.overview" remove="true" />
+        <referenceBlock name="authentication-popup" remove="true" />
+		<move element="product.infomation" destination="product.info.media" after="-"/>
+        <referenceBlock name="product.info.addtocart.additional">
+			<action method="setTemplate">
+               <argument name="template" xsi:type="string">Twl_ProductAvailability::check-availability.phtml</argument>
+           </action>
+		</referenceBlock>
+		<referenceBlock name="product.info.addtocart">
+			<action method="setTemplate">
+               <argument name="template" xsi:type="string">Twl_ProductAvailability::check-availability.phtml</argument>
+           </action>
+		</referenceBlock>
+		<!--<referenceBlock name="product.info.media.image">
+			<action method="setTemplate">
+				<argument name="template" xsi:type="string">Twl_ProductAvailability::product/view/media.phtml</argument>
+			</action>
+		</referenceBlock>-->
+    </body>
+</page>

@@ -1,0 +1,220 @@
+<?php if(!$block->isLoggedIn()): ?>
+
+	<div class="header_login-menu_content login-overlay">
+		 <div class="header_login-title">Sign in</div>
+		 <form action="" class="js-login_form login_form popup-login-form" method="POST" name="popup-login-form" onsubmit="return false" autocomplete="off">
+				<!-- <input type="hidden" name="recaptcha-version" value="v3"> -->
+				<div class="form-text login_form-text">
+					 Password details are case sensitive.
+				</div>
+				<div class="form-group c-dynamic_field">
+					 <label class="form-control-label" for="login-form-email">
+					 <?php echo __('Email address') ?>
+					 </label>
+					 <input type="email" class="form-control" name="username" value="" placeholder="Email Address" data-missing-error="This field is required" data-type-mismatch="Invalid email address" data-pattern-mismatch="Invalid email address" pattern="^[\w.%+-]+@[\w.-]+\.[\w]{2,6}$" required  autocomplete="new-password" />
+					 <div class="invalid-feedback"></div>
+				</div>
+				<div class="form-group c-dynamic_field">
+					 <label class="form-control-label" for="login-form-password">
+					 <?php echo __('Password') ?></b>
+					 </label>
+					 <input type="password" class="form-control" name="password" placeholder="Password" data-missing-error="This field is required" required  autocomplete="new-password" />
+					 <div class="invalid-feedback"></div>
+				</div>
+				<div class="form-group form-invalid-feedback response-msg"></div>
+				<button type="submit" class="btn btn-block btn-primary btn-primary--hover header_login-sign_in" >
+				<?php echo __('Sign in') ?>
+				</button>
+				<!-- <div class="form-group custom-control custom-checkbox remember-me d-none">
+					 <input type="checkbox" class="custom-control-input" name="loginRememberMe" value="true">
+					 <label class="custom-control-label" for="rememberMe">
+					 <?php echo __('Remember me') ?>
+					 </label>
+				</div>  data-target="#requestPasswordResetModal"-->
+				<div class="login_form-forgot_password forgot_password">
+					 <a href="<?php echo $block->getUrl('customer/account/forgotpassword') ?>" title="Forgot your password?" class="btn btn-block btn-link forgot_password-link" data-toggle="modal" >
+					 <?php echo __('Forgot your password?') ?>
+					 </a>
+				</div>
+		 </form>
+		 <a class="btn btn-block btn-outline-dark header_login-create_account_btn m-checkout" href="<?php echo $block->getUrl('customer/account/create') ?>">
+		 <?php echo __('Create an Account') ?>
+		 </a>
+	</div>
+
+
+	<!-- <div class="login-overlay">
+		<div class="login-register-popup">
+			<div class="response-msg"></div>
+			<div class="login-container">
+				<form class="popup-login-form" method="POST" action="">
+					<div class="container">
+						<label><b><?php echo __('Email') ?></b></label>
+						<input type="email" placeholder="<?php echo __('Enter Email') ?>" name="username" required>
+
+						<label><b><?php echo __('Password') ?></b></label>
+						<input type="password" placeholder="<?php echo __('Enter Password') ?>" name="password" required>
+
+						<button class="action login primary" type="submit"><?php echo __('Login') ?></button>
+						<div class="register-link"><span><?php echo __('New Here?') ?></span>&nbsp;<a href="#"><?php echo __('Register') ?></a></div>
+					</div>
+
+					<div class="container" style="background-color:#f1f1f1">
+						<button title="<?php echo __('Click to close') ?>" type="button" class="cancelbtn"><?php echo __('Cancel') ?></button>
+						<span class="psw"><?php echo __('Forgot') ?> <a href="<?php echo $block->getUrl('customer/account/forgotpassword') ?>"><?php echo __('password') ?>?</a></span>
+					</div>
+				</form>
+			</div> -->
+			<!-- <div class="register-container">
+				<form class="popup-register-form" method="POST" action="">
+					<div class="container">
+						<label><b><?php //echo __('First Name') ?></b></label>
+						<input type="text" placeholder="<?php //echo __('Enter First Name') ?>" name="firstname" required>
+
+						<label><b><?php //echo __('Last Name') ?></b></label>
+						<input type="text" placeholder="<?php //echo __('Enter Last Name') ?>" name="lastname" required>
+
+						<label><b><?php //echo __('Email') ?></b></label>
+						<input type="email" placeholder="<?php //echo __('Enter Email') ?>" name="email" required>
+
+						<label><b><?php //echo __('Password') ?></b></label>
+						<input type="password" placeholder="<?php //echo __('Enter Password') ?>" name="password" required>
+
+						<label><b><?php //echo __('Password') ?></b></label>
+						<input type="password" placeholder="<?php //echo __('Confirm Password') ?>" name="password_confirmation" required>
+
+						<button class="action login primary" type="submit"><?php //echo __('Sign Up') ?></button>
+
+						<div class="login-link"><span><?php //echo __('Already have an Account?') ?></span>&nbsp;<a href="#"><?php //echo __('Login') ?></a></div>
+					</div>
+
+					<div class="container" style="background-color:#f1f1f1">
+						<button title="<?php //echo __('Click to close') ?>" type="button" class="cancelbtn">Cancel</button>
+					</div>
+				</form>
+			</div> -->
+		<!-- </div>
+	</div> -->
+
+	<script type="text/javascript">
+		require(['jquery'], function($) {
+			var headerElem = $('li.login-container');
+			// var loginLink = headerElem.find('.sign-in-link').children('a');
+			var loginLink = headerElem.find('a.sign-in-link');
+			var registerLink = headerElem.find('.sign-in-link').next().children('a');
+			var loginOverlay = $('.login-overlay');
+			var loginBox = $('.login-overlay').find('.popup-login-form');
+			var registerBox = $('.login-overlay').find('.popup-register-form');
+			var loginButton = $('.popup-login-form').find('button[type=submit]');
+			var registerButton = $('.popup-register-form').find('button[type=submit]');
+			var loginUrl = "<?php echo $block->getUrl('customerlogin/ajax/login') ?>";
+			var registerUrl = "<?php echo $block->getUrl('customerlogin/ajax/register') ?>";
+			var accountUrl = "<?php echo $block->getUrl('customer/account/') ?>";
+
+			// Texts
+			var loginText = "<?php echo __('Login') ?>";
+			var loggingText = "<?php echo __('Please Wait...') ?>";
+
+			var registerText = "<?php echo __('Sign Up') ?>";
+			var registeringText = "<?php echo __('Please Wait...') ?>";
+
+			// loginLink.click(function(e){
+			// 	e.preventDefault(e);
+			// 	loginOverlay.show();
+			// 	loginBox.show();
+			// });
+
+			// registerLink.click(function(e){
+			// 	e.preventDefault(e);
+			// 	loginOverlay.show();
+			// 	registerBox.show();
+			// });
+			//
+			// $('.cancelbtn').click(function(){
+			// 	loginOverlay.hide();
+			// 	loginBox.hide();
+			// 	registerBox.hide();
+			// });
+
+			// $('.login-link').click(function(e){
+			// 	e.preventDefault(e);
+			// 	loginBox.show();
+			// 	registerBox.hide();
+			// });
+
+			// $('.register-link a').click(function(e){
+			// 	e.preventDefault(e);
+			// 	loginBox.hide();
+			// 	registerBox.show();
+			// });
+
+			$('.popup-login-form').submit(function(){
+				// loginButton.text(loggingText);
+				loginButton.attr("disabled", "disabled");
+				var formData = getFormData($, $(this));
+				// console.log(formData);
+				$.ajax({
+		            type: "POST",
+		            url: loginUrl,
+		            data: formData,
+		            dataType: "json",
+		            success: function(data) {
+		                showResponse($, data);
+										// console.log(data);
+		                if(data.errors) {
+		                	// loginButton.text(loginText);
+		                	loginButton.removeAttr('disabled');
+		                } else {
+											window.location = accountUrl;
+		                	// location.reload();
+		                }
+		            }
+		        });
+				return false;
+			});
+
+			// $('.popup-register-form').submit(function(){
+			// 	registerButton.text(registeringText);
+			// 	registerButton.attr("disabled", "disabled");
+			// 	var formData = getFormData($(this));
+			// 	$.ajax({
+		  //           type: "POST",
+		  //           url: registerUrl,
+		  //           data: formData,
+		  //           dataType: "json",
+		  //           success: function(data) {
+		  //               showResponse(data);
+		  //               if(data.errors) {
+		  //               	registerButton.text(registerText);
+		  //               	registerButton.removeAttr('disabled');
+		  //               } else {
+		  //               	location.reload();
+		  //               }
+		  //           }
+		  //       });
+			// 	return false;
+			// });
+
+			function getFormData($, formElem){
+			    var unindexed_array = formElem.serializeArray();
+			    var indexed_array = {};
+
+			    $.map(unindexed_array, function(n, i){
+			        indexed_array[n['name']] = n['value'];
+			    });
+
+			    return indexed_array;
+			}
+
+			function showResponse($, data) {
+				if(data.errors) {
+					$('.response-msg').html("<div class='error text-danger text-center'>"+data.message+"</div>");
+				} else {
+
+					// $('.response-msg').html("<div class='success text-success text-center'>"+data.message+"</div>");
+				}
+				// setTimeout(function(){ $('.response-msg').html(null); }, 5000);
+			}
+		});
+	</script>
+<?php endif; ?>

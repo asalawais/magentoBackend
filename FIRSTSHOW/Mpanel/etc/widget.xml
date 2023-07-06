@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+	<widget id="firstshow_sliderwidget" class="FIRSTSHOW\Mpanel\Block\Widget\Slider">
+		<label translate="true">Slider FIRSTSHOW</label>
+		<description>SLIDER</description>
+	</widget>
+	<widget id="firstshow_slider_owl_widget" class="FIRSTSHOW\Mpanel\Block\Widget\SliderOwl">
+		<label translate="true">Slider Owl</label>
+		<description>SLIDER OWL</description>
+		<parameters>
+			<parameter name="custom_class" xsi:type="text" visible="true" sort_order="10">
+				<label translate="true">Custom Class</label>
+			</parameter>
+			<parameter name="owl_auto" xsi:type="select" visible="true" sort_order="20" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Autoplay</label>
+            </parameter>
+			<parameter name="owl_speed" xsi:type="text" visible="true" sort_order="25">
+				<label translate="true">Speed</label>
+				<depends>
+                    <parameter name="owl_auto" value="1"/>
+                </depends>
+			</parameter>
+			<parameter name="owl_nav" xsi:type="select" visible="true" sort_order="30" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Navigation</label>
+            </parameter>
+			<parameter name="owl_dot" xsi:type="select" visible="true" sort_order="40" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Pagination</label>
+            </parameter>
+			<parameter name="owl_loop" xsi:type="select" visible="true" sort_order="50" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Loop</label>
+            </parameter>
+			<parameter name="per_row" xsi:type="text" visible="true" required="true" sort_order="51">
+                <label translate="true">Items Per Row</label>
+                <description translate="true">Value must is number.</description>
+                <value>5</value>
+            </parameter>
+			<parameter name="per_row_md" xsi:type="text" visible="true" sort_order="52">
+                <label translate="true">Items Per Row (Responsive)</label>
+                <description translate="true">For screen (980px to 1200px)</description>
+            </parameter>
+			<parameter name="per_row_sm" xsi:type="text" visible="true" sort_order="53">
+                <label translate="true">Items Per Row (Responsive)</label>
+                <description translate="true">For screen (768px to 979px)</description>
+            </parameter>
+			<parameter name="per_row_xs" xsi:type="text" visible="true" sort_order="54">
+                <label translate="true">Items Per Row (Responsive)</label>
+                <description translate="true">For screen (480px to 767px)</description>
+            </parameter>
+			<parameter name="per_row_xsm" xsi:type="text" visible="true" sort_order="55">
+                <label translate="true">Items Per Row (Responsive)</label>
+                <description translate="true">For screen (0px to 479px)</description>
+            </parameter>
+			<parameter name="block_id" xsi:type="block" visible="true" required="true" sort_order="60">
+                <label translate="true">Block</label>
+                <block class="Magento\Cms\Block\Adminhtml\Block\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Block...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+		</parameters>
+	</widget>
+</widgets>
+ 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Itonomy_ProductVisibilityGrid:index" title="Offer Management" module="Itonomy_ProductVisibilityGrid" sortOrder="90" parent="Maxsel::emesa_api" resource="Maxsel_Emesa::index_index" />
+        <add id="Itonomy_ProductVisibilityGrid:index_grid" title="Product List" module="Itonomy_ProductVisibilityGrid" parent="Itonomy_ProductVisibilityGrid:index" action="productvisibility/index/grid" sortOrder="50" resource="Maxsel_Emesa::index_index"/>
+        <add id="Itonomy_ProductVisibilityGrid:index_price" title="Shipping Classes and Price List" module="Itonomy_ProductVisibilityGrid" parent="Itonomy_ProductVisibilityGrid:index" action="emesa/index/price" sortOrder="60" resource="Maxsel_Emesa::index_price"/>
+    </menu>
+</config>

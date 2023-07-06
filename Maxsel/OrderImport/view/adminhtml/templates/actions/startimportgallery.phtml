@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class="page-actions">
+    <div class="page-actions-inner">
+        <div class="page-actions-buttons">
+            <form class="action-element"
+                  action="<?= $block->escapeUrl($block->getUrl('*/*/gallery')) ?>"
+                  method="post">
+                <input
+                    name="form_key"
+                    type="hidden"
+                    value="<?= $block->escapeHtmlAttr($block->getFormKey()) ?>"/>
+                <button
+                    class="action-primary submit import-gallery"
+                    type="submit"
+                    title="<?= $block->escapeHtmlAttr(__('Start Import')) ?>">
+                    <?= $block->escapeHtml(__('Start Import')) ?>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

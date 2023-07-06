@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
+        <attribute code="afas_order_nbr" type="string" />
+        <attribute code="order_ref_nbr" type="string" />
+        <attribute code="order_project" type="string" />
+        <attribute code="debtor_id" type="string" />
+        <attribute code="order_cod" type="string" />
+        <attribute code="order_dummy" type="integer" />
+    </extension_attributes>
+</config>

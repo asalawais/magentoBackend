@@ -1,0 +1,60 @@
+<?php $helper = $this->helper('FIRSTSHOW\Social\Helper\Data'); ?>
+<?php if ($helper->getConfig('general_settings/active') && $helper->getConfig('facebook_settings/active') && $helper->getConfig('facebook_page_plugin_settings/active')): ?>
+    <?php
+    $showTitle = $helper->getConfig('facebook_page_plugin_settings/show_title');
+    $title = $helper->getConfig('facebook_page_plugin_settings/title');
+    $href = $helper->getConfig('facebook_page_plugin_settings/href');
+    $width = $helper->getConfig('facebook_page_plugin_settings/width');
+    $height = $helper->getConfig('facebook_page_plugin_settings/height');
+    $tabs = $helper->getConfig('facebook_page_plugin_settings/tabs');
+    $hideCover = $helper->getConfig('facebook_page_plugin_settings/hide_cover');
+    if ($hideCover) {
+        $hideCover = 'true';
+    } else {
+        $hideCover = 'false';
+    }
+    $showFacepile = $helper->getConfig('facebook_page_plugin_settings/show_facepile');
+    if ($showFacepile) {
+        $showFacepile = 'true';
+    } else {
+        $showFacepile = 'false';
+    }
+    $hideCta = $helper->getConfig('facebook_page_plugin_settings/hide_cta');
+    if ($hideCta) {
+        $hideCta = 'true';
+    } else {
+        $hideCta = 'false';
+    }
+    $smallHeader = $helper->getConfig('facebook_page_plugin_settings/small_header');
+    if ($smallHeader) {
+        $smallHeader = 'true';
+    } else {
+        $smallHeader = 'false';
+    }
+    $adaptContainerWidth = $helper->getConfig('facebook_page_plugin_settings/adapt_container_width');
+    if ($adaptContainerWidth) {
+        $adaptContainerWidth = 'true';
+    } else {
+        $adaptContainerWidth = 'false';
+    }
+    ?>
+    <div class="block block-facebook-page-plugin">
+        <?php if ($showTitle && $title != ''): ?>
+            <div class="block-title">
+                <strong id="block-facebook-page-plugin-heading"><?php echo $title; ?></strong>
+            </div>
+        <?php endif; ?>
+        <div class="block-content">
+            <div class="fb-page"
+                 data-href="<?php echo $href; ?>"
+                 data-width="<?php echo $width; ?>"
+                 data-height="<?php echo $height; ?>"
+                 data-tabs="<?php echo $tabs; ?>"
+                 data-hide-cover="<?php echo $hideCover; ?>"
+                 data-show-facepile="<?php echo $showFacepile; ?>"
+                 data-hide-cta="<?php echo $hideCta; ?>"
+                 data-small-header="<?php echo $smallHeader; ?>"
+                 data-adapt-container-width="<?php echo $adaptContainerWidth; ?>"></div>
+        </div>
+    </div>
+<?php endif; ?>

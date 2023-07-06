@@ -1,0 +1,385 @@
+<?php
+/**
+ * @package  BigBridge\ProductImport
+ * @license See LICENSE.txt for license details.
+ */
+
+namespace BigBridge\ProductImport\Cron;
+
+//use BigBridge\ProductImport\System\ConfigInterface;
+use BigBridge\ProductImport\Helper\CurlFetch;
+use Magento\Catalog\Model\ProductRepositoryFactory;
+use Magento\Framework\Api\SearchCriteriaBuilderFactory;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\InputException;
+use Magento\Framework\Exception\StateException;
+use Magento\Store\Model\StoreManagerInterface;
+
+/**
+ * Class ProductPublisher
+ */
+class ProductImporter //implements CronJobInterface
+{
+    /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
+     * @var SearchCriteriaBuilderFactory
+     */
+    private $criteriaBuilderFactory;
+
+    /**
+     * @var ProductRepositoryFactory
+     */
+    private $repositoryFactory;
+
+    /**
+     * @var ProductsArray
+     */
+    private $productsArray;
+
+    /**
+     * @var ConfigInterface
+     */
+    private $config;
+
+    private $directoryList;
+    protected $logger;
+    protected $_filesystem;
+    protected $_file;
+
+    /**
+     * ProductPublisher constructor.
+     *
+     * @param SearchCriteriaBuilderFactory $criteriaBuilderFactory
+     * @param ProductRepositoryFactory $repositoryFactory
+     * @param ProductsArray $productsArray
+     * @param StoreManagerInterface $storeManager
+     * @param ConfigInterface $config
+     */
+    public function __construct(
+        SearchCriteriaBuilderFactory $criteriaBuilderFactory,
+        ProductRepositoryFactory $repositoryFactory,
+        StoreManagerInterface $storeManager,
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Framework\Module\Dir\Reader $moduleReader,
+        \Magento\Framework\Filesystem $filesystem,
+        \Magento\Framework\Filesystem\Driver\File $file,
+        //ConfigInterface $config,
+        CurlFetch $productsArray
+    ) {
+        $this->storeManager = $storeManager;
+        $this->criteriaBuilderFactory = $criteriaBuilderFactory;
+        $this->repositoryFactory = $repositoryFactory;
+        $this->productsArray = $productsArray;
+        $this->_file = $file;
+        $this->_filesystem = $filesystem;
+        $this->logger = $logger;
+        //$this->config = $config;
+    }
+
+    /**
+     * Publish products
+     *
+     * @return void
+     */
+    public function execute()
+    {
+        $productXML = $this->createXMLProducts();
+        //print_r($productXML);
+        if ($productXML!='') {
+            $this->writeXML($productXML);
+        }
+    }
+
+    /**
+     * @throws CouldNotSaveException
+     * @throws InputException
+     * @throws StateException
+     *
+     * @return void
+     */
+    private function createXMLProducts()
+    {
+        $rows = $this->productsArray->getProductRows();
+        $xml = '';
+        $importXML = '';
+        $articleGroup = [];
+        if ($rows>0) {
+            foreach ($this->filteredArticles($rows) as $filteredArticle) {
+                //echo $filteredArticle['productGroup'];
+                $cats = [];
+                $root = 'Default Category/';
+                if($filteredArticle['Magento_cat._01']!=null) {
+                    $cats[] = $root.$filteredArticle['Magento_cat._01'];
+                }
+                if($filteredArticle['Magento_cat._02']!=null) {
+                    $cats[] = $root.$filteredArticle['Magento_cat._02'];
+                }
+                if($filteredArticle['Magento_cat._03']!=null) {
+                    $cats[] = $root.$filteredArticle['Magento_cat._03'];
+                }
+                if($filteredArticle['Magento_cat._04']!=null) {
+                    $cats[] = $root.$filteredArticle['Magento_cat._04'];
+                }
+                if($filteredArticle['Magento_cat._05']!=null) {
+                    $cats[] = $root.$filteredArticle['Magento_cat._05'];
+                }
+                $productCategories = implode(',', $cats);
+                $filteredArticle['productCategories'] = $productCategories;
+                if(empty($filteredArticle['productCategories'])) {
+                    $filteredArticle['productCategories'] = 'Default Category';
+                }
+                if($filteredArticle['articlegroupCode']!=null) {
+                    $agc = $filteredArticle['articlegroupCode'];
+                }
+                else {
+                    $agc = $filteredArticle['itemCode'];
+                }
+                $articleGroup[$agc][] = $filteredArticle;
+            }
+
+            //print_r($articleGroup);
+            $generatedXml = $this->prepareConfigurableProducts($articleGroup);
+            /*foreach ($rows as $row) {
+        		if($row['b2c']==1){
+        			$xml .= $this->generateSimpleXML($row);
+        		}
+        	}*/
+
+            $importXML = '<?xml version="1.0" encoding="UTF-8"?>
+							<import>' . $generatedXml . '</import>';
+        }
+
+        return $importXML;
+    }
+
+
+    /**
+     * @throws CouldNotSaveException
+     * @throws InputException
+     * @throws StateException
+     *
+     * @return void
+     */
+    private function createXMLProducts_back()
+    {
+        $rows = $this->productsArray->getProductRows();
+        //print_r($rows);
+        //die;
+        $categories = $this->getCategories();
+        //print_r($categories);
+
+        $xml = '';
+        $importXML = '';
+        $articleGroup = [];
+        if ($rows>0) {
+            foreach ($this->filteredArticles($rows) as $filteredArticle) {
+                //echo $filteredArticle['productGroup'];
+                $pgc = substr($filteredArticle['productGroup'], 2);
+                if (isset($categories[$pgc])) {
+                    $cats = $categories[$pgc];
+                    $root = 'Default Category/';
+                    $level = $cats['level1'];
+                    $level12 = implode('/', [$cats['level1'],$cats['level2']]);
+                    $level123 = implode('/', [$cats['level1'],$cats['level2'],$cats['level3']]);
+                    $level122 = implode('/', [$cats['level1'],$cats['level2-2']]);
+                    $level12232 = implode('/', [$cats['level1'],$cats['level2-2'],$cats['level3-2']]);
+                    $level12333 = implode('/', [$cats['level1'],$cats['level2-3'],$cats['level3-3']]);
+                    $productCategories = implode(',', [$root . $level,$root . $level12,$root . $level123,$root . $level122,$root . $level12232,$root . $level12333]);
+                    $filteredArticle['productCategories'] = $productCategories;
+                    //$filteredArticle['productCategories'] = $root.'Default Category';
+                } else {
+                    $filteredArticle['productCategories'] = 'Default Category';
+                }
+
+                $agc = $filteredArticle['articlegroupCode'];
+                $articleGroup[$agc][] = $filteredArticle;
+            }
+
+            //print_r($articleGroup);
+            $generatedXml = $this->prepareConfigurableProducts($articleGroup);
+            /*foreach ($rows as $row) {
+        		if($row['b2c']==1){
+        			$xml .= $this->generateSimpleXML($row);
+        		}
+        	}*/
+
+            $importXML = '<?xml version="1.0" encoding="UTF-8"?>
+							<import>' . $generatedXml . '</import>';
+        }
+
+        return $importXML;
+    }
+
+    private function generateSimpleXML($data, $categories)
+    {
+        if ($data['qty_box']==null) {
+            $data['qty_box'] = 1;
+        }
+        if ($data['Bedrag']==null) {
+            $data['Bedrag'] = 0;
+        }
+        $xmlSimple = '<simple sku="' . $data['itemCode'] . '">
+			<attribute_set_name>Default</attribute_set_name>
+			<global>
+				<name>' . str_replace('&', '&#38;', $data['description']) . '</name>
+				<price>' . ((float)$data['Consumer_Price']) . '</price>
+				<status>1</status>
+				<visibility>1</visibility>
+				<description>' . str_replace('&', '&#38;', $data['productTekst']) . '</description>
+			    <short_description>' . str_replace('&', '&#38;', $data['description']) . '</short_description>
+				<tax_class_name>Taxable Goods</tax_class_name>
+                <select code="size">' . $data['size'] . '</select>
+                <custom code="gtin">' . $data['gtin'] . '</custom>
+                <custom code="articlecode">' . $data['Artikelcode'] . '</custom>
+                <select code="corner_height">' . $data['cornerHeight'] . '</select>
+                <select code="closure">' . $data['Closure'] . '</select>
+                <select code="quality">' . $data['quality'] . '</select>
+                <multi_select code="product_brand"><item>' . $data['brand'] . '</item></multi_select>
+                <color>' . $data['color'] . '</color>
+                <weight>' . $data['weightGsm'] . '</weight>'
+                . $this->generateSimpleURLKey($data['description'], 'simple-'.$data['itemCode']) .
+            '</global>
+			<website_codes>
+				<item>base</item>
+			</website_codes>
+			<stock>
+			<qty>0</qty>
+			<is_in_stock>0</is_in_stock>
+			</stock>
+		</simple>';
+        return $xmlSimple;
+    }
+
+    private function generateConfigurableXML($sku, $name, $simple_skus, $categories)
+    {
+        $xmlConf = '<configurable sku="conf_' . $sku . '">
+		<attribute_set_name>Default</attribute_set_name>
+		<global>
+			<name>' . str_replace('&', '&#38;', $name) . '</name>
+			<price>0</price>
+			<status>1</status>
+			<visibility>4</visibility>
+			<tax_class_name>Taxable Goods</tax_class_name>'
+            . $this->generateURLKey($name, $sku) .
+        '</global>
+		<stock>
+			<is_in_stock>1</is_in_stock>
+		</stock>
+		<website_codes>
+			<item>base</item>
+		</website_codes>
+		<category_global_names>'.$this->getCategoriesByGC($categories) .
+        '</category_global_names>
+		<super_attribute_codes>
+			<item>size</item>
+		</super_attribute_codes>
+		<variant_skus>
+			' . $simple_skus . '
+		</variant_skus>
+	</configurable>';
+        return $xmlConf;
+    }
+
+    private function prepareConfigurableProducts($articles)
+    {
+        $xml = '';
+        //print_r($articles);
+        foreach ($articles as $artGrpCode => $simpleArray) {
+            $configName = $simpleArray[0]['description'];
+            if (isset($simpleArray[0]['productCategories'])) {
+                $categories = $simpleArray[0]['productCategories'];
+            }
+            $np = explode(' ', $configName);
+            $configName = implode(" ", array_splice($np, 0, 3));
+            $skus = '';
+            foreach ($simpleArray as $key => $simple) {
+                $xml .= $this->generateSimpleXML($simple, $categories);
+                $skus .= $this->prepareConfigurableSkus($simple['itemCode']);
+            }
+            $xml .= $this->generateConfigurableXML($artGrpCode, $configName, $skus, $categories);
+        }
+
+        return $xml;
+    }
+
+    private function prepareConfigurableSkus($sku)
+    {
+        return  '<item>' . $sku . '</item>';
+    }
+
+    public function writeXML($content)
+    {
+        //$dir = $this->directoryList->getPath('var');
+        $var = $this->_filesystem->getDirectoryRead(DirectoryList::VAR_DIR)->getAbsolutePath();
+        $fileName = $var . 'import/afas_products.xml';
+        $myfile = fopen($fileName, "w") or die("Unable to open file!");
+        try {
+            fwrite($myfile, $content);
+            fclose($myfile);
+        } catch (Exception $e) {
+        }
+        return;
+    }
+
+    private function filteredArticles($rows)
+    {
+        $filteredArticles = [];
+        foreach ($rows as $row) {
+            $fa = $row['itemCode'];
+            $filteredArticles[$fa] = $row;
+        }
+        return $filteredArticles;
+    }
+
+    private function getCategoriesByGC($categories)
+    {
+        //$categories = "Boxsprings,Matrassen,Toppers";
+        $cats = explode(',', $categories);
+        $catsXML = '';
+        //$root = 'Default Category/';
+        foreach ($cats as $c) {
+            //$c=$root.$c;
+            $catsXML .= '<item>' . rtrim($c, "/") . '</item>';
+        }
+        return '<item>Default Category</item>';
+        //return $catsXML;
+    }
+
+    private function generateURLKey($name, $sku)
+    {
+        $url = preg_replace('#[^0-9a-z]+#i', '-', $name);
+        $postfix = str_replace("conf_", "-", $sku);
+        $url = strtolower($url . '-' . $postfix);
+
+        return '<url_key>' . $url . '</url_key>';
+    }
+
+    private function generateSimpleURLKey($name, $sku)
+    {
+        $url = preg_replace('#[^0-9a-z]+#i', '-', $name);
+        $postfix = $sku;
+        $url = strtolower($url . '-' . $postfix);
+
+        return '<url_key>' . $url . '</url_key>';
+    }
+
+    private function getCategories()
+    {
+        $media = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
+        $file = fopen($media . 'import/mps_categories.csv', 'r');
+        $all_rows = [];
+        $header = fgetcsv($file);
+        //print_r($header);
+        while (($line = fgetcsv($file)) !== false) {
+            $all_rows[$line[0]] = array_combine($header, $line);
+        }
+        fclose($file);
+
+        return $all_rows;
+    }
+}

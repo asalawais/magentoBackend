@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Maxsel::orders" title="Maxsel" module="Maxsel_OrderImport" sortOrder="9999" resource="Magento_Backend::content"/>
+		<add id="Maxsel_OrderImport::index_import" title="Order Import" module="Maxsel_OrderImport" sortOrder="90" parent="Maxsel::orders" resource="Maxsel_OrderImport::index_import" />
+        <add id="Maxsel_OrderImport::index_index" title="Per Store" module="Maxsel_OrderImport" sortOrder="9999" resource="Maxsel_OrderImport::index_index" parent="Maxsel_OrderImport::index_import" action="orders/index/index"/>
+    </menu>
+</config>

@@ -1,0 +1,200 @@
+<?php
+/**
+ * Copyright ©  All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+namespace BigBridge\ProductImport\Controller\Adminhtml\Import;
+use BigBridge\ProductImport\Api\ImportConfig;
+use Magento\Catalog\Model\ResourceModel\Product\Collection;
+use BigBridge\ProductImport\Model\Reader\XmlProductImporter;
+use BigBridge\ProductImport\Model\Reader\ProductImportWebApiLogger;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Serialize\Serializer\Json;
+use Magento\Framework\View\Result\PageFactory;
+use BigBridge\ProductImport\Helper\Indexer;
+use BigBridge\ProductImport\Cron\AttributeValuesImporter;
+use BigBridge\ProductImport\Cron\GalleryImporter;
+use Psr\Log\LoggerInterface;
+use Magento\Framework\Controller\ResultFactory;
+class GalleryImages extends \Magento\Backend\App\Action
+{
+
+    /**
+     * @var PageFactory
+     */
+    protected $resultPageFactory;
+    /**
+     * @var Json
+     */
+    protected $serializer;
+    /**
+     * @var LoggerInterface
+     */
+    protected $loggerFile;
+    private \Magento\Framework\Json\Helper\Data $jsonHelper;
+    protected $_xmlImport;
+    protected $_filesystem;
+    private $attributesArray;
+    private $galleryArray;
+    protected $resultFactory;
+    protected $_session;
+    protected $mediaPath;
+    private $productFactory;
+    protected $_productRepositoryFactory;
+
+
+    /**
+     * Constructor
+     *
+     * @param PageFactory $resultPageFactory
+     * @param Json $json
+     * @param LoggerInterface $loggerFile
+     */
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Filesystem $filesystem,
+        PageFactory     $resultPageFactory,
+        Json            $json,
+        \Magento\Framework\Json\Helper\Data $jsonHelper,
+        XmlProductImporter $xmlImport,
+        LoggerInterface $loggerFile,
+        AttributeValuesImporter $attributesArray,
+        Indexer $indexer,
+        GalleryImporter $galleryArray,
+        CollectionFactory  $productFactory,
+        DirectoryList $mediaPath,
+        \Magento\Backend\Model\Auth\Session $authSession,
+        \Magento\Catalog\Api\ProductRepositoryInterfaceFactory $productRepositoryFactory,
+        ResultFactory $resultFactory
+    )
+    {
+        parent::__construct($context);
+        $this->resultPageFactory = $resultPageFactory;
+        $this->_filesystem = $filesystem;
+        $this->jsonHelper = $jsonHelper;
+        $this->serializer = $json;
+        $this->_xmlImport = $xmlImport;
+        $this->logger = $loggerFile;
+        $this->_indexer = $indexer;
+        $this->attributesArray = $attributesArray;
+        $this->galleryArray = $galleryArray;
+        $this->resultFactory = $resultFactory;
+        $this->mediaPath = $mediaPath;
+        $this->productFactory = $productFactory;
+        $this->_productRepositoryFactory = $productRepositoryFactory;
+        $this->_session = $authSession;
+    }
+
+    /**
+     * Execute view action
+     *
+     * @return string
+     */
+    public function execute()
+    {
+        if(!$this->_session->isLoggedIn()) {
+            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+            $resultRedirect->setUrl('/');
+            return $resultRedirect;
+        }
+        if($this->getRequest()->isAjax()) {
+            //$this->logger->critical(print_r('dfdfdf', true));
+            $var = $this->_filesystem->getDirectoryRead(DirectoryList::VAR_DIR)->getAbsolutePath();
+            //$xmlPath = $var.'import/afas_stock_products.xml';
+            $success = true;
+            $result = false;
+            $logger = new ProductImportWebApiLogger();
+            try {
+                $products = $this->galleryArray->execute();
+                if($products) {
+                    $config = new ImportConfig();
+                    //$logger = new ProductImportWebApiLogger();
+                    $config->resultCallback = [$logger, 'productImported'];
+                    $c = 50;
+                    foreach (range(0, 2000, 50) as $skip) {
+                        $take = $c + $skip;
+                        $xmlPath = $var . 'import/afas_images' . $take . '.xml';
+                        $this->_xmlImport->import($xmlPath, $config, false, $logger);
+                    }
+                    if ($logger->getFailedProductCount() > 0) {
+                        $success = false;
+                    }
+                    $this->_indexer->reindexAll();
+                }
+                $this->getConfigurableProducts();
+            }
+            catch (LocalizedException $e) {
+                    $success = false;
+                } catch (\Exception $e) {
+                    $this->logger->critical($e);
+                    $success = false;
+                }
+            if (!$success) {
+                $result .= "\n";
+                $result .= "Error in " . basename($xmlPath) . ":\n";
+                $result .= $logger->getOutput() . "\n";
+            } elseif ($logger->getOkProductCount() == 0) {
+                $result .= $logger->getOutput();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Create json response
+     *
+     * @return ResultInterface
+     */
+    public function jsonResponse($response = [])
+    {
+        /*$this->http->getHeaders()->clearHeaders();
+        $this->http->setHeader('Content-Type', 'application/json');
+        return $this->http->setBody(
+            $this->serializer->serialize($response)
+        );*/
+        return $this->getResponse()->representJson(
+            $this->jsonHelper->jsonEncode($response)
+        );
+    }
+
+    public function getConfigurableProducts() {
+        $collection = $this->productFactory->create();
+        $collection->addAttributeToSelect('*');
+        $collection->addAttributeToFilter('type_id', ['eq' => 'configurable']);
+        //echo count($collection);
+        foreach($collection as $confProduct){
+            if($confProduct->getTypeId() == "configurable"){
+                $productConf = $this->_productRepositoryFactory->create()->getById($confProduct->getId());
+                $confImages = [];
+                $children = $confProduct->getTypeInstance()->getUsedProducts($confProduct);
+                if(count($children)>0){
+                    foreach ($children as $child){
+
+                        $product = $this->_productRepositoryFactory->create()->getById($child->getId());
+                        $image = $product->getData('image');
+                        if($image){
+                            $path = $this->mediaPath->getPath('media').'/catalog/product'.$product->getData('image');
+                            if (file_exists($path)) {
+                                $confProduct->addImageToMediaGallery($path, array('image', 'small_image', 'thumbnail'), false, false);
+
+                            }
+
+                        }
+
+                        break;
+                    }
+                    $confProduct->save();
+                }
+
+            }
+        }
+    }
+
+
+}
+

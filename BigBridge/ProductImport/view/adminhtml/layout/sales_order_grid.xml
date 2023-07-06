@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <body>
+        <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" template="BigBridge_ProductImport::import/js.phtml"
+                   name="import_js_backend_afas_import"/>
+        </referenceContainer>
+    </body>
+</layout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Maxsel::emesa_api" title="Emesa API" module="Maxsel_Emesa" sortOrder="9999" resource="Magento_Backend::content"/>
+        <add id="Maxsel_Emesa::index_import" title="Product, Orders, Shipments" module="Maxsel_Emesa" sortOrder="90" parent="Maxsel::emesa_api" resource="Maxsel_Emesa::index_import" />
+		<add id="Maxsel_Emesa::index_index" title="Emesa Sync" module="Maxsel_Emesa" sortOrder="9999" resource="Maxsel_Emesa::index_index" parent="Maxsel_Emesa::index_import" action="emesa/index/index"/>
+    </menu>
+</config>

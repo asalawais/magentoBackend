@@ -1,0 +1,183 @@
+<home>
+	<static_block>
+		<item>
+			<title>Fashion Owl Slider Home 1</title>
+			<identifier>firstshow_owl_slider_en</identifier>
+			<content><![CDATA[<div><img class="img-responsive" src="{{media url="wysiwyg/home_1_owl_1.jpg"}}" alt="" /></div><div><img class="img-responsive" src="{{media url="wysiwyg/home_1_owl_1.jpg"}}" alt="" /></div>]]></content>
+		</item>
+		<item>
+			<title>Home1 Fashion Service</title>
+			<identifier>home1_fashion_service</identifier>
+			<content><![CDATA[<div class="col-md-4 col-sm-6 col-xs-12">
+<div class="service-box"><span class="icon pe-7s-box2">&nbsp;</span>
+<h5 class="title" style="color: #444444;">FREE SHIPPING ON ALL ORDRES</h5>
+<a class="text-desc" href="#">More information here </a></div>
+</div>
+<div class="col-md-4 col-sm-6 col-xs-12">
+<div class="service-box"><span class="icon pe-7s-wallet">&nbsp;</span>
+<h5 class="title" style="color: #444444;">AMAZING CUSTOMER SERVICE</h5>
+<a class="text-desc" href="#">More information here </a></div>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+<div class="service-box"><span class="icon pe-7s-delete-user">&nbsp;</span>
+<h5 class="title" style="color: #444444;">NO CUSTOMS OR DUTY FEES</h5>
+<a class="text-desc" href="#">More information here </a></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home1 Fashion Promobanner</title>
+			<identifier>home1_fashion_promobanner</identifier>
+			<content><![CDATA[<div class="promo-static padding-5">
+<div class="title-center">
+<h3 class="heading"><span>SHOP BY CATEGORIES</span></h3>
+<div class="text-desc"><span>Trending Fashion In This Season</span></div>
+</div>
+<div class="row categories-landding">
+<div class="col-md-6 col-sm-12 col-xs-12">
+<div class="row row-pd5">
+<div class="col-md-6 col-sm-6 col-xs-12 hidden-xs">
+<div class="cate-content vertical"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/categories_1_1.jpg"}}" alt="" /></a>
+<div class="text">
+<h2 class="cate-name">Fashion</h2>
+<p class="text-desc">(15 products)</p>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12 hidden-xs">
+<div class="cate-content vertical"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/categories_1_2.jpg"}}" alt="" /></a>
+<div class="text">
+<h2 class="cate-name">Interior</h2>
+<p class="text-desc">(23 products)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-12 col-xs-12">
+<div class="cate-content horizontal"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/categories_1_4.jpg"}}" alt="" /></a>
+<div class="text">
+<h2 class="cate-name">Accessories<span class="text-desc">&nbsp;(9 products)</span></h2>
+</div>
+</div>
+<div class="cate-content horizontal"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/categories_1_3.jpg"}}" alt="" /></a>
+<div class="text">
+<h2 class="cate-name">Office<span class="text-desc">&nbsp;(20 products)</span></h2>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home1 Fashion Promo</title>
+			<identifier>home1_fashion_promo</identifier>
+			<content><![CDATA[<div class="promo-banner hidden-xs"><a><img class="img-responsive" src="http://magesolution.com/fashion/media/promobanners/banner_home_2.jpg" alt="Fashion Banner Buy Theme" /></a>
+<div class="text-container text-right">
+<div class="text-hover"><span class="h1 text-desc" style="font-weight: 300;"> <span style="font-style: normal; color: #72584b;">Do You Love Us?</span> <span style="color: #444444;">Purchase This Theme!</span> </span>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu pulvinar massa.</p>
+</div>
+<div class="view-more"><button class="btn btn-primary btn-lg btn-promo-banner" style="background-color: #a0522d; border-color: #A0522D;" onclick="setLocation('')"><span>Purchase</span></button></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home1 Fashion Post</title>
+			<identifier>home1_fashion_post</identifier>
+			<content><![CDATA[<div class="title-center">
+<h3 class="heading"><span>BLOG UPDATES</span></h3>
+<div class="text-desc"><span>Trending Fashion In This Season</span></div>
+</div>
+<div class="padding30">&nbsp;</div>
+<p>{{widget type="FIRSTSHOW\Blog\Block\Widget\Lastest" number_of_posts="3" show_thumbnail="1" thumbnail_width="240" thumbnail_height="180" show_short_content="1" limit_characters_short_content="150" view_as="owl_carousel" custom_class="text-center" items="2" autoplay="1" template="widget/default.phtml"}}</p>]]></content>
+		</item>
+		<item>
+			<title>Home1 Fashion Newsletter</title>
+			<identifier>home1_fashion_newsletter</identifier>
+			<content><![CDATA[<div class="col-md-6 col-sm-6 col-xs-12 no-padding">
+<div class="newletter-center">
+<div class="text">
+<h3 class="heading"><span>NEWSLETTER</span></h3>
+<p>Sign up to receive the coupon 15% off for your first purchase via email and get informations about bicycle.</p>
+</div>
+{{block class="Magento\Newsletter\Block\Subscribe" template="subscribe.phtml"}} <br />
+<p class="text-desc">*Discount applies only to orders over $100</p>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home1 Fashion Banner Newsletter</title>
+			<identifier>home1_fashion_banner_newsletter</identifier>
+			<content><![CDATA[<div class="promo-banner col-md-6 col-sm-12 col-xs-12 no-padding"><a><img class="img-responsive" src="http://magesolution.com/fashion/media/promobanners/banner_l_s.jpg" alt="Fashion Banner Right Newsletter Center" /></a>
+<div class="text-container text-right">
+<div class="text-hover"><span class="h1" style="font-size: 50px; color: #fff;">SALE OFF</span> <span class="h1" style="font-size: 50px; color: #fff;">UP TO <span style="color: #000;">50%</span></span>
+<p style="font-size: 20px; font-weight: 900; color: #fff;">SUMMER FINAL SALE OFF</p>
+</div>
+</div>
+</div>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Home Page</title>
+		<identifier>home</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<div class="home1">{{widget type="FIRSTSHOW\Mpanel\Block\Widget\Slider"}}
+<div class="container">
+<div class="padding60">&nbsp;</div>
+{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home1_fashion_service"}}
+<div class="clear">&nbsp;</div>
+<div class="padding60">&nbsp;</div>
+{{block class="FIRSTSHOW\Mpanel\Block\Products\Category\NewProducts" title="NEW ARRIVALS" category_ids="4,5,6" products_count="8" per_row="4" custom_class="tabs-colon" nav="true" dots="false" autoplay="0" note_text="Trending Fashion In This Season" template="products/category/tabs-slider-new.phtml}}
+<div class="padding50">&nbsp;</div>
+{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home1_fashion_promobanner"}}
+<div class="padding50 hidden-xs">&nbsp;</div>
+{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home1_fashion_promo"}}
+<div class="padding60">&nbsp;</div>
+{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home1_fashion_post"}}
+<div class="clear">&nbsp;</div>
+<div class="padding40">&nbsp;</div>
+<div class="promo-newsletter">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home1_fashion_newsletter"}} {{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home1_fashion_banner_newsletter"}}</div>
+<div class="clear">&nbsp;</div>
+<div class="padding60">&nbsp;</div>
+<div class="attr">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="sale" title="On Sale" products_count="3" custom_class="attribute-slide" template="products/list.phtml"}}</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="featured_product" title="Featured" products_count="3" custom_class="attribute-slide" template="products/list.phtml"}}</div>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="new" title="New Products" products_count="3" custom_class="attribute-slide" template="products/list.phtml"}}</div>
+</div>
+</div>
+</div>]]></content>
+	</cms_page>
+	
+	<theme_setting>
+		<general>
+			<header>header_1</header>
+		</general>
+		<custom_style>
+			<style><![CDATA[.cms-noroute-index .page-wrapper > #maincontent.container {
+	width: 100%;
+	padding: 0;
+}
+.slider_firstshow_carousel.owl-carousel .owl-item {
+padding: 0;
+}
+.cms-noroute-index .footer {
+	margin: 0;
+}
+body.cms-index-index .vertical-menu-home .vertical-menu-content {
+min-height: 0px;
+}
+.product-label { z-index: 1;}]]></style>
+		</custom_style>
+		<banner_slider>
+			<identifier_block><![CDATA[firstshow_owl_slider_en]]></identifier_block>
+		</banner_slider>
+	</theme_setting>
+	<color_setting>
+		<header>
+			<header_custom>1</header_custom> <!-- Use Custom -->
+			<!-- Menu Section -->
+			<lv1_color><![CDATA[#222222]]></lv1_color> <!-- Level 1 link color -->
+			<lv1_color_hover><![CDATA[#e74c3c]]></lv1_color_hover> <!-- Level 1 link hover color -->
+		</header>
+	</color_setting>
+</home>

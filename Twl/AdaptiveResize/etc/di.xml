@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+
+
+    <preference for="\Magento\Catalog\Model\Product\Image" type="Twl\AdaptiveResize\Model\Product\Image" />
+
+    <preference for="\Magento\Swatches\Controller\Ajax\Media" type="Twl\AdaptiveResize\Controller\Swatches\Ajax\Media" />
+
+
+
+</config>
+

@@ -1,0 +1,31 @@
+{
+    "name": "Twl/module-customerlogin",
+    "description": "login & signup using ajax",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "require": {
+        "php": "~5.5.0|~5.6.0|~7.0.0",
+        "Twl/module-core": "*",
+        "magento/module-customer": "*"
+    },
+    "authors": [
+        {
+          "name": "Manish Joy",
+          "email": "webdesigningeasy@gmail.com",
+          "homepage": "http://www.theweblogix.com",
+          "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Twl\\CustomerLogin\\": ""
+        }
+    }
+}

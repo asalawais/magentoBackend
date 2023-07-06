@@ -1,0 +1,680 @@
+<?php
+namespace Maxsel\HomeDeco\Helper;
+
+use phpDocumentor\Reflection\Utils;
+use Stevenmaguire\OAuth2\Client\Provider\Keycloak;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use Magento\Catalog\Api\ProductAttributeMediaGalleryManagementInterface;
+use Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterface;
+use Magento\Store\Model\StoreManagerInterface;
+use Psr\Log\LoggerInterface;
+use Magento\CatalogInventory\Model\Stock\StockItemRepository;
+use Magento\CatalogInventory\Api\StockRegistryInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\CatalogInventory\Api\StockStateInterface;
+
+/**
+ * @author Patrick van Bergen
+ */
+class Connect
+{
+
+    protected $logger;
+    /**
+     * @var ProductAttributeMediaGalleryManagementInterface
+     */
+    private $productAttributeMediaGallery;
+
+    private $sandBoxApiHost  = 'https://market.emesa.org';
+
+    //private $sandBoxApiHost = 'https://sandbox-market.emesa.org';
+
+    /**
+     * @var CollectionFactory
+     */
+    protected $collectionFactory;
+    protected $storeManager;
+    protected $_stockItemRepository;
+    protected $_productRepository;
+    protected $stockRegistry;
+    protected $stockState;
+
+    public function __construct(
+       LoggerInterface $logger,
+       ProductAttributeMediaGalleryManagementInterface $productAttributeMediaGallery,
+       StoreManagerInterface $storeManager,
+       CollectionFactory $collectionFactory,
+       StockItemRepository $stockItemRepository,
+       ProductRepositoryInterface $productRepository,
+       StockRegistryInterface $stockRegistry,
+       StockStateInterface  $stockState
+    ) {
+        $this->logger = $logger;
+        $this->collectionFactory = $collectionFactory;
+        $this->productAttributeMediaGallery = $productAttributeMediaGallery;
+        $this->storeManager = $storeManager;
+        $this->_stockItemRepository = $stockItemRepository;
+        $this->_productRepository = $productRepository;
+        $this->stockRegistry = $stockRegistry;
+        $this->stockState =  $stockState;
+    }
+
+    private function getToken()
+    {
+        //Please check Swagger UI or OpenAPI.json for updates
+        //$sandBoxApiHost = 'https://sandbox-market.emesa.org';   //sandbox
+        $sandBoxApiHost = 'https://market.emesa.org';   //production
+        $keycloakUrl = 'https://sso.emesa.org/auth';
+
+        /*$provider = new Keycloak(['authServerUrl' => $keycloakUrl,
+            'realm' => 'partners-sandbox',
+            'clientId' => 'mps-eurobeds-sandbox',
+            'clientSecret' => '7c7a3e4f-8c1f-493b-af5c-b69b6fd40e25',]);*/ // sandbox
+        $provider = new Keycloak(['authServerUrl' => $keycloakUrl,
+            'realm' => 'partners',
+            'clientId' => 'mps-eurobeds',
+            'clientSecret' => 'fc8ba4b6-f46b-40ff-ae3e-e997af7553f7',]);
+        $accessToken = $provider->getAccessToken('client_credentials');
+        return $accessToken->getToken();
+    }
+
+    public function apiCall(){
+
+        /*
+         *	Configure variables
+         */
+        $url = 'https://homedeco.nl';
+        $uri = '/api/orders/';
+        $public_key = 'odwRwbtljujRUouYIXouDLLybLjMzPjn';
+        $private_key = 'wmBvmhoGPXfoVQpMUmlBzDosLLYrRrSDvumXFvfBATcjeoydkDFhPUXYUqPxOxJAdYkunKDQpPxDsjyUojidTjIzMqGvLMymJfOJnaoWDxHXIFqgldDzqoxEIZNWOcGwknfJHfiWoINJYMfSSbELQGuXkLBkwEnKXJXwRXJrJopvBQqkVKSJlbInHObMTPjYaGsRtMPumhYQICkSVhFfHKAAibmbVQLJzvlTpTKSKSRxUfalLIACTLDHnAToTrlv';
+        $port = 443;
+        $contentType = 'application/xml';
+        $date = gmdate('D, d M Y H:i:s T');
+        $httpmethod = 'POST';
+        /*
+         *	Signature String
+         */
+        $signatureString = $httpmethod . "\n\n";
+        $signatureString .= $contentType . "\n";
+        $signatureString .= $date . "\n";
+        $signatureString .= "x-bol-date:" . $date . "\n";
+        $signatureString .= $uri;
+        $signature = $public_key . ':' . base64_encode(hash_hmac('SHA256', $signatureString, $private_key, true));
+        /*
+         *	Create XML for a response from Bol.com
+         */
+       /* $field = '<?xml version="1.0" encoding="UTF-8"?>
+<ProcessOrders xmlns="http://plazaapi.bol.com/services/xsd/plazaapiservice-1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://plazaapi.bol.com/services/xsd/plazaapiservice-1.0.xsd plazaapiservice-1.0.xsd ">
+<Shipments>
+<Shipment>
+<OrderId>123</OrderId>
+<DateTime>2011-01-01T12:00:00</DateTime>
+<Transporter>
+<Code>1234</Code>
+<TrackAndTraceCode>3SBOLDEVTEST</TrackAndTraceCode>
+</Transporter>
+<OrderItems>
+<Id>34567</Id>
+</OrderItems>
+</Shipment>
+</Shipments>
+</ProcessOrders>';*/
+        /*
+         *	Open the url to Bol.com and send the XML data
+         *	If successfull Bol.com will give us a response back
+         */
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type:" . $contentType, "X-BOL-Date:" . $date, "X-BOL-Authorization:" . $signature));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $url . $uri);
+        //curl_setopt($ch, CURLOPT_POST, true);
+        //curl_setopt($ch, CURLOPT_POSTFIELDS, $field);
+        if (curl_errno($ch)) {
+            print_r(curl_errno($ch), true);
+        }
+        $result = curl_exec($ch);
+        echo $result;
+        /*
+         *	Close the url to bol.com
+         */
+        curl_close($ch);
+
+
+    }
+    public function getCategoryList()
+    {
+        $token = $this->getToken();
+        //$sandBoxApiHost = 'https://sandbox-market.emesa.org';   //sandbox
+        $sandBoxApiHost = 'https://market.emesa.org';   //production
+// Configure OAuth2 access token for authorization: ClientCredentials
+
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($sandBoxApiHost)
+            ->setAccessToken($token);
+
+        $apiInstance = new \Emesa\PartnerPlatform\Api\DictionaryApi(
+// If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+// This is optional, `GuzzleHttp\Client` will be used as default.
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        $limit = 10000; // int | Maximum number of entities to return
+        $offset = 0; // int | Skip first N items
+
+        try {
+            return $apiInstance->listCategories($limit, $offset);
+        } catch
+        (\Exception $e) {
+            echo 'Exception when calling DictionaryApi->listCategories: ', $e->getMessage(), PHP_EOL;
+        }
+    }
+
+    public function getShippingClasses()
+    {
+        $token = $this->getToken();
+
+// Configure OAuth2 access token for authorization: ClientCredentials
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+
+        $apiInstance = new \Emesa\PartnerPlatform\Api\DictionaryApi(
+// If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+// This is optional, `GuzzleHttp\Client` will be used as default.
+            new \GuzzleHttp\Client(),
+            $config
+        );
+
+        try {
+            return  $apiInstance->listShippingClasses();
+        } catch (\Exception $e) {
+            echo 'Exception when calling DictionaryApi->listShippingClasses: ', $e->getMessage(), PHP_EOL;
+        }
+    }
+
+    public function putProducts()
+    {
+        $token = $this->getToken();
+
+// Configure OAuth2 access token for authorization: ClientCredentials
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+        $apiInstance = new \Emesa\PartnerPlatform\Api\ProductsApi(
+        // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+        // This is optional, `GuzzleHttp\Client` will be used as default.
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        if(count($this->getProducts()) > 0) {
+            foreach ($this->getProducts() as $product) {
+                if ($product->getDescription()) {
+                    $fullDescription = [];
+                    $attr = $product->getResource()->getAttribute('size');
+                    if ($attr->usesSource()) {
+                        $sizeValueText = $attr->getSource()->getOptionText($product->getSize());
+                        $fullDescription[] = 'Size: ' . $sizeValueText;
+                    }
+                    if ($product->getKleur()) {
+                        $fullDescription[] = 'Kleur: ' . $product->getKleur();
+                    }
+                    if ($product->getMerknaam()) {
+                        $fullDescription[] = 'Merknaam: ' . $product->getMerknaam();
+                    }
+                    if ($product->getItemtypeNaam()) {
+                        $fullDescription[] = 'Itemtype Naam: ' . $product->getItemtypeNaam();
+                    }
+                    $extraImages = [];
+                    $gallery = $this->getMediaGallery($product->getSku());
+                    if ($gallery) {
+                        foreach ($gallery as $image) {
+                            $extraImages[] = $this->getImageUrl($image->getFile());
+                        }
+                    }
+
+
+                    $supplier_product_id = $product->getSku(); // string |
+                    $data['ean'] = $product->getSku();
+                    $data['brand'] = 'HomeShopping24';
+                    $data['market_category_id'] = $product->getData('emesa_market_category_id');
+                    $data['retail_price_in_cents'] = $product->getData('Emesa_Advice_Price') * 100;
+                    $data['main_image_url'] = $this->getImageUrl($product->getData('image'));
+                    //$data['translations'] = 'nl_NL';
+                    $data['translations']['nl_NL']['name'] = $this->getLimitedCharacters($product->getName(), 97);
+                    $data['translations']['nl_NL']['description'] = $this->getLimitedCharacters($product->getDescription(), 995);
+                    $data['translations']['nl_NL']['shortDescription'] = $this->getLimitedCharacters($product->getShortDescription(), 995);
+                    $data['translations']['nl_NL']['seoDescription'] = $this->getLimitedCharacters($product->getDescription(), 995);
+                    $data['translations']['nl_NL']['extraDescription'] = $this->getLimitedCharacters($product->getDescription(), 995);;
+                    $data['translations']['nl_NL']['mainUsp'] = 'MainUSP';
+                    $data['translations']['nl_NL']['fullSpecifications'] = implode(',', $fullDescription);
+                    $data['extra_image_urls'] = $extraImages;
+                    $body = new \Emesa\PartnerPlatform\Model\PutProductRequest($data);
+                    //$this->logger->debug(print_r($body, true));
+                    try {
+                        $this->logger->info(print_r($body, true));
+                        $apiInstance->putProduct($supplier_product_id, $body);
+                        //$this->logger->info('Result ProductsApi->putProduct: ' . $result);
+                    } catch (\Exception $e) {
+                        $this->logger->info('Exception when calling ProductsApi->putProduct: ' . $e->getMessage());
+                        $this->logger->info('Exception when calling ProductsApi->putProduct: ' . $e->getMessage());
+                    }
+                }
+
+            }
+        }
+    }
+
+    public function putProductByMarketCategoryId($productId)
+    {
+        $token = $this->getToken();
+
+        // Configure OAuth2 access token for authorization: ClientCredentials
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+        $apiInstance = new \Emesa\PartnerPlatform\Api\ProductsApi(
+        // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+        // This is optional, `GuzzleHttp\Client` will be used as default.
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        $this->logger->info('Result product Id: ' . $productId);
+            $product = $this->getProductsByIds($productId);
+        $this->logger->info('Result product data: ' . print_r($product->getData(), true));
+                if ($product->getDescription()) {
+                    $this->logger->info('Test desc in');
+                    $fullDescription = [];
+                    $attr = $product->getResource()->getAttribute('size');
+                    if ($attr->usesSource()) {
+                        $sizeValueText = $attr->getSource()->getOptionText($product->getSize());
+                        $fullDescription[] = 'Size: ' . $sizeValueText;
+                    }
+                    if ($product->getKleur()) {
+                        $fullDescription[] = 'Kleur: ' . $product->getKleur();
+                    }
+                    if ($product->getMerknaam()) {
+                        $fullDescription[] = 'Merknaam: ' . $product->getMerknaam();
+                    }
+                    if ($product->getItemtypeNaam()) {
+                        $fullDescription[] = 'Itemtype Naam: ' . $product->getItemtypeNaam();
+                    }
+                    $extraImages = [];
+                    $gallery = $this->getMediaGallery($product->getSku());
+                    if ($gallery) {
+                        foreach ($gallery as $image) {
+                            $extraImages[] = $this->getImageUrl($image->getFile());
+                        }
+                    }
+
+
+                    $supplier_product_id = $product->getSku(); // string |
+                    $data['ean'] = $product->getSku();
+                    $data['brand'] = 'HomeShopping24';
+                    if($product->getEmesaMarketCategoryId()) {
+                        $data['market_category_id'] = $product->getEmesaMarketCategoryId();
+                    }
+                    $data['retail_price_in_cents'] = $product->getData('Emesa_Advice_Price') * 100;
+                    $data['main_image_url'] = $this->getImageUrl($product->getData('image'));
+                    //$data['translations'] = 'nl_NL';
+                    $data['translations']['nl_NL']['name'] = $this->getLimitedCharacters($product->getName(), 97);
+                    $data['translations']['nl_NL']['description'] = $this->getLimitedCharacters($product->getDescription(), 995);
+                    $data['translations']['nl_NL']['shortDescription'] = $this->getLimitedCharacters($product->getShortDescription(), 995);
+                    $data['translations']['nl_NL']['seoDescription'] = $this->getLimitedCharacters($product->getDescription(), 995);
+                    $data['translations']['nl_NL']['extraDescription'] = $this->getLimitedCharacters($product->getDescription(), 995);;
+                    $data['translations']['nl_NL']['mainUsp'] = 'MainUSP';
+                    $data['translations']['nl_NL']['fullSpecifications'] = implode(',', $fullDescription);
+                    $data['extra_image_urls'] = $extraImages;
+                    $body = new \Emesa\PartnerPlatform\Model\PutProductRequest($data);
+                    $this->logger->debug(print_r($body, true));
+                    try {
+                        //$this->logger->info(print_r($body, true));
+                        $apiInstance->putProduct($supplier_product_id, $body);
+                        return $data['market_category_id'];
+                        //$this->logger->info('Result ProductsApi->putProduct: ' . $result);
+                    } catch (\Exception $e) {
+                        $this->logger->info('Exception when calling ProductsApi->putProduct: ' . $e->getMessage());
+                        //$this->logger->info('Exception when calling ProductsApi->putProduct: ' . $e->getMessage());
+                    }
+                }
+    }
+
+    public function getStockItem($productId)
+    {
+        return $this->_stockItemRepository->get($productId);
+    }
+    public function getProduct($id)
+    {
+        return $this->_productRepository->getById($id);
+    }
+
+    public function putOffer($productIds, $shippingClassId)
+    {
+        $result = false;
+        $token = $this->getToken();
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+        $apiInstance = new \Emesa\PartnerPlatform\Api\ProductsApi(
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        foreach ($productIds as $productId) {
+            $product = $this->getProduct($productId);
+            /**
+             * @var \Magento\Catalog\Model\Product $product
+             */
+            $data = $this->prepareOffer($product, $shippingClassId);
+            if(!empty($data)) {
+                $offerRequest = new \Emesa\PartnerPlatform\Model\ProductOfferDto();
+                $offerRequest->setStock($data['stock']);
+                $offerRequest->setTargetPriceInCents($data['target_price_in_cents']);
+                $offerRequest->setMarketShippingClassId($data['market_shipping_class_id']);
+                $offerRequest->setTargetCountryCodes(["NL"]);
+                //$body = new \Emesa\PartnerPlatform\Model\ProductOfferDto($data);
+                //print_r($offerRequest);
+                try {
+                    $apiInstance->putOffer($product->getSku(), $offerRequest);
+                    $result = true;
+                } catch (\Exception $e) {
+                    $this->logger->info('Exception when calling ProductsApi->putOffer: ' . $e->getMessage());
+                }
+            }
+        }
+       // die('asdsa');
+        return $result;
+
+    }
+
+    public function putShipments($shipment, $track, $marketOrderId)
+    {
+        $result = false;
+        $token = $this->getToken();
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+        $apiInstance = new \Emesa\PartnerPlatform\Api\ShipmentsApi(
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        /** @var \Magento\Sales\Model\Order\Shipment $shipment */
+        $supplierShipmentId = $shipment->getIncrementId();
+        $shipmentLineItems = $shipment->getItemsCollection();
+        /** @var \Magento\Sales\Model\Order\Shipment\Track $track */
+            $lineData = $this->prepareShipmentLine($shipmentLineItems);
+            if(!empty($lineData)) {
+                $shipmentRequest = new \Emesa\PartnerPlatform\Model\ShipmentDto();
+                $shipmentRequest->setTrackTraceUrl($this->getTrackingUrl($track));
+                $shipmentRequest->setTrackTraceNumber($track->getTrackNumber());
+                $shipmentRequest->setMethod($track->getCarrierCode());
+                $shipmentRequest->setLines($lineData);
+                try {
+                    $this->logger->info('shipment info ' . print_r($shipmentRequest, true));
+                    $apiInstance->putOrderShipment($marketOrderId, $supplierShipmentId, $shipmentRequest);
+                    $result = true;
+                } catch (\Exception $e) {
+                    $this->logger->info('shipment info ' . print_r($shipmentRequest, true));
+                    $this->logger->info('Exception when calling shipmentApi->putShipments: ' . $e->getMessage());
+                }
+            }
+
+        return $result;
+    }
+
+    public function getTrackingUrl($track){
+
+        $trackurl = '';
+        if ($track->getCarrierCode() === 'fedex') {
+            $trackurl = 'https://www.fedex.com/apps/fedextrack/?action=track&trackingnumber=' . $track->getTrackNumber();
+        } elseif ($track->getCarrierCode() === 'usps') {
+            $trackurl = 'https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=' . $track->getTrackNumber();
+        } elseif ($track->getCarrierCode() === 'ups') {
+            $trackurl = 'https://wwwapps.ups.com/WebTracking/returnToDetails?tracknum=' . $track->getTrackNumber();
+        } elseif ($track->getCarrierCode() === 'dhl') {
+            $trackurl = 'http://www.dhl.com/en/express/tracking.html?AWB='.$track->getTrackNumber().'&brand=DHL';
+        } elseif ($track->getCarrierCode() === 'custom') {
+            $trackurl = 'https://tracking.dpd.de/parcelstatus?locale=nl_NL&query=' . $track->getTrackNumber();
+        }
+        return $trackurl;
+
+    }
+
+    public function putOfferById($productId)
+    {
+        $result = false;
+        $token = $this->getToken();
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+        $apiInstance = new \Emesa\PartnerPlatform\Api\ProductsApi(
+            new \GuzzleHttp\Client(),
+            $config
+        );
+            $product = $this->getProduct($productId);
+            /**
+             * @var \Magento\Catalog\Model\Product $product
+             */
+            $data = $this->prepareOffer($product);
+            $body = new \Emesa\PartnerPlatform\Model\PutOfferRequest($data);
+            try {
+                $apiInstance->putOffer($product->getSku(), $body);
+                $result = true;
+            } catch (\Exception $e) {
+                echo 'Exception when calling ProductsApi->putOffer: ', $e->getMessage(), PHP_EOL;
+            }
+        return $result;
+
+    }
+
+    public function putOrderConfirm($orderId): bool
+    {
+        $result = false;
+        $token = $this->getToken();
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+        $apiInstance = new \Emesa\PartnerPlatform\Api\OrdersApi(
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        try {
+            $apiInstance->orderConfirm($orderId);
+            $result = true;
+        } catch (\Exception $e) {
+            $this->logger->debug('Exception when calling OrdersApi->orderConfirm: '. $e->getMessage());
+        }
+        return $result;
+    }
+
+    public function getShippingClass()
+    {
+        foreach ($this->getShippingClasses() as $shippingClass){
+            $this->logger->debug('shipping class'.print_r($shippingClass, true));
+        }
+
+    }
+
+    public function getlistProducts()
+    {
+        $token = $this->getToken();
+
+// Configure OAuth2 access token for authorization: ClientCredentials
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+
+        $apiInstance = new \Emesa\PartnerPlatform\Api\ProductsApi(
+        // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+        // This is optional, `GuzzleHttp\Client` will be used as default.
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        $limit = 1000; // int | Maximum number of entities to return
+        $offset = 0; // int | Skip first N items
+
+        try {
+            $result = $apiInstance->listProducts($limit, $offset);
+            $this->logger->debug(print_r($result, true));
+
+        } catch (\Exception $e) {
+            echo 'Exception when calling ProductsApi->putProduct: ', $e->getMessage(), PHP_EOL;
+        }
+    }
+
+    public function listOrders()
+    {
+        $token = $this->getToken();
+
+// Configure OAuth2 access token for authorization: ClientCredentials
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+
+        $apiInstance = new \Emesa\PartnerPlatform\Api\OrdersApi(
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        $limit = 100; // int | Maximum number of entities to return
+        $offset = 0; // int | Skip first N items
+        $states = 'new';
+        try {
+            $result = $apiInstance->listOrders($limit, $offset, $states);
+            $this->logger->debug(print_r($result, true));
+            return $result;
+
+        } catch (\Exception $e) {
+            $this->logger->debug('Exception when calling OrdersApi->listOrders: '. $e->getMessage());
+        }
+    }
+    public function getOrder()
+    {
+        $token = $this->getToken();
+
+// Configure OAuth2 access token for authorization: ClientCredentials
+        $config = \Emesa\PartnerPlatform\Configuration::getDefaultConfiguration()
+            ->setHost($this->sandBoxApiHost)
+            ->setAccessToken($token);
+
+        $apiInstance = new \Emesa\PartnerPlatform\Api\OrdersApi(
+        // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+        // This is optional, `GuzzleHttp\Client` will be used as default.
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        $limit = 100; // int | Maximum number of entities to return
+        $offset = 0; // int | Skip first N items
+        $states = 'new';
+
+        try {
+            $result = $apiInstance->listOrders($limit, $offset, 'new');
+            $this->logger->debug(print_r($result, true));
+            return $result;
+
+        } catch (\Exception $e) {
+            echo 'Exception when calling OrdersApi->listOrders: ', $e->getMessage(), PHP_EOL;
+        }
+    }
+
+    public function getProducts(): \Magento\Catalog\Model\ResourceModel\Product\Collection
+    {
+            $collection = $this->collectionFactory->create();
+            $collection->addFieldToSelect('*');
+            $collection->addAttributeToFilter('emesa_market_category_id', array("neq" => 'NULL'));
+            $collection->addAttributeToFilter('type_id', \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE);
+            //$collection->getSelect()->limit(100);
+
+            return $collection;
+    }
+    public function getProductsByIds($productIds): \Magento\Framework\DataObject
+    {
+        $collection = $this->collectionFactory->create();
+        $collection->addFieldToSelect('*');
+        $collection->addFieldToFilter('entity_id', array('in' => $productIds));
+        $collection->addAttributeToFilter('type_id', \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE);
+        //$collection->getFirstItem();
+        //$collection->getSelect()->limit(100);
+
+        return $collection->getFirstItem();
+    }
+
+    public function prepareOffers($productIds){
+        $dataArray = [];
+        if(count($this->getProductsByIds($productIds)) > 0) {
+            foreach ($this->getProductsByIds($productIds) as $product) {
+                $productStock = $this->getStockItem($product->getId());
+                //if($productStock->getIsInStock()==1 && $productStock->getQty() > 0) {
+                  if($productStock->getIsInStock()==1) {
+                    $data = [];
+                    //$data['supplierProductId'] = $product->getSku(); // string |
+                    $data['stock'] = $productStock->getQty();
+                    $data['target_price_in_cents'] = $product->getprice()*100;
+                    $data['marketShippingClassId'] = 'S';
+                    //$data['targetCountryCodes'] = ['NL'];
+                    $dataArray[] = $data;
+                }
+            }
+        }
+        return $dataArray;
+    }
+
+    public function prepareOffer($product, $shippingClassId){
+
+                $data = [];
+                $productStock = $this->stockRegistry->getStockItem($product->getId());
+                //$productStock = $this->getStockItem($product->getId());
+                $qty = $productStock->getQty();
+                //$qty =  $this->stockState->getStockQty($product->getId());
+                if($productStock->getIsInStock()==1 && $qty > 0) {
+                //if($productStock->getIsInStock()==1) {
+                    $data['stock'] = $qty;
+                    $data['target_price_in_cents'] = $product->getData('Emesa_Target_Price')*100;
+                    $data['market_shipping_class_id'] = $shippingClassId;
+                    $data['target_country_codes'] = ['NL'];
+                }
+        return $data;
+    }
+
+    public function prepareShipmentline($shipmentCollection)
+    {
+
+        $data = [];
+        $shipmentLine = new \Emesa\PartnerPlatform\Model\ShipmentLineDto();
+        foreach ($shipmentCollection as $item){
+            $shipmentLine->setSupplierProductId($item->getOrderItem()->getSku());
+            $shipmentLine->setQuantity((int)$item->getOrderItem()->getQtyOrdered());
+            $data[] = $shipmentLine;
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param string $sku
+     * @return ProductAttributeMediaGalleryEntryInterface[]
+     */
+    public function getMediaGallery($sku)
+    {
+        $gallery = [];
+        try {
+            $gallery = $this->productAttributeMediaGallery->getList($sku);
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
+
+        return $gallery;
+    }
+
+    public function getImageUrl($file){
+        $mediaUrl = $this ->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+        return $mediaUrl.'catalog/product'.$file;
+    }
+
+    public function getLimitedCharacters($x, $length)
+    {
+        if(strlen($x) >= $length)
+        {
+            $x = substr($x,0,$length) . '...';
+        }
+        $x = preg_replace('/[\x00-\x1F\x7F]/', '', $x);
+        return preg_replace('/\p{C}+/u', "", $x);
+    }
+}

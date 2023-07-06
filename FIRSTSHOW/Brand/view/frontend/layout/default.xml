@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="FIRSTSHOW_Brand::css/firstshow_brand.css" media="all"/>
+        <css src="FIRSTSHOW_Brand::css/owl.carousel.css" media="all"/>
+        <css src="FIRSTSHOW_Brand::css/owl.theme.css" media="all"/>
+        <css src="FIRSTSHOW_Brand::css/owl.transitions.css" media="all"/>
+    </head>
+</page>

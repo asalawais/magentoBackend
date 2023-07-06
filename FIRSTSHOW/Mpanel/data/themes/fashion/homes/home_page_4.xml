@@ -1,0 +1,202 @@
+<home>
+	<static_block>
+		<item>
+			<title>Fashion Owl Slider Home 2</title>
+			<identifier>firstshow_owl_slider_fr</identifier>
+			<content><![CDATA[<div><img class="img-responsive" src="{{media url="wysiwyg/fr_slider_1.jpg"}}" alt="" /></div><div><img class="img-responsive" src="{{media url="wysiwyg/fr_slider_2.jpg"}}" alt="" /></div>]]></content>
+		</item>
+		<item>
+			<title>Home1 Fashion Service</title>
+			<identifier>home1_fashion_service</identifier>
+			<content><![CDATA[<div class="col-md-4 col-sm-6 col-xs-12">
+<div class="service-box"><span class="icon pe-7s-box2">&nbsp;</span>
+<h5 class="title" style="color: #444444;">FREE SHIPPING ON ALL ORDRES</h5>
+<a class="text-desc" href="#">More information here </a></div>
+</div>
+<div class="col-md-4 col-sm-6 col-xs-12">
+<div class="service-box"><span class="icon pe-7s-wallet">&nbsp;</span>
+<h5 class="title" style="color: #444444;">AMAZING CUSTOMER SERVICE</h5>
+<a class="text-desc" href="#">More information here </a></div>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+<div class="service-box"><span class="icon pe-7s-delete-user">&nbsp;</span>
+<h5 class="title" style="color: #444444;">NO CUSTOMS OR DUTY FEES</h5>
+<a class="text-desc" href="#">More information here </a></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Fashion Shop Cate Promobanner</title>
+			<identifier>fashion_shop_cate_promobanner</identifier>
+			<content><![CDATA[<div class="promo-static padding-5">
+<div class="title-inline">
+<h3 class="heading"><span>SHOP BY CATEGORIES</span></h3>
+<div class="text-desc"><span>Trending Fashion In This Season</span></div>
+</div>
+<div class="row categories-landding">
+<div class="cate-content horizontal col-sm-6 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="fashion_fashion" template="banner.phtml"}}</div>
+<div class="cate-content horizontal col-sm-6 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="fashion_interior" template="banner.phtml"}}</div>
+<div class="cate-content horizontal col-sm-6 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="fashion_office" template="banner.phtml"}}</div>
+<div class="cate-content horizontal col-sm-6 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="fashion_accessories" template="banner.phtml"}}</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home1 Fashion Newsletter</title>
+			<identifier>home1_fashion_newsletter</identifier>
+			<content><![CDATA[<div class="col-md-6 col-sm-6 col-xs-12 no-padding">
+<div class="newletter-center">
+<div class="text">
+<h3 class="heading"><span>NEWSLETTER</span></h3>
+<p>Sign up to receive the coupon 15% off for your first purchase via email and get informations about bicycle.</p>
+</div>
+{{block class="Magento\Newsletter\Block\Subscribe" template="subscribe.phtml"}} <br />
+<p class="text-desc">*Discount applies only to orders over $100</p>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home4 Fashion Service</title>
+			<identifier>home4_fashion_service</identifier>
+			<content><![CDATA[<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-wallet">&nbsp;</span>
+<h5 class="title">MONEY GUARANTEE</h5>
+<p class="text-desc">30 days money guarantee!</p>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-magic-wand">&nbsp;</span>
+<h5 class="title">ONLINE SUPPORT</h5>
+<p class="text-desc">We support online 24/7</p>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-rocket">&nbsp;</span>
+<h5 class="title">PAYMENT SECURE</h5>
+<p class="text-desc">Secure all your payment</p>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-cloud-download">&nbsp;</span>
+<h5 class="title">UK FREE DELIVERY</h5>
+<p class="text-desc">Free on all orders over &pound;99.99</p>
+</div>
+</div>]]></content>
+		</item>
+	</static_block>
+
+	<cms_page>
+		<title>Home page 4</title>
+		<identifier>homepage4</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<div class="home4">{{widget type="FIRSTSHOW\Mpanel\Block\Widget\Slider"}}
+<div class="padding60">&nbsp;</div>
+<div class="container">
+<div class="row">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home1_fashion_service"}}</div>
+</div>
+<div class="padding50">&nbsp;</div>
+<div class="container">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="fashion_shop_cate_promobanner"}}</div>
+<div class="padding50">&nbsp;</div>
+<div class="deals-special">
+<div class="col-md-6 no-padding col-sm-6 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="home4_fashion_promo_deal" template="banner.phtml"}}</div>
+<div class="col-md-6 no-padding col-sm-6 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Deals" title="Hot Deal Everyday" products_count="1" per_row="1" custom_class="" note_text="Get Free Shipping on all orders over $75 and free returns to our UK returns centre! " template="products/deals/special.phtml"}}</div>
+</div>
+<div class="padding60">&nbsp;</div>
+<div class="clear">&nbsp;</div>
+<div class="container">{{block class="FIRSTSHOW\Mpanel\Block\Products\Grid\NewProducts" title="NEW PRODUCTS" products_count="8" custom_class="tabs-colon" note_text="Trending Fashion In This Season" template="products/grid/new.phtml}}</div>
+<div class="padding30">&nbsp;</div>
+<div class="newsletter-promo">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home1_fashion_newsletter"}}
+<div class="col-md-6 col-sm-6 col-xs-12 no-padding">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="home4_fashion_promo_newsletter" template="banner.phtml"}}</div>
+</div>
+<div class="clear">&nbsp;</div>
+<div class="padding60">&nbsp;</div>
+<div class="container">{{widget type="FIRSTSHOW\Blog\Block\Widget\Lastest" title="FROM OUR BLOG" number_of_posts="3" show_thumbnail="1" thumbnail_width="240" thumbnail_height="180" show_short_content="1" limit_characters_short_content="150" view_as="owl_carousel" items="3" autoplay="1" template="widget/default.phtml"}}</div>
+<div class="padding50">&nbsp;</div>
+<div class="container">{{widget type="FIRSTSHOW\Brand\Block\Widget\Brand" title="OUR CLIENTS" brand_ids="1,2,3,4,5,6" show_brand_name="0" view_as="owl_carousel" items="5" image_width="216" image_height="164" autoplay="1" stop_on_hover="1" navigation="1" template="widget/default.phtml"}}</div>
+<div>
+<div class="container">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home4_fashion_service"}}</div>
+</div>
+</div>]]></content>
+	</cms_page>
+
+	<promo_banner>
+		<item>
+			<title>Fashion Fashion</title>
+			<filename>/s/h/shop_by_cate_home1_1.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[]]></text_align>
+			<content><![CDATA[<h2 class="cate-name">SALE OFF 60% <span class="text-desc">(9 products)</span></h2>]]></content>
+			<effect>mist-text</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>fashion_fashion</identifier>
+		</item>
+		<item>
+			<title>Fashion Interior</title>
+			<filename>/s/h/shop_by_cate_home1_2.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[]]></text_align>
+			<content><![CDATA[<h2 class="cate-name">Interior <span class="text-desc">(15 products)</span></h2>]]></content>
+			<effect>mist-text</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>fashion_interior</identifier>
+		</item>
+		<item>
+			<title>Fashion Office</title>
+			<filename>/s/h/shop_by_cate_home1_3.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[]]></text_align>
+			<content><![CDATA[<h2 class="cate-name">Office <span class="text-desc">(25 products)</span></h2>]]></content>
+			<effect>mist-text</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>fashion_office</identifier>
+		</item>
+		<item>
+			<title>Fashion Accessories</title>
+			<filename>/s/h/shop_by_cate_home1_4.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[]]></text_align>
+			<content><![CDATA[<h2 class="cate-name">Fashion <span class="text-desc">(25 products)</span></h2>]]></content>
+			<effect>mist-text</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>fashion_accessories</identifier>
+		</item>
+		<item>
+			<title>Home4 Fashion Promo Newsletter</title>
+			<filename>/r/i/right_newsletter_banner_home_3.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align></text_align>
+			<content><![CDATA[]]></content>
+			<effect>mist-text</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>home4_fashion_promo_newsletter</identifier>
+		</item>
+		<item>
+			<title>Home4 Fashion Promo Deal</title>
+			<filename>/d/e/deals_product_home_3.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align></text_align>
+			<content><![CDATA[]]></content>
+			<effect>mist-text</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>home4_fashion_promo_deal</identifier>
+		</item>
+	</promo_banner>
+
+	<theme_setting>
+		<general>
+			<header>header_2</header>
+			<footer>footer_2</footer>
+		</general>
+	</theme_setting>
+</home>

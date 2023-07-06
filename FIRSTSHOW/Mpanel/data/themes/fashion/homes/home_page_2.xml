@@ -1,0 +1,149 @@
+<home>
+	<static_block>
+		<item>
+			<title>Home2 Fashion Shop By Category</title>
+			<identifier>home2_fashion_shop_by_category</identifier>
+			<content><![CDATA[<div class="promo-static padding-5">
+<div class="title-inline">
+<h3 class="heading"><span>SHOP BY CATEGORIES</span></h3>
+<div class="text-desc"><span>Trending Fashion In This Season</span></div>
+</div>
+<div class="row categories-landding">
+<div class="cate-content horizontal col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/shop_by_cate_home1_1.jpg"}}" alt="" /></a>
+<div class="text">
+<h2 class="cate-name">Fashion <span class="text-desc">(15 products)</span></h2>
+</div>
+</div>
+<div class="cate-content horizontal col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/shop_by_cate_home1_2.jpg"}}" alt="" /></a>
+<div class="text">
+<h2 class="cate-name">Interior <span class="text-desc">(9 products)</span></h2>
+</div>
+</div>
+<div class="cate-content horizontal col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/shop_by_cate_home1_3.jpg"}}" alt="" /></a>
+<div class="text">
+<h2 class="cate-name">Office <span class="text-desc">(25 products)</span></h2>
+</div>
+</div>
+<div class="cate-content horizontal col-sm-6 col-xs-12"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/shop_by_cate_home1_4.jpg"}}" alt="" /></a>
+<div class="text">
+<h2 class="h1 cate-name">Accessories <span class="text-desc">(18 products)</span></h2>
+</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home2 Fashion Service</title>
+			<identifier>home2_fashion_service</identifier>
+			<content><![CDATA[<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-box2">&nbsp;</span>
+<h5 class="title">FREE SHIPPING ON ALL ORDRES</h5>
+<p class="content">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
+</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-wallet">&nbsp;</span>
+<h5 class="title">AMAZING CUSTOMER SERVICE</h5>
+<p class="content">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
+</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-delete-user">&nbsp;</span>
+<h5 class="title">NO CUSTOMS OR DUTY FEES</h5>
+<p class="content">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home2 Fashion Promobanner</title>
+			<identifier>home2_fashion_promobanner</identifier>
+			<content><![CDATA[<div class="col-md-4 col-sm-6 col-xs-12 hidden-xs button-border-hover-colour-peru">
+<div class="promo-banner"><a><img class="img-responsive" src="{{media url="wysiwyg/banner_home_1_1.jpg"}}" alt="" /></a>
+<div class="text-container text-right">
+<div class="text-hover">
+<p class="text-desc" style="font-size: 30px; font-style: italic; line-height: 23px; color: #fff;">brand-new</p>
+<span class="h1" style="color: #cd853f;">COLLECTION</span> <span class="h1" style="color: #fff;">2015</span></div>
+<div class="view-more"><button class="btn btn-primary btn-lg btn-promo-banner" onclick="setLocation('')"><span>Shop now</span></button></div>
+</div>
+</div>
+</div>
+<div class="col-md-4 col-sm-6 col-xs-12 hidden-xs button-border-hover-colour-salmon">
+<div class="promo-banner"><a><img class="img-responsive" src="{{media url="wysiwyg/banner_home_1_2.jpg"}}" alt="" /></a>
+<div class="text-container text-right">
+<div class="text-hover"><span class="h1" style="font-size: 48px; color: #f08080;">SALE OFF</span> <span class="h1">UP TO 30%</span></div>
+<div class="view-more"><button class="btn btn-primary btn-lg btn-promo-banner" onclick="setLocation('')"><span>Shop now</span></button></div>
+</div>
+</div>
+</div>
+<div class="col-md-4 col-sm-6 col-xs-12 hidden-xs">
+<div class="promo-banner"><a><img class="img-responsive" src="{{media url="wysiwyg/banner_home_1_3.jpg"}}" alt="" /></a>
+<div class="text-container text-left">&nbsp;</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home2 Fashion New Collection</title>
+			<identifier>home2_fashion_new_collection</identifier>
+			<content><![CDATA[<div class="new_collection" style="color: #f7f7f7;"><span class="h1 big-text">NEW COLLECTION 2015</span>
+<p class="text-desc">Fashion for Guys &amp; Ladies</p>
+<br /> <button class="btn btn-default btn-lg" onclick="setLocation('#')" type="button">VIEW COLLECTION</button></div>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Home Page 2</title>
+		<identifier>home-page-2</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<div class="home2">{{widget type="FIRSTSHOW\Mpanel\Block\Widget\Slider"}}
+<div class="padding30">&nbsp;</div>
+<div class="container">
+<div class="row">{{block class="FIRSTSHOW\Mpanel\Block\Products\Category\NewProducts" title="NEW ARRIVALS" category_ids="4,5,6" products_count="8" per_row="4" custom_class="tabs-colon" nav="true" dots="false" autoplay="0" note_text="Trending Fashion In This Season" template="products/category/tabs-slider-new.phtml}}</div>
+</div>
+<div class="padding10">&nbsp;</div>
+<div class="container" style="padding-top: 40px;">
+<div class="row">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home2_fashion_shop_by_category"}}</div>
+</div>
+<div class="service-static">
+<div class="container">
+<div class="row">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home2_fashion_service"}}</div>
+</div>
+</div>
+<div class="text-left container-fluid">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home2_fashion_promobanner"}}</div>
+<div class="container attr">
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="sale" title="On Sale" products_count="3" custom_class="attribute-slide" template="products/list.phtml"}}</div>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="featured_product" title="Featured" products_count="3" custom_class="attribute-slide" template="products/list.phtml"}}</div>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="new" title="New Products" products_count="3" custom_class="attribute-slide" template="products/list.phtml"}}</div>
+</div>
+</div>
+<div style="background-image: url('{{media url="wysiwyg/bg_testimonial_home1.jpg"}}'); background-repeat: no-repeat; background-size: cover; background-position: center center; padding-top: 75px; padding-bottom: 70px;">{{block class="FIRSTSHOW\Testimonial\Block\Testimonial" testimonials_count="3" row="1" custom_class="testimonial-slide" nav="true" dots="true" autoplay="false" template="slide.phtml"}}</div>
+<div class="padding30">&nbsp;</div>
+<div class="container">
+<div class="row">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="office_things" title="OFFICE THINGS" products_count="8" per_row="5" note_text="Lorem ipsum dolor sit amet" nav="true" dots="false" autoplay="false" template="products/slide/simple.phtml"}}</div>
+</div>
+<div class="padding30">&nbsp;</div>
+<div style="background-image: url('{{media url="wysiwyg/bg_new_collection_home_1.jpg"}}'); background-repeat: no-repeat; background-size: cover; background-position: center center;">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home2_fashion_new_collection"}}</div>
+</div>]]></content>
+	</cms_page>
+	
+	<theme_setting>
+		<general>
+			<header>header_2</header>
+		</general>
+		<banner_slider>
+			<slider_tyle>1</slider_tyle>
+			<id_reslider>1</id_reslider>
+			<banner_owl_speed><![CDATA[6000]]></banner_owl_speed>
+		</banner_slider>
+	</theme_setting>
+	
+	
+	<color_setting>
+		<header>
+			<header_custom>1</header_custom> <!-- Use Custom -->
+			<!-- Menu Section -->
+			<lv1_color><![CDATA[#ffffff]]></lv1_color> <!-- Level 1 link color -->
+			<lv1_color_hover><![CDATA[#ffffff]]></lv1_color_hover> <!-- Level 1 link hover color -->
+		</header>
+	</color_setting>
+</home>

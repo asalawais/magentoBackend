@@ -1,0 +1,29 @@
+{
+  "name": "rltsquare/product-images-slider",
+  "description": "Magento 2 extension by RLTSquare is useful for store owner to show two to three product images on product page image slider at the same time."
+,
+  "require": {
+    "php": "~7.0.3|~7.4.0|~8.1"
+  },
+  "type":"magento2-module",
+  "version": "1.0.3",
+  "license":[
+    "proprietary"
+  ],
+  "authors":[
+    {
+      "name" : "Ali",
+      "email" : "ali.riaz@rltsquare.com",
+      "homepage" : "https://www.rltsquare.com",
+      "role" : "Developer"
+    }
+  ],
+  "autoload":{
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "RLTSquare\\ProductImagesSlider\\" : ""
+    }
+  }
+}

@@ -1,0 +1,10 @@
+
+type StoreConfig {
+    
+    sms_jawal_enabled  : String  @doc(description: "Query by sms_jawal_enabled.") 
+    sms_jawal_username  : String  @doc(description: "Query by sms_jawal_username.") 
+    sms_jawal_password  : String  @doc(description: "Query by sms_jawal_password.") 
+    sms_jawal_order_new_created_template  : String  @doc(description: "Query by sms_jawal_order_new_created_template.") 
+    sms_jawal_order_status_change_template  : String  @doc(description: "Query by sms_jawal_order_status_change_template.") 
+    sms_jawal_order_tracking_number_template  : String  @doc(description: "Query by sms_jawal_order_tracking_number_template.") 
+}

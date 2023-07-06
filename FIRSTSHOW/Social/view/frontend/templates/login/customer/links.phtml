@@ -1,0 +1,16 @@
+<?php $helper = $this->helper('FIRSTSHOW\Social\Helper\Data'); ?>
+<?php if ($helper->getConfig('general_settings/active') && $helper->getConfig('general_settings/show_social_login_on_customer_login') && !$helper->checkLoggedIn()): ?>
+    <div class="social-login-options login-container">
+		<div class="block">
+			<div class="block-title">
+				<strong aria-level="2" role="heading" id="block-social-login-heading"><?php echo __('Social Login') ?></strong>
+			</div>
+			<div class="content">
+				<?php echo $block->getChildHtml('social.login.customer.links.facebook'); ?>
+				<?php echo $block->getChildHtml('social.login.customer.links.google'); ?>
+				<?php echo $block->getChildHtml('social.login.customer.links.twitter'); ?>
+				<div class="clear"></div>
+			</div>
+		</div>
+    </div>
+<?php endif; ?>

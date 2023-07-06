@@ -1,0 +1,33 @@
+<?php $_productCollection = $this->getProductCollection() ?>
+<?php $customClass = $this->getCustomClass() ?>
+<div class="title-inline">
+	<?php if($this->hasData('title')): ?>
+		<h3 class="heading"><span><?php echo $this->getData('title') ?></span></h3>
+	<?php endif; ?>
+	<?php if($this->hasData('note_text')): ?>
+		<div class="text-desc"><span><?php echo $this->getData('note_text') ?></span></div>
+	<?php endif; ?>
+</div>
+<div class="padding20"></div>
+<?php if(count($_productCollection)>0): ?>
+	<div class="data items<?php if($customClass): ?> <?php echo $customClass ?><?php endif ?>">
+		<?php if (!$_productCollection->count()): ?>
+			<div class="message info empty"><div><?php echo __('The category "%1" haven\'t product.', $category->getName()) ?></div></div>
+		<?php else: ?>
+			<div class="products wrapper grid products-grid">
+				<ol class="products list items product-items">
+					<?php 
+						$html = $this->getLayout()
+							->createBlock('FIRSTSHOW\Mpanel\Block\Products\Grid\NewProducts')
+							->setProductsCount($this->getProductsCount())
+							->setTemplate('products/items.phtml')
+							->toHtml();
+						echo $html;
+					?>
+				</ol>
+			</div>
+		<?php endif ?>
+	</div>
+<?php else: ?>
+	<div class="message info empty"><div><?php echo __('Categories with Id are %1 does not exist', $this->getData('category_ids')) ?></div></div>
+<?php endif ?>

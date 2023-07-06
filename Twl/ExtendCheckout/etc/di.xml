@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+  <type name="Magento\Checkout\Block\Checkout\AttributeMerger">
+		<plugin name="ExtendCheckout_Address" type="Twl\ExtendCheckout\Plugin\Checkout\Block\Checkout\AttributeMerger\Plugin"/>
+  </type>
+</config>

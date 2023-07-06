@@ -1,0 +1,80 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class="page-actions">
+    <div class="page-actions-inner">
+        <div class="page-actions-buttons">
+            <form class="action-element"
+                  action="<?= $block->escapeUrl($block->getUrl('*/product/export')) ?>"
+                  method="post">
+                <input
+                    name="form_key"
+                    type="hidden"
+                    value="<?= $block->escapeHtmlAttr($block->getFormKey()) ?>"/>
+                <button
+                    class="action-primary submit"
+                    type="submit"
+                    title="<?= $block->escapeHtmlAttr(__('Export Products')) ?>">
+                    <?= $block->escapeHtml(__('Export Products')) ?>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="page-actions-inner">
+        <div class="page-actions-buttons">
+            <form class="action-element"
+                  action="<?= $block->escapeUrl($block->getUrl('*/order/import')) ?>"
+                  method="post">
+                <input
+                    name="form_key"
+                    type="hidden"
+                    value="<?= $block->escapeHtmlAttr($block->getFormKey()) ?>"/>
+                <button
+                    class="action-primary submit"
+                    type="submit"
+                    title="<?= $block->escapeHtmlAttr(__('Import Orders')) ?>">
+                    <?= $block->escapeHtml(__('Import Orders')) ?>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="page-actions-inner">
+        <div class="page-actions-buttons">
+            <form class="action-element"
+                  action="<?= $block->escapeUrl($block->getUrl('*/order/export')) ?>"
+                  method="post">
+                <input
+                    name="form_key"
+                    type="hidden"
+                    value="<?= $block->escapeHtmlAttr($block->getFormKey()) ?>"/>
+                <button
+                    class="action-primary submit"
+                    type="submit"
+                    title="<?= $block->escapeHtmlAttr(__('Export Orders')) ?>">
+                    <?= $block->escapeHtml(__('Export Orders')) ?>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="page-actions-inner">
+        <div class="page-actions-buttons">
+            <form class="action-element"
+                  action="<?= $block->escapeUrl($block->getUrl('*/order/status')) ?>"
+                  method="post">
+                <input
+                    name="form_key"
+                    type="hidden"
+                    value="<?= $block->escapeHtmlAttr($block->getFormKey()) ?>"/>
+                <button
+                    class="action-primary submit"
+                    type="submit"
+                    title="<?= $block->escapeHtmlAttr(__('Update Status')) ?>">
+                    <?= $block->escapeHtml(__('Update Status')) ?>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<form id="form-import" action="<?= $block->escapeUrl($block->getUrl('orders/index/import'))?>" method="post" enctype="multipart/form-data">
+    <?=$block->getBlockHtml('formkey')?>
+    <fieldset class="admin__fieldset admin__fieldset-import-service">
+        <div class="fieldset admin__field">
+            <label for="import_csv_file" class="admin__field-label"><span><?= $block->escapeHtml(__('Import CSV File'))?></span></label>
+            <div class="admin__field-control">
+                <input type="file" id="import_csv_file" name="import_csv_file" class="action-default scalable input-file required-entry" data-ui-id="widget-button-0"/>
+            </div>
+        </div>
+        <button name="import_orders" type="submit" class="import-orders">Submit Orders</button>
+    </fieldset>
+</form>
+
+<div class="notes">
+    <h3><?= $block->escapeHtml(__('Recommendation')); ?></h3>
+    <fieldset class="admin__fieldset">
+        <div class="fieldset admin__field">
+            <label class="admin__field-label"><span><?= $block->escapeHtml(__('File Type'))?></span></label>
+            <div class="admin__field-control">
+                <input class="admin__control-text" readonly="readonly" value="<?= $block->escapeHtmlAttr(__("Works best with CSV files saved in UTF-8 encoding")); ?>" />
+            </div>
+        </div>
+    </fieldset>
+</div>

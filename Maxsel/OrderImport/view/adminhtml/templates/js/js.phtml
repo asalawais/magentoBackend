@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    require(["jquery", "mage/mage"],function($) {
+        $(document).ready(function() {
+            //$('#form-import').mage('form').mage('validation');
+            $('#form-import').on('submit', function(e){
+           // $('#form-import').on('submit', '.import-orders', function(e) {
+                    e.preventDefault();
+                    let url = $(this).attr('action');
+                    alert(url);
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        cache: false,
+                        dataType: 'json',
+                        contentType: false,
+                        processData: false,
+                        showLoader: true,
+                        data: new FormData(this),
+                        success: function (response) {
+                            console.log(JSON.stringify(response));
+                            $("#update-status").html("Result:");
+                            $("#log-result").html(response);
+
+
+                        },
+                        complete: function (response) {
+                        },
+                        error: function (xhr, status, errorThrown) {
+                            console.log(errorThrown);
+                            console.log('Error happens. Try again.');
+                        }
+                    });
+            });
+        });
+    });
+</script>

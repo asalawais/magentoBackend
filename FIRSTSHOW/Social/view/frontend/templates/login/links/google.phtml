@@ -1,0 +1,28 @@
+<?php $helper = $this->helper('FIRSTSHOW\Social\Helper\Data'); ?>
+<?php if ($helper->getConfig('google_settings/active')): ?>
+    <?php
+    require_once BP . '/app/code/FIRSTSHOW/Social/lib/google/Google_Client.php';
+	require_once BP . '/app/code/FIRSTSHOW/Social/lib/google/Google_Oauth2Service.php';
+    $clientId = $helper->getConfig('google_settings/client_id');
+    $clientSecret = $helper->getConfig('google_settings/client_secret');
+    $redirectUri = $helper->getUrl('social/google/connect');
+    $client = new \Google_Client();
+    $client->setApprovalPrompt('auto');
+    $client->setAccessType('offline');
+    $client->setClientId($clientId);
+    $client->setClientSecret($clientSecret);
+    $client->setRedirectUri($redirectUri);
+    $client->setScopes(array(
+        'https://www.googleapis.com/auth/userinfo.email',
+        'https://www.googleapis.com/auth/userinfo.profile'
+    ));
+    ?>
+    <?php if (!$client->getAccessToken() || !$helper->checkLoggedIn()): ?>
+        <?php
+        $loginUrl = $client->createAuthUrl();
+        ?>
+        <div class="social-google">
+            <a class="google" title="<?php echo __('Login with Google'); ?>" href="#" onclick="socialLogin('<?php echo $loginUrl; ?>'); return false;"></a>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

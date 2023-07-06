@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Maxsel::wp_api" title="ImportExportWP API" module="Maxsel_ImportExportWP" sortOrder="9999" resource="Magento_Backend::content"/>
+        <add id="Maxsel_ImportExportWP::index_import" title="Product, Orders, Shipments" module="Maxsel_ImportExportWP" sortOrder="90" parent="Maxsel::wp_api" resource="Maxsel_ImportExportWP::index_import" />
+        <add id="Maxsel_ImportExportWP:index_grid" title="Product List" module="Maxsel_ImportExportWP" parent="Maxsel_ImportExportWP::index_import" action="importexportwp/index/grid" sortOrder="50" resource="Maxsel_ImportExportWP::index_index"/>
+		<add id="Maxsel_ImportExportWP::index_index" title="ImportExportWP Sync" module="Maxsel_ImportExportWP" sortOrder="9999" resource="Maxsel_ImportExportWP::index_index" parent="Maxsel_ImportExportWP::index_import" action="importexportwp/index/index"/>
+    </menu>
+</config>

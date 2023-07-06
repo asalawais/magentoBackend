@@ -1,0 +1,150 @@
+<?php
+/**
+ * Copyright ©  All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+namespace BigBridge\ProductImport\Controller\Adminhtml\Import;
+use BigBridge\ProductImport\Api\ImportConfig;
+use BigBridge\ProductImport\Model\Reader\XmlProductImporter;
+use BigBridge\ProductImport\Model\Reader\ProductImportWebApiLogger;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Serialize\Serializer\Json;
+use Magento\Framework\View\Result\PageFactory;
+use BigBridge\ProductImport\Helper\Indexer;
+use BigBridge\ProductImport\Cron\AttributeValuesImporter;
+use BigBridge\ProductImport\Cron\ProductImporter;
+use Psr\Log\LoggerInterface;
+use Magento\Framework\Controller\ResultFactory;
+class Products extends \Magento\Backend\App\Action
+{
+
+    /**
+     * @var PageFactory
+     */
+    protected $resultPageFactory;
+    /**
+     * @var Json
+     */
+    protected $serializer;
+    /**
+     * @var LoggerInterface
+     */
+    protected $loggerFile;
+    private \Magento\Framework\Json\Helper\Data $jsonHelper;
+    protected $_xmlImport;
+    protected $_filesystem;
+    private $attributesArray;
+    private $productsArray;
+    protected $resultFactory;
+    protected $_session;
+
+
+    /**
+     * Constructor
+     *
+     * @param PageFactory $resultPageFactory
+     * @param Json $json
+     * @param LoggerInterface $loggerFile
+     */
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Filesystem $filesystem,
+        PageFactory     $resultPageFactory,
+        Json            $json,
+        \Magento\Framework\Json\Helper\Data $jsonHelper,
+        XmlProductImporter $xmlImport,
+        LoggerInterface $loggerFile,
+        AttributeValuesImporter $attributesArray,
+        Indexer $indexer,
+        ProductImporter $productsArray,
+        \Magento\Backend\Model\Auth\Session $authSession,
+        ResultFactory $resultFactory
+    )
+    {
+        parent::__construct($context);
+        $this->resultPageFactory = $resultPageFactory;
+        $this->_filesystem = $filesystem;
+        $this->jsonHelper = $jsonHelper;
+        $this->serializer = $json;
+        $this->_xmlImport = $xmlImport;
+        $this->logger = $loggerFile;
+        $this->_indexer = $indexer;
+        $this->attributesArray = $attributesArray;
+        $this->productsArray = $productsArray;
+        $this->resultFactory = $resultFactory;
+        $this->_session = $authSession;
+    }
+
+    /**
+     * Execute view action
+     *
+     * @return string
+     */
+    public function execute()
+    {
+        if(!$this->_session->isLoggedIn()) {
+            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+            $resultRedirect->setUrl('/');
+            return $resultRedirect;
+        }
+        if($this->getRequest()->isAjax()) {
+            //$this->logger->critical(print_r('dfdfdf', true));
+            $var = $this->_filesystem->getDirectoryRead(DirectoryList::VAR_DIR)->getAbsolutePath();
+            $xmlPath = $var.'import/afas_products.xml';
+            $logger = new ProductImportWebApiLogger();
+            $success = true;
+            $result = false;
+            try {
+                $attr = $this->attributesArray->execute();
+                $products = $this->productsArray->execute();
+                if($attr && $products) {
+                    $config = new ImportConfig();
+                    $config->resultCallback = [$logger, 'productImported'];
+                    $this->_xmlImport->import($xmlPath, $config, false, $logger);
+                    if ($logger->getFailedProductCount() > 0) {
+                        $success = false;
+                    }
+                    $this->_indexer->reindexAll();
+                }
+            } catch (LocalizedException $e) {
+                $success = false;
+            } catch (\Exception $e) {
+                $this->logger->critical($e);
+                $success = false;
+            }
+            if (!$success) {
+                $result .= "\n";
+                $result .= "Error in " . basename($xmlPath) . ":\n";
+                $result .= $logger->getOutput() . "\n";
+            } elseif ($logger->getOkProductCount() == 0) {
+                $result .= $logger->getOutput();
+            }
+            //return $this->jsonResponse(['success'=>true, 'result'=>$result]);
+        }
+        return false;
+    }
+
+    /**
+     * Create json response
+     *
+     * @return ResultInterface
+     */
+    public function jsonResponse($response = [])
+    {
+        /*$this->http->getHeaders()->clearHeaders();
+        $this->http->setHeader('Content-Type', 'application/json');
+        return $this->http->setBody(
+            $this->serializer->serialize($response)
+        );*/
+        return $this->getResponse()->representJson(
+            $this->jsonHelper->jsonEncode($response)
+        );
+    }
+
+
+}
+

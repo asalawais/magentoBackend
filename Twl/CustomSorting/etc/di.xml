@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+
+  <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="twl_block_toolbar" type="Twl\CustomSorting\Plugin\Catalog\Block\Toolbar"/>
+    </type>
+    <type name="Magento\Catalog\Model\Config">
+        <plugin name="twl_catalog_model_config" type="Twl\CustomSorting\Plugin\Catalog\Model\Config"/>
+    </type>
+
+</config>
+

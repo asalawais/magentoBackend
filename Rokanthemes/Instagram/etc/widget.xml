@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="instagramwidget" class="Rokanthemes\Instagram\Block\Widget\Instagram">
+        <label translate="true">Instagram widget</label>
+        <description>Instagram widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" required="true" sort_order="10">
+                <label translate="true">Title</label>
+            </parameter>
+			<parameter name="description" xsi:type="text" visible="true" required="false" sort_order="20">
+                <label translate="true">Description</label> 
+            </parameter>
+            <parameter name="image_format" xsi:type="select" required="false" visible="true" sort_order="60">
+                <label translate="true">Image format</label>
+                <options>
+                    <option name="square" value="square" selected="true">
+                        <label translate="true">Square</label>
+                    </option>
+                    <option name="circle" value="circle">
+                        <label translate="true">Circle</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="show_captions" xsi:type="select" required="false" visible="true" sort_order="70">
+                <label>Show captions</label>
+                <options>
+                    <option name="no" value="no" selected="true">
+                        <label translate="true">No</label>
+                    </option>
+                    <option name="yes" value="yes">
+                        <label translate="true">Yes</label>
+                    </option>
+                </options>
+            </parameter>
+			<parameter name="show_instagram_icon" xsi:type="select" required="false" visible="true" sort_order="75">
+                <label>Show Instagram icon</label>
+				<description translate="true">Instagram icon will show if you disabled Instagram caption</description>
+                <options>
+                    <option name="no" value="no" selected="true">
+                        <label translate="true">No</label>
+                    </option>
+                    <option name="yes" value="yes">
+                        <label translate="true">Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="image_resolution" xsi:type="select" required="false" visible="true" sort_order="80">
+                <label>Image resolution</label>
+                <options>
+                    <option name="original" value="original" selected="true">
+                        <label translate="true">Original images</label>
+                    </option>
+                    <option name="small" value="small">
+                        <label translate="true">Small (80x80)</label>
+                    </option>
+                    <option name="thumbnail" value="thumbnail">
+                        <label translate="true">Thumbnail (150x150)</label>
+                    </option>
+                    <option name="medium" value="medium">
+                        <label translate="true">Medium (320x320)</label>
+                    </option>
+                    <option name="large" value="large">
+                        <label translate="true">Large (640x640)</label>
+                    </option>
+                </options>
+            </parameter>
+			<parameter name="rows" xsi:type="select" required="true" visible="true" sort_order="90">
+                <label translate="true">Rows</label>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label translate="true">1 Row</label>
+                    </option>
+                    <option name="item2" value="2">
+                        <label translate="true">2 Rows</label>
+                    </option>
+                    <option name="item3" value="3">
+                        <label translate="true">3 Rows</label>
+                    </option>
+                    <option name="item4" value="4">
+                        <label translate="true">4 Rows</label>
+                    </option>
+                    <option name="item5" value="5">
+                        <label translate="true">5 Rows</label>
+                    </option>
+                </options>
+            </parameter>
+			<parameter name="next_back" xsi:type="select" required="true" visible="true" sort_order="100" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Next/Back control</label>
+            </parameter>
+			<parameter name="owl_dots" xsi:type="select" required="false" visible="true" sort_order="130" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Owl Dots</label>
+            </parameter>
+			<parameter name="owl_item_desktop" xsi:type="text" required="true" visible="true" sort_order="150">
+                <label translate="true">Owl Items On Big Desktop</label>
+				<description translate="true">Big desktop: Over 1440 pixels</description>
+				<value>3</value>
+            </parameter>
+			<parameter name="owl_item_default" xsi:type="text" required="true" visible="true" sort_order="160">
+                <label translate="true">Owl Items Desktop</label>
+				<description translate="true">Desktop: 1200px - 1439px</description>
+				<value>3</value>
+            </parameter>
+			<parameter name="owl_item_small_desktop" xsi:type="text" required="true" visible="true" sort_order="190">
+                <label translate="true">Owl Items On Desktop Small</label>
+				<description translate="true">Desktop Small: 1024px - 1199px</description>
+				<value>3</value>
+            </parameter>
+			<parameter name="owl_item_big_tablet" xsi:type="text" required="true" visible="true" sort_order="200">
+                <label translate="true">Owl Items On Big Tablet</label>
+				<description translate="true">Big Tablet: 992px - 1023px</description>
+				<value>3</value>
+            </parameter>
+			<parameter name="owl_item_tablet" xsi:type="text" required="true" visible="true" sort_order="210">
+                <label translate="true">Owl Items On Tablet</label>
+				<description translate="true">Tablet: 768px - 991px</description>
+				<value>3</value>
+            </parameter>
+			<parameter name="owl_item_small_tablet" xsi:type="text" required="true" visible="true" sort_order="220">
+                <label translate="true">Owl Items On Small Tablet</label>
+				<description translate="true">Tablet Small: 576px - 767px</description>
+				<value>3</value>
+            </parameter>
+			<parameter name="owl_item_mobile" xsi:type="text" required="true" visible="true" sort_order="230">
+                <label translate="true">Owl Items On Mobile</label>
+				<description translate="true"> Mobile: Under 575px</description>
+				<value>3</value>
+            </parameter>
+			<parameter name="owl_margin" xsi:type="text" required="false" visible="true" sort_order="240">
+                <label translate="true">Owl Margin</label>
+            </parameter>
+        </parameters>
+    </widget> 
+</widgets>

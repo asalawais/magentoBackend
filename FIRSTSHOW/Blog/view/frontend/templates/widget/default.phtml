@@ -1,0 +1,105 @@
+<?php
+$helper = $this->helper('FIRSTSHOW\Blog\Helper\Data');
+$collection = $block->getPostCollection();
+?>
+<?php if (count($collection)): ?>
+    <?php
+    $blockId = rand() . time();
+    $title = $this->getConfig('title');
+    $numberOfPosts = $this->getConfig('number_of_posts');
+    $showThumbnail = $this->getConfig('show_thumbnail');
+    $width = $this->getConfig('thumbnail_width', 240);
+    $height = $this->getConfig('thumbnail_height', 180);
+    $showShortContent = $this->getConfig('show_short_content');
+    $viewAs = $this->getConfig('view_as');
+    $customClass = $this->getConfig('custom_class');
+    ?>
+    <?php if ($viewAs == 'default'): ?>
+        <div class="block widget firstshow-blog-lastest-posts <?php if ($customClass) {
+            echo $customClass;
+        } ?>">
+            <?php if ($title) { ?>
+                <div class="content-heading">
+                    <h2 class="title"><?php echo $title ?></h2>
+                </div>
+            <?php } ?>
+            <div class="block-content">
+                <ul class="default firstshow-blog-lastest-post-list-<?php echo $blockId; ?>">
+                    <?php foreach ($collection as $post) { ?>
+                        <li class="item">
+                            <?php if ($showThumbnail) { ?>
+                                <div class="image"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><img src="<?php echo $post->getThumbnailUrl(); ?>" alt="<?php echo $post->getTitle(); ?>"/></a></div>
+                            <?php } ?>
+                            <div class="title"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle() ?></a></div>
+                            <?php if ($showShortContent) { ?>
+                                <div class="short-content">
+                                    <?php echo substr($post->getShortContent(), 0, $this->getConfig('limit_characters_short_content')); ?>
+                                </div>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if ($viewAs == 'owl_carousel'): ?>
+        <div class="block widget firstshow-blog-lastest-posts <?php if ($customClass) {
+            echo $customClass;
+        } ?>">
+            <?php if ($title) { ?>
+                <div class="content-heading">
+                    <h2 class="title"><?php echo $title ?></h2>
+                </div>
+            <?php } ?>
+            <div class="block-content">
+                <ul class="owl-carousel firstshow-carousel-<?php echo $blockId; ?>">
+                    <?php foreach ($collection as $post) { ?>
+                        <li class="item">
+                            <?php if ($showThumbnail) { ?>
+                                <div class="image"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><img src="<?php echo $post->getThumbnailUrl(); ?>" alt="<?php echo $post->getTitle(); ?>"/></a></div>
+                            <?php } ?>
+                            <div class="title"><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle() ?></a></div>
+                            <?php if ($showShortContent) { ?>
+                                <div class="short-content">
+                                    <?php echo substr($post->getShortContent(), 0, $this->getConfig('limit_characters_short_content')); ?>
+                                </div>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+        <?php
+        if ($this->getConfig('autoplay')) {
+            $autoplay = 'true';
+        } else {
+            $autoplay = 'false';
+        }
+        if ($this->getConfig('stop_on_hover')) {
+            $stopOnHover = 'true';
+        } else {
+            $stopOnHover = 'false';
+        }
+        if ($this->getConfig('navigation')) {
+            $navigation = 'true';
+        } else {
+            $navigation = 'false';
+        }
+        ?>
+        <script type="text/javascript">
+            require([
+                'jquery',
+                'firstshow/owlcarousel'
+            ], function ($) {
+                var owl = $('.firstshow-carousel-<?php echo $blockId ?>');
+                owl.owlCarousel({
+                    items: <?php echo $this->getConfig('items', 5); ?>,
+                    autoPlay: <?php echo $autoplay; ?>,
+                    stopOnHover: <?php echo $stopOnHover; ?>,
+                    navigation: <?php echo $navigation; ?>,
+                });
+            });
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+

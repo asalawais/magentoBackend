@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Backend\Block\Template" name="offer_button" template="Maxsel_Emesa::actions/offer_button.phtml"/>
+        </referenceContainer>
+		<referenceContainer name="content">
+			<block name="index.price" class="Maxsel\Emesa\Block\Adminhtml\Index\Price" template="Maxsel_Emesa::index/offer_price.phtml"/>
+		</referenceContainer>
+	</body>
+</page>

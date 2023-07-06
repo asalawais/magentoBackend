@@ -1,0 +1,15 @@
+<?php
+	$themeHelper = $this->helper('FIRSTSHOW\Social\Helper\Data');
+	$access_token = $themeHelper->getAccessToken(); 
+	$number = $themeHelper->getNumber(); 
+	$width = $themeHelper->getWidth();
+	$height = $themeHelper->getHeight();
+?>
+<?php if($themeHelper->getEnable() && $access_token && $number): ?>
+<div class="block-content">
+	<?php $block->getInstagramData($access_token, $width, $height, $number); ?>
+</div>
+
+<?php else: ?>
+	<p><?php echo __('Please go to admin and config the instagram info') ?></p>
+<?php endif; ?>

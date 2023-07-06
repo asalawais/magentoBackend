@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Framework\Console\CommandList">
+		<arguments>
+			<argument name="commands" xsi:type="array">
+				<item name="bigbridge_product_import" xsi:type="object">BigBridge\ProductImport\Console\Command\ProductImportCommand</item>
+				<item name="bigbridge_product_urlrewrite" xsi:type="object">BigBridge\ProductImport\Console\Command\ProductUrlRewriteCommand</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="orderInformationUpdate" type="BigBridge\ProductImport\Plugin\Api\OrderRepository" />
+    </type>
+	<preference for="BigBridge\ProductImport\Api\ProductImportWebApiInterface" type="BigBridge\ProductImport\Api\ProductImportWebApi" />
+	<preference for="Magento\Eav\Model\Entity\Attribute\OptionManagement" type="BigBridge\ProductImport\Model\Eav\Entity\Attribute\OptionManagement" />
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="afas_order_nbr" xsi:type="string">sales_order.afas_order_nbr</item>
+                <item name="order_ref_nbr" xsi:type="string">sales_order.order_ref_nbr</item>
+                <item name="debtor_id" xsi:type="string">sales_order.debtor_id</item>
+                <item name="afas_order_status" xsi:type="string">sales_order.afas_order_status</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" template="BigBridge_ProductImport::gallery/js.phtml"
+                   name="import_js_backend_gallery"/>
+        </referenceContainer>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Backend\Block\Template" name="start_import_gallery" template="BigBridge_ProductImport::actions/startimportgallery.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block name="import.gallery" class="BigBridge\ProductImport\Block\Adminhtml\Import\Gallery" template="BigBridge_ProductImport::gallery/import.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

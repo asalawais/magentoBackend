@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <!-- <add id="FIRSTSHOW_Brand::brand" title="Shop By Brand" module="FIRSTSHOW_Brand" sortOrder="80" parent="Magento_Backend::firstshow" resource="FIRSTSHOW_Brand::brand"/>
+        <add id="FIRSTSHOW_Brand::manage_brand" title="Manage Brands" module="FIRSTSHOW_Brand" sortOrder="10" parent="FIRSTSHOW_Brand::brand" action="brand/brand/" resource="FIRSTSHOW_Brand::manage_brand"/>
+        <add id="FIRSTSHOW_Brand::configuration" title="Configuration" module="FIRSTSHOW_Brand" sortOrder="20" parent="FIRSTSHOW_Brand::brand" action="adminhtml/system_config/edit/section/brand" resource="FIRSTSHOW_Brand::configuration"/> -->
+    </menu>
+</config>

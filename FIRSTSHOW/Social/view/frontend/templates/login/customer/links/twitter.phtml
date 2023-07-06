@@ -1,0 +1,32 @@
+<?php $helper = $this->helper('FIRSTSHOW\Social\Helper\Data'); ?>
+<?php if ($helper->getConfig('twitter_settings/active')): ?>
+    <?php
+    try {
+        require_once BP . '/app/code/FIRSTSHOW/Social/lib/twitter/twitteroauth.php';
+        $clientId = $helper->getConfig('twitter_settings/client_id');
+        $clientSecret = $helper->getConfig('twitter_settings/client_secret');
+        $redirectUri = $helper->getUrl('social/twitter/connect');
+        $connection = new \TwitterOAuth($clientId, $clientSecret);
+        $requestToken = $connection->getRequestToken($redirectUri);
+        $token = $requestToken['oauth_token'];
+        $_SESSION['oauth_token'] = $requestToken['oauth_token'];
+        $_SESSION['oauth_token_secret'] = $requestToken['oauth_token_secret'];
+        switch ($connection->http_code) {
+            case 200:
+                $loginUrl = $connection->getAuthorizeURL($token);
+                break;
+            default:
+                $loginUrl = '';
+        }
+        ?>
+        <?php if (!$helper->checkLoggedIn() && $loginUrl != ''): ?>
+            <div class="social-twitter">
+                <a class="twitter" title="<?php echo __('Login with Twitter'); ?>" href="#" onclick="socialLogin('<?php echo $loginUrl; ?>'); return false;"></a>
+            </div>
+        <?php endif; ?>
+        <?php
+    } catch (\Exception $e) {
+
+    }
+    ?>
+<?php endif; ?>

@@ -1,0 +1,553 @@
+<install>
+	<!-- STATIC BLOCKS -->
+	<static_block>
+		<item>
+			<title>Fashion Social Header 5</title>
+			<identifier>fashion_social_h5</identifier>
+			<content><![CDATA[<ul class="social">
+<li><a href="#"> <em class="fa fa-facebook">&nbsp;</em></a></li>
+<li><a href="#"> <em class="fa fa-twitter">&nbsp;</em></a></li>
+<li><a href="#"> <em class="fa fa-instagram">&nbsp;</em></a></li>
+<li><a href="#"> <em class="fa fa-dribbble">&nbsp;</em></a></li>
+<li><a href="#"> <em class="fa fa-vimeo">&nbsp;</em></a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Fashion Vertical Menu Header 5</title>
+			<identifier>fashion_vertical_menu_h5</identifier>
+			<content><![CDATA[<div class="vertical-menu-home">
+<div class="vertical-title">
+<h5>Browse Category</h5>
+<div class="fa-icon">&nbsp;</div>
+</div>
+
+</div>]]></content>
+		</item>
+		<item>
+			<title>Fashion Phone Header 5</title>
+			<identifier>fashion_phone_h5</identifier>
+			<content><![CDATA[<span class="phone"><em class="fa fa-phone">&nbsp;</em> 1800 357 993 </span>]]></content>
+		</item>
+		<item>
+			<title>Fashion Vertical Menu</title>
+			<identifier>fashion_vertical_menu</identifier>
+			<content><![CDATA[<div class="vertical-menu-home">
+<div class="vertical-title">
+<h5>Featured</h5>
+<div class="fa-icon">&nbsp;</div>
+</div>
+<div class="vertical-menu-content" style="display: block;">
+<ul id="vertical-menu-2" class="vertical-menu nav nav-pills nav-main">
+<li class="  mega-menu-item mega-menu-fullwidth category-menu dropdown"><a class="level0 dropdown-toggle" href="#"><span data-hover="Catalog">Catalog</span> </a>
+<ul id="mobile-menu-6-2" class="dropdown-menu">
+<li>
+<div class="mega-menu-content" style="width: 877px;">
+<div class="row">
+<div class="col-md-6">
+<ul class="sub-menu">
+<li class="level1">
+<ul id="mobile-menu-cat-21-2" class="sub-menu">
+<li class="level2"><a href="{{store url=""}}women/tops-women/jackets-women"> Category 2 Columns left </a></li>
+<li class="level2"><a href="{{store url=""}}women/tops-women/hoodies-and-sweatshirts-women"> Category 2 Columns right </a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="col-md-6">
+<ul class="sub-menu">
+<li class="level1">
+<ul id="mobile-menu-cat-22-2" class="sub-menu">
+<li class="level2"><a href="{{store url=""}}women/bottoms-women/pants-women"> Category 1 Columns </a></li>
+<li class="level2"><a href="{{store url=""}}women/bottoms-women/shorts-women"> Category 3 Columns</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</li>
+<li class="  category-menu dropdown"><a class="level0 dropdown-toggle" href="#"><span data-hover="Ment's Clothing">Product</span> </a></li>
+<li class="  category-menu"><a class="level0" href="#"><span data-hover="Fitness Equipment">Store Locator</span></a></li>
+<li class="  category-menu"><a class="level0" href="#"><span data-hover="Hoodies &amp; Sweatshirts">Brands</span></a></li>
+<li class="  category-menu"><a class="level0" href="#"><span data-hover="Bras &amp; Tanks">Blog</span></a></li>
+</ul>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Contact Infomation Block</title>
+			<identifier>contact_infomation_block</identifier>
+			<content><![CDATA[<div class="col-md-4 col-sm-4 col-xs-12 contact-info">
+<div class="text-center"><span class="icon pe-7s-call">&nbsp;</span>
+<p class="text-desc">Call Us</p>
+<p>1800 578 90</p>
+</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12 contact-info center">
+<div class="text-center"><span class="icon pe-7s-map-2">&nbsp;</span>
+<p class="text-desc">Our Location</p>
+<p>PO Box 16122 Collins Street <br /> West, Australia</p>
+</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12 contact-info">
+<div class="text-center"><span class="icon pe-7s-mail-open-file">&nbsp;</span>
+<p class="text-desc">Our Email</p>
+<p>fashiontheme@example.com</p>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Custom Col Right Block</title>
+			<identifier>custom_col_right_block</identifier>
+			<content><![CDATA[<div class="service-inline"><span class="icon pe-7s-wallet">&nbsp;</span>
+<h5 class="title">MONEY GUARANTEE</h5>
+<p class="text-desc">30 days money guarantee!</p>
+</div>
+<div class="service-inline"><span class="icon pe-7s-magic-wand">&nbsp;</span>
+<h5 class="title">ONLINE SUPPORT</h5>
+<p class="text-desc">We support online 24/7</p>
+</div>
+<div class="service-inline"><span class="icon pe-7s-rocket">&nbsp;</span>
+<h5 class="title">PAYMENT SECURE</h5>
+<p class="text-desc">Secure all your payment</p>
+</div>
+<div class="service-inline"><span class="icon pe-7s-cloud-download">&nbsp;</span>
+<h5 class="title">UK FREE DELIVERY</h5>
+<p class="text-desc">Free on all orders over &pound;99.99</p>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Custom Static Block Bottom</title>
+			<identifier>custom_static_block_bottom</identifier>
+			<content><![CDATA[<p>Perfect for class, work or the gym, the Wayfarer Messenger Bag is packed with pockets. The dual-buckle flap closure reveals an organizational panel, and the roomy main compartment has spaces for your laptop and a change of clothes. An adjustable shoulder strap and easy-grip handle promise easy carrying.</p>]]></content>
+		</item>
+		<item>
+			<title>Custom Static Block Top</title>
+			<identifier>custom_static_block_top</identifier>
+			<content><![CDATA[<p>Perfect for class, work or the gym, the Wayfarer Messenger Bag is packed with pockets. The dual-buckle flap closure reveals an organizational panel, and the roomy main compartment has spaces for your laptop and a change of clothes. An adjustable shoulder strap and easy-grip handle promise easy carrying.</p>]]></content>
+		</item>
+		<item>
+			<title>Share this Block</title>
+			<identifier>share_this_block</identifier>
+			<content><![CDATA[<div class="share-this-block"><span class="label-share">Share This:</span> <span class="st_sharethis_large">&nbsp;</span> <span class="st_facebook_large">&nbsp;</span> <span class="st_twitter_large">&nbsp;</span> <span class="st_linkedin_large">&nbsp;</span> <span class="st_pinterest_large">&nbsp;</span> <span class="st_email_large">&nbsp;</span></div>
+<script type="text/javascript">
+var switchTo5x=true;
+</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">
+stLight.options({publisher: "d846940d-2e32-4b49-b61a-8df1df805d0a", doNotHash: false, doNotCopy: false, hashAddressBar: false});
+</script>]]></content>
+		</item>
+		<item>
+			<title>Fashion responsive nav</title>
+			<identifier>fashion_responsive_nav</identifier>
+			<content><![CDATA[<p><button class="btn btn-responsive-nav btn-inverse"> <em class="fa fa-bars">&nbsp;</em> </button></p>]]></content>
+		</item>
+		<item>
+			<title>Fashion footer contacts</title>
+			<identifier>fashion_ft_contacts</identifier>
+			<content><![CDATA[<div class="footer-contacts">
+<div class="block-title"><span class="h4"><span class="title">KEEP IN TOUCH</span></span></div>
+<div class="block-content">
+<ul>
+<li><em class="fa fa-map-marker">&nbsp;</em> <span class="text">PO Box 16122 Collins Street West <br /> Victoria 8007 Australia </span></li>
+<li><em class="fa fa-phone">&nbsp;</em> <span class="text">Tel. +1 2123431725 </span></li>
+<li><em class="fa fa-envelope-o">&nbsp;</em> <span class="text">Email. info@thememove.com</span></li>
+</ul>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Fashion footer instagram</title>
+			<identifier>fashion_ft_instagram</identifier>
+			<content><![CDATA[<div class="instagram-footer">
+<div class="block-title"><span class="h4"><span class="title">Instagram feeds</span></span></div>
+{{block class="FIRSTSHOW\\Social\\Block\\Instagram" name="instagram.feed" template="FIRSTSHOW_Social::instagram.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Fashion footer info</title>
+			<identifier>fashion_ft_info</identifier>
+			<content><![CDATA[<div class="info-footer">
+<div class="block-title"><span class="h4"> <span class="title">INFOMATION</span> </span></div>
+<div class="block-content">
+<ul>
+<li><a href="#"><em class="fa fa-angle-right">&nbsp;</em> ABOUT US</a></li>
+<li><a href="#"><em class="fa fa-angle-right">&nbsp;</em> DELIVERY INFOMATION</a></li>
+<li><a href="#"><em class="fa fa-angle-right">&nbsp;</em> PRIVACY &amp; POLICY</a></li>
+<li><a href="#"><em class="fa fa-angle-right">&nbsp;</em> TEMRS &amp; CONDITIONS</a></li>
+<li><a href="#"><em class="fa fa-angle-right">&nbsp;</em> MANUFACTURES</a></li>
+</ul>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Fashion footer about</title>
+			<identifier>fashion_ft_about</identifier>
+			<content><![CDATA[<div class="footer-about">
+<div class="block-title"><span class="h4"> <span class="title">ABOUT US</span> </span></div>
+<div class="block-content">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum mauris sed sapien tristique suscipit. Nunc mollis tortor velit, at commodo nisi ullamcorper ac. Quisque id mi semper ipsum.</p>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Fashion footer newsletter</title>
+			<identifier>fashion_ft_newsletter</identifier>
+			<content><![CDATA[<p>{{block class="Magento\\Newsletter\\Block\\Subscribe" name="footer.newsletter" template="Magento_Newsletter::footer-subscribe.phtml"}}</p>]]></content>
+		</item>
+		<item>
+			<title>Home2 Fashion contact phone</title>
+			<identifier>fashion_phone</identifier>
+			<content><![CDATA[<div class="phone"><em class="fa fa-phone">&nbsp;</em> +001 453 8989</div>]]></content>
+		</item>
+		<item>
+			<title>Fashion social</title>
+			<identifier>fashion_social</identifier>
+			<content><![CDATA[<ul class="social">
+<li><a href="#"> <span class="tooltip-top">Facebook</span> <em class="fa fa-facebook">&nbsp;</em></a></li>
+<li><a href="#"> <span class="tooltip-top">Twitter</span> <em class="fa fa-twitter">&nbsp;</em></a></li>
+<li><a href="#"> <span class="tooltip-top">Instagram</span> <em class="fa fa-instagram">&nbsp;</em></a></li>
+<li><a href="#"> <span class="tooltip-top">Dribbble</span> <em class="fa fa-dribbble">&nbsp;</em></a></li>
+<li><a href="#"> <span class="tooltip-top">Vimeo</span> <em class="fa fa-vimeo">&nbsp;</em></a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Home2 Fashion title logo</title>
+			<identifier>fashion_titlelogo</identifier>
+			<content><![CDATA[<div class="title-logo">Fashion Has So Many <strong>Good Stuffs</strong> For Customers</div>]]></content>
+		</item>
+		<item>
+			<title>Newsletter Popup</title>
+			<identifier>newsletter_popup</identifier>
+			<content><![CDATA[<p id="img-newsletter"><img class="img-responsive" src="{{media url="wysiwyg/bg_newsletter_popup_1.jpg"}}" alt="" /></p>
+<div class="newsletter-popup">
+<p><img class="img-responsive" src="{{media url="wysiwyg/logo.png"}}" alt="" /></p>
+<h3>Join Our Newsletter</h3>
+<p class="desc-popup hidden-xs">Subscribe to the Fashion eCommerce newsletter to receive timely updates from your favorite products.</p>
+{{block class="Magento\Newsletter\Block\Subscribe" template="subscribe-popup.phtml"}}
+<div class="checkbox"><label for="dont_show"> <input id="dont_show" onclick="dontShowPopup('dont_show')" type="checkbox" /> Don't show this popup again </label></div>
+</div>]]></content>
+		</item>
+	</static_block>
+
+
+	<!-- CMS PAGES (NOT HOMEPAGES) -->
+	<cms_page>
+		<item>
+			<title>404 Not Found</title>
+			<identifier>no-route</identifier>
+			<content_heading>Whoops, our bad...</content_heading>
+			<page_layout>1column</page_layout>
+			<content><![CDATA[<div class="content-page-404">
+<div class="text-404 text-center">
+<p class="big-404">404 PAGE</p>
+<p class="text">The page you are looking for does not exist. <br /> Return to the <a href="{{store url=""}}">home page.</a></p>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Customer Service</title>
+			<identifier>customer-service</identifier>
+			<content_heading>Customer Service</content_heading>
+			<page_layout>1column</page_layout>
+			<content><![CDATA[<div class="customer-service cms-content">
+<div class="cms-content-important">
+<h2>Luma Delivery and Returns</h2>
+<p>We hope you love shopping with Luma. Here are our delivery and returns policies to help make sure we meet your expectations. <a href="{{store url="contact"}}">Contact Us.</a></p>
+</div>
+<h2>Shipping and Delivery</h2>
+<p>Shipping and Delivery is the charge for internet order processing, item selection, packaging, transport and handling. We don&rsquo;t guarantee delivery times, but we do our best to provide accurate estimates.</p>
+<p>Deliveries occur only on weekdays. Shipping and Delivery charges are subject to change and are determined when you order. Estimated delivery time assumes orders are placed before 12:00 noon (PST). Orders you place with Luma late on Friday or on Saturday will not be processed until Monday. Charges may be added to orders with Priority, Overnight and International shipping if we try unsuccessfully to deliver your order more than once.</p>
+<p>Delivery addresses in Alaska, Hawaii, Puerto Rico, and Guam should add an additional $5.00 charge for standard Shipping &amp; Delivery. Orders arrive in 7 to 9 business days when ordered before 12:00 noon (PST).</p>
+<div class="table-wrapper">
+<table><caption>Shipping and Delivery</caption>
+<thead>
+<tr><th><strong>Merchandise total *</strong></th><th><strong>STANDARD</strong><br />5&mdash;7 day shipping **</th><th><strong>PRIORITY</strong><br />2&mdash;3 day shipping **</th><th><strong>OVERNIGHT</strong><br />Next business day **</th></tr>
+</thead>
+<tbody>
+<tr><th>Up to $200</th>
+<td>$16</td>
+<td>$26</td>
+<td>$33</td>
+</tr>
+<tr><th>$200.01&mdash;500.00</th>
+<td>$21</td>
+<td>$31</td>
+<td>$38</td>
+</tr>
+<tr><th>$500.01&mdash;1000.00</th>
+<td>$29</td>
+<td>$39</td>
+<td>$46</td>
+</tr>
+<tr><th>Over $1000.00</th>
+<td>$34</td>
+<td>$44</td>
+<td>$51</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><small>*before tax and additional charges</small><br /> <small>**after processing if ordered by 12:00 noon PST</small></p>
+<h2 style="margin-top: 40px;">Returns and Replacements</h2>
+<p>We want you to be completely happy with your Luma order. If for any reason you are not satisfied, we will gladly accept your timely return of unworn, unwashed, or defective merchandise. Used merchandise cannot be returned unless defective. Returned merchandise should include the vendor packaging and tags and be in the same condition as when it was received. A pickup and/or restock fee may apply. Merchandise must be returned within 30 days of receipt of merchandise.</p>
+<h3>Returning Gifts</h3>
+<p>When returning a gift, a Luma Gift Card will be issued to the gift recipient for the amount of the returned merchandise. The card can be used for purchases from any Luma store, and online. In compliance with Federal law, for gifts valued at more than $2,000.00, the recipient will receive a check rather than an Luma Gift Card.</p>
+<h3>Returning Merchandise by Mail</h3>
+<p>On the back of the packing slip enclosed with your Luma order, please note the reason(s) for return and whether you wish to exchange the item(s) or receive a credit/refund (depending on the original form of payment).</p>
+<p>Enclose the return section of the packing slip with your item(s). Please use one of the return labels provided on the front of your packing slip to ensure proper return address and credit information. Restricted items must be returned using ground transportation.</p>
+<p>Please allow 10 to 14 days for Luma to process your return.</p>
+</div>]]></content>
+		</item>
+		<item>
+			<title>About Us - Personal</title>
+			<identifier>about-us-personal</identifier>
+			<content_heading></content_heading>
+			<page_layout>1column</page_layout>
+			<content><![CDATA[<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 personal-banner no-padding text-colour-white button-colour-sienna button-border-colour-sienna">
+<div class="promo-banner"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/banner_about-personal.jpg"}}" alt="" /></a>
+<div class="text-container text-center">
+<div class="text-hover">
+<div class="title">JORDAN<br />HENRISON</div>
+<p>Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit. Quisque elementum rutrum <br /> porta. Duis hendrerit ut lorem.</p>
+<button class="btn btn-default btn-lg" onclick="setLocation('#')">READ MORE</button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
+<div class="title-center" style="margin-bottom: 30px;">
+<h3 class="heading"><span>ALL ABOUT ME</span></h3>
+<div class="text-desc"><span>Quisque convallis rhoncus ornare</span></div>
+</div>
+</div>
+<div class="col-sm-4 col-xs-12">Nulla mattis mi quis elit porttitor gravida. Ut ut laoreet justo. Suspendisse nulla ligula, aliquet sed cursus ut, sodales sit amet metus. Proin sollicitudin, urna nec placerat faucibus, ex elit mattis nulla, sed placerat libero dui non sem. Etiam non auctor odio. Cras commodo posuere ante vitae molestie.</div>
+<div class="col-sm-4 col-xs-12">Vivamus imperdiet aliquam ornare. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ac elit vel justo ullamcorper porttitor. Suspendisse lobortis risus nec sapien faucibus, et tincidunt elit imperdiet.</div>
+<div class="col-sm-4 col-xs-12">Praesent cursus condimentum metus, in lacinia nisi sagittis eget. Etiam fermentum commodo nulla, at ullamcorper felis faucibus ut. Duis finibus volutpat dapibus. Maecenas nisi neque, iaculis vitae odio vitae, vestibulum vehicula lectus.</div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-6 col-sm-12 col-xs-12 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/banner_about-personal_2.jpg"}}" alt="" /></div>
+<div class="col-md-6 col-sm-12 col-xs-12 no-padding">
+<div class="block-to-deals">
+<div class="title-inline">
+<h3 class="heading full text-uppercase"><span>OUR SKILL</span></h3>
+</div>
+<p>Get Free Shipping on all orders over $75 and free returns to our UK returns centre!</p>
+<table class="table chart-table">
+<tbody>
+<tr>
+<td>Graphic</td>
+<td>
+<div class="chart-parent">
+<div class="chart" style="width: 90%;"><span>90%</span></div>
+</div>
+</td>
+</tr>
+<tr>
+<td>Web Design</td>
+<td>
+<div class="chart-parent">
+<div class="chart" style="width: 80%;"><span>80%</span></div>
+</div>
+</td>
+</tr>
+<tr>
+<td>Photography</td>
+<td>
+<div class="chart-parent">
+<div class="chart" style="width: 85%;"><span>85%</span></div>
+</div>
+</td>
+</tr>
+<tr>
+<td>Html/Css</td>
+<td>
+<div class="chart-parent">
+<div class="chart" style="width: 90%;"><span>90%</span></div>
+</div>
+</td>
+</tr>
+<tr>
+<td>Fashion Design</td>
+<td>
+<div class="chart-parent">
+<div class="chart" style="width: 70%;"><span>70%</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div>&nbsp;</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
+<div class="title-center" style="margin-bottom: 30px;">
+<h3 class="heading"><span>WORK PROCESS</span></h3>
+<div class="text-desc"><span> Pellentesque id sem in nisl malesuada rhoncus</span></div>
+</div>
+</div>
+<div class="col-sm-4 col-xs-12">
+<div class="service-inline" style="margin-bottom: 25px;"><span class="icon number">1</span>
+<h5 class="title" style="color: #444444; font-weight: bold;">SKETCH</h5>
+<p class="content">Fusce ac odio odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+</div>
+</div>
+<div class="col-sm-4 col-xs-12">
+<div class="service-inline" style="margin-bottom: 25px;"><span class="icon number">2</span>
+<h5 class="title" style="color: #444444; font-weight: bold;">DESIGN</h5>
+<p class="content">Fusce ac odio odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+</div>
+</div>
+<div class="col-sm-4 col-xs-12">
+<div class="service-inline" style="margin-bottom: 25px;"><span class="icon number">3</span>
+<h5 class="title" style="color: #444444; font-weight: bold;">RELEASE</h5>
+<p class="content">Fusce ac odio odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-sm-4 col-xs-12">
+<div class="title-center" style="margin-bottom: 30px;">
+<h3 class="heading"><span>Q&amp;A</span></h3>
+</div>
+<div id="accordion_question" class="accordion_question panel-group">
+<div class="panel">
+<div id="headingOne" class="panel-heading">
+<p class="active"><a href="#one" data-parent="#accordion_question" data-toggle="collapse">Brushstrokes Jersey Tea Dress?</a></p>
+</div>
+<div id="one" class="panel-collapse collapse in">
+<div class="panel-body">Aliquam erat volutpat. Cras blandit eget ex quis convallis. In faucibus imperdiet est, non ornare velit commodo a...</div>
+</div>
+</div>
+<div class="panel">
+<div id="headingTwo" class="panel-heading">
+<p><a class="collapsed" href="#two" data-parent="#accordion_question" data-toggle="collapse">Ut enim ad minim veniam?</a></p>
+</div>
+<div id="two" class="panel-collapse collapse">
+<div class="panel-body">Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS...</div>
+</div>
+</div>
+<div class="panel last">
+<div id="headingThree" class="panel-heading">
+<p><a class="collapsed" href="#three" data-parent="#accordion_question" data-toggle="collapse">Ullamco laboris nisi ut aliquip ex ea?</a></p>
+</div>
+<div id="three" class="panel-collapse collapse">
+<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. .</div>
+</div>
+</div>
+</div>
+<br />
+<div class="text-center"><button class="btn-lg btn btn-default" onclick="setLocation('{{store url="faqs"}}')" type="button">More Question</button></div>
+</div>
+<div class="col-sm-4 col-xs-12">
+<div class="title-center" style="margin-bottom: 30px;">
+<h3 class="heading"><span>SHOPPING GUIDES</span></h3>
+</div>
+<ul class="shopping-guides">
+<li><span class="icon pe-7s-box2">&nbsp;</span> STEP 1: CHOOSE YOUR ITEMS &amp; ADD TO YOUR SHOPPING CART.</li>
+<li><span class="icon pe-7s-box2">&nbsp;</span> STEP 2: APPLY COMBO &amp; PAY.</li>
+<li><span class="icon pe-7s-box2">&nbsp;</span> STEP 3: CHOOSE YOUR ADDRESS.</li>
+<li><span class="icon pe-7s-box2">&nbsp;</span> STEP 4: JUST WAIT FOR IT TO COME TO YOUR HOUSE AFTER FEW DAYS!</li>
+</ul>
+</div>
+<div class="col-sm-4 col-xs-12">
+<div class="title-center" style="margin-bottom: 30px;">
+<h3 class="heading"><span>TESTIMONIALS</span></h3>
+</div>
+<div class="testimonials-center">
+<div class="testimonial-item">
+<div class="testimonial-author">
+<div class="img-thumbnail img-thumbnail-small"><img class="img-responsive" src="{{media url="wysiwyg/testimo_1.jpg"}}" alt="" /></div>
+</div>
+<div class="testimonial-content">
+<p class="content">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt."</p>
+<p><span class="name-author">JESSIE GODD.</span><span class="text-desc">VOUGE Magazine</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+	</cms_page>
+	
+	<!-- SET DEFAULT SETTING -->
+	<theme_setting>
+		<general>
+			<width>width1200</width>
+			<header>header_1</header>
+			<footer>footer_1</footer>
+			<sticky_menu>1</sticky_menu>
+			<back_to_top>1</back_to_top>
+			<popup_newsletter>1</popup_newsletter>
+		</general>
+		<fonts>
+			<default_font><![CDATA[Lato]]></default_font>
+			<h1><![CDATA[Lato]]></h1>
+			<h2><![CDATA[Lato]]></h2>
+			<h3><![CDATA[Lato]]></h3>
+			<h4><![CDATA[Lato]]></h4>
+			<h5><![CDATA[Lato]]></h5>
+			<h6><![CDATA[Lato]]></h6>
+			<price><![CDATA[Lato]]></price>
+			<menu><![CDATA[Lato]]></menu>
+		</fonts>
+		<custom_style>
+			<style><![CDATA[.cms-noroute-index .page-wrapper > #maincontent.container {
+	width: 100%;
+	padding: 0;
+}
+.slider_firstshow_carousel.owl-carousel .owl-item {
+padding: 0;
+}
+.cms-noroute-index .footer {
+	margin: 0;
+}
+
+.product-label { z-index: 1;}]]></style>
+		</custom_style>
+		<banner_slider>
+			<slider_tyle>2</slider_tyle>
+			<identifier_block><![CDATA[firstshow_owl_slider_fr]]></identifier_block>
+			<banner_owl_loop>1</banner_owl_loop>
+			<banner_owl_dot>1</banner_owl_dot>
+			<banner_owl_auto>1</banner_owl_auto>
+			<banner_owl_nav>1</banner_owl_nav>
+			<banner_owl_speed><![CDATA[6000]]></banner_owl_speed>
+		</banner_slider>
+	</theme_setting>
+	
+	<panel_setting>
+		<catalog>
+			<product_per_row>4</product_per_row>
+			<max_width_image>400</max_width_image>
+			<max_width_image_detail>600</max_width_image_detail>
+			<sale_label><![CDATA[Sale]]></sale_label>
+			<new_label><![CDATA[New]]></new_label>
+			<picture_ratio>4</picture_ratio>
+		</catalog>
+		<form_mini_search>
+			<show_categories>1</show_categories>
+		</form_mini_search>
+		<contact_google_map>
+			<display_google_map>1</display_google_map>
+			<address_google_map><![CDATA[29-31 New St, Montclair, NJ 07042, America]]></address_google_map>
+			<html_google_map><![CDATA[<div class="infobox"><h3 class="title">Fashion Store</h3><span>New York</span><br>NY, United States <br>+0123456789<p></p></div>]]></html_google_map>
+		</contact_google_map>
+	</panel_setting>
+</install>

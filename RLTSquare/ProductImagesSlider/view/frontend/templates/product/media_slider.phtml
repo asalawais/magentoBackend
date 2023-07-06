@@ -1,0 +1,106 @@
+<?php /** @var Product $block */
+
+use RLTSquare\ProductImagesSlider\Block\Product; ?>
+<?php if ($block->isEnable() == 1): ?>
+    <?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $imageHelper = $objectManager->get('\Magento\Catalog\Helper\Image');
+    $productImages = array();
+    $productId = $block->getProduct();
+    $product = $block->getProductById($productId);
+    $productImages = $product->getMediaGalleryImages(); ?>
+    <div class="media-slider">
+        <?php foreach ($productImages as $productImage) { ?>
+            <div class="ex1"><img src="<?php echo $imageHelper->init($product, 'product_page_image_large')
+        ->setImageFile($productImage->getFile())
+        ->getUrl(); ?>" alt="<?= __('Image') ?>"></div>
+        <?php } ?>
+    </div>
+    <!--- popup structure --->
+    <?php /*
+    <div class="popup-outter">
+        <span class="close-popup"><img
+                    src="<?php echo $this->getViewfileURL("RLTSquare_ProductImagesSlider::images/close-icon.png"); ?>"
+                    alt="<?= __('Close icon') ?>"> </span>
+        <div class="media-slider-popup">
+            <?php foreach ($productImages as $productImage) { ?>
+                <div class=""><img src="<?php echo $productImage['url']; ?>" alt="<?= __('Image') ?>"></div>
+            <?php } ?>
+        </div>
+    </div><?php */?>
+    <?php $imageSlider = $block->imageSlider(); ?>
+    <?php $imageBreakpoint1 = $block->imageBreakpoint1(); ?>
+    <?php $imageBreakpoint2 = $block->imageBreakpoint2(); ?>
+    <?php $imageBreakpoint3 = $block->imageBreakpoint3(); ?>
+    <?php $imageBreakpoint4 = $block->imageBreakpoint4(); ?>
+    <?php $imagePopupSlider = $block->imagePopupSlider(); ?>
+    <?php $imagePopupBreakpoint1 = $block->imagePopupBreakpoint1(); ?>
+    <?php $imagePopupBreakpoint2 = $block->imagePopupBreakpoint2(); ?>
+    <?php $imagePopupBreakpoint3 = $block->imagePopupBreakpoint3(); ?>
+    <?php $imagePopupBreakpoint4 = $block->imagePopupBreakpoint4(); ?>
+    <script>
+        // define is used to register a module in require js
+        require(['jquery', 'slick', 'zoomjQuery'], function ($) {
+            //your js code here
+            jQuery(function () {
+                $(".media-slider").slick({
+                    dots: false,
+                    infinite: true,
+                    slidesToShow: <?php echo $imageSlider ?>,
+                    slidesToScroll: 1,
+                    arrows: true,
+                    autoplay: false,
+                    draggable: false,
+                    centerMode: true,
+                    centerPadding: '0px',
+                    speed: 300,
+                    responsive: [
+                        {
+                            breakpoint: 1199,
+                            settings: {
+                                slidesToShow: <?php echo $imageBreakpoint1 ?>
+                            }
+                        },
+                        {
+                            breakpoint: 991,
+                            settings: {
+                                slidesToShow: <?php echo $imageBreakpoint2 ?>
+                            }
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: <?php echo $imageBreakpoint3 ?>
+                            }
+                        },
+                        {
+                            breakpoint: 360,
+                            settings: {
+                                slidesToShow: <?php echo $imageBreakpoint4 ?>
+                            }
+                        }
+                    ]
+
+                });
+
+                $('.media-slider .ex1').click(function (e) {
+                    var slideno = $(this).closest('.slick-slide').data('slickIndex');
+                    $(".media-slider-popup").slick('slickGoTo', slideno);
+                });
+
+                $(document).on("click", ".ex1", function () {
+                    $(this).closest('body').find('.popup-outter').addClass('active');
+                });
+
+                $(document).on("click", ".close-popup", function () {
+                    $(this).closest('body').find('.popup-outter').removeClass('active');
+                });
+
+                $(".lazy").slick({
+                    lazyLoad: 'ondemand', // ondemand progressive anticipated
+                    infinite: true
+                });
+            });
+        });
+    </script>
+<?php endif; ?>

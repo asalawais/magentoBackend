@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="BigBridge_ProductImport::afas"
+             title="Afas API" module="BigBridge_ProductImport"
+             sortOrder="10"
+             resource="Magento_Backend::content"
+        />
+        <add id="BigBridge_ProductImport::afas_item"
+             title="Products Import" module="BigBridge_ProductImport"
+             sortOrder="10" parent="BigBridge_ProductImport::afas"
+             action="afas/import/index"
+             resource="BigBridge_ProductImport::afas_item"
+        />
+        <add id="BigBridge_ProductImport::afas_gallery"
+             title="Gallery Import" module="BigBridge_ProductImport"
+             sortOrder="10" parent="BigBridge_ProductImport::afas"
+             action="afas/import/gallery"
+             resource="BigBridge_ProductImport::afas_gallery"
+        />
+        <add id="BigBridge_ProductImport::afas_stock"
+             title="Stock Import" module="BigBridge_ProductImport"
+             sortOrder="10" parent="BigBridge_ProductImport::afas"
+             action="afas/import/stock"
+             resource="BigBridge_ProductImport::afas_stock"
+        />
+    </menu>
+</config>

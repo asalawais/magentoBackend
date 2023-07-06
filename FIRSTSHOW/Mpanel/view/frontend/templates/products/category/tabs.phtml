@@ -1,0 +1,47 @@
+<?php $categories = $this->getCategoryByIds() ?>
+<?php $customClass = $this->getCustomClass() ?>
+<?php if($this->hasData('title')): ?>
+	<div class="block-title<?php if($customClass): ?> <?php echo $customClass ?>-title<?php endif ?>">
+		<h3><?php echo $this->getData('title') ?></h3>
+	</div>
+<?php endif ?>
+<?php if(count($categories)>0): ?>
+	<div class="category-tabs data items<?php if($customClass): ?> <?php echo $customClass ?><?php endif ?>" data-mage-init='{"tabs":{"openedState":"active"}}'>
+		<?php foreach($categories as $category): ?>
+			<div class="data item title" aria-labeledby="tab-label-category-<?php echo $category->getId(); ?>-title" data-role="collapsible" id="tab-label-category-<?php echo $category->getId(); ?>">
+				<a class="data switch" tabindex="-1" data-toggle="switch" href="#category<?php echo $category->getId(); ?>" id="tab-label-category-<?php echo $category->getId(); ?>-title">
+					<?php echo $category->getName(); ?>
+				</a>
+			</div>
+			
+			<div class="data item content" id="category<?php echo $category->getId(); ?>" data-role="content">
+				<?php $_productCollection = $this->getProductCollection($category); ?>
+				<?php if (!$_productCollection->count()): ?>
+					<div class="message info empty"><div><?php echo __('The category "%1" haven\'t product.', $category->getName()) ?></div></div>
+				<?php else: ?>
+					<div class="products wrapper grid products-grid">
+						<ol class="products list items product-items row">
+							<?php 
+								$html = $this->getLayout()
+									->createBlock('FIRSTSHOW\Mpanel\Block\Products\Category\Tabs')
+									->setAdditionalData($category)
+									->setProductsCount($this->getProductsCount())
+									->setPerRow($this->getProductsPerRow())
+									->setTemplate('products/items.phtml')
+									->toHtml();
+								echo $html;
+							?>
+						</ol>
+					</div>
+					<?php if($this->hasData('load_more') && $this->getData('load_more')=='1'): ?>
+						<a class="btn btn-default btn-loadmore" href="<?php echo $this->getUrl('mpanel/index/loadmore', ['type'=>'category-tabs', 'category'=>$category->getId(), 'products_count'=>$this->getProductsCount(), 'perrow'=>$this->getProductsPerRow(), 'p'=>2]) ?>"><span></span><?php echo __('Load More') ?></a>
+					<?php endif ?>
+					
+				<?php endif ?>
+			</div>
+		<?php endforeach ?>
+		
+	</div>
+<?php else: ?>
+	<div class="message info empty"><div><?php echo __('Categories with Id are %1 does not exist', $this->getData('category_ids')) ?></div></div>
+<?php endif ?>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="FIRSTSHOW_Blog::css/firstshow_blog.css" media="all"/>
+        <css src="FIRSTSHOW_Blog::css/owl.carousel.css" media="all"/>
+        <css src="FIRSTSHOW_Blog::css/owl.theme.css" media="all"/>
+        <css src="FIRSTSHOW_Blog::css/owl.transitions.css" media="all"/>
+    </head>
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="blog.sharethis" template="FIRSTSHOW_Blog::sharethis.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

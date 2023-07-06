@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?><!--
+/**
+ * @package BigBridge_ProductImport
+ * @license See LICENSE_DIVANTE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="afas_magento_bridge" translate="label" sortOrder="100">
+            <label>Afas Magento Bridge</label>
+        </tab>
+        <section id="configuration" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Basic Configuration</label>
+            <tab>afas_magento_bridge</tab>
+            <resource>BigBridge_ProductImport::configuration</resource>
+            <group id="basic" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Basic Configuration</label>
+                <field id="is_enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Enable Afas Magento2 Bridge Integration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+        <section id="bigbridge" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Afas Integration</label>
+            <tab>afas_magento_bridge</tab>
+            <resource>BigBridge_ProductImport::bigbridge</resource>
+            <group id="integration" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>Afas integration</label>
+                <field id="api_key" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Afas API key</label>
+                    <comment><![CDATA[Enter Afas API key]]></comment>
+                </field>
+                <field id="endpoint" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Afas Prduct Endpoint</label>
+                    <comment><![CDATA[Enter Afas Prduct Endpoint Url]]></comment>
+                </field>
+                <field id="endpoint_image" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Afas Image Endpoint</label>
+                    <comment><![CDATA[Enter Afas Image Endpoint Url]]></comment>
+                </field>
+                <field id="endpoint_stock" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Afas Stock Endpoint</label>
+                    <comment><![CDATA[Enter Afas Stock Endpoint Url]]></comment>
+                </field>
+                <field id="category_queue_process" translate="label comment" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Category Queue Processor Limit</label>
+                    <validate>validate-number</validate>
+                    <comment>
+                        <![CDATA[Limit of how many category queues entities should be processed in one batch action.]]></comment>
+                </field>
+                <field id="product_queue_process" translate="label comment" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Products Queue Processor Limit</label>
+                    <validate>validate-number</validate>
+                    <comment>
+                        <![CDATA[Limit of how many product queues entities should be processed in one batch action.]]></comment>
+                </field>
+                <field id="asset_queue_process" translate="label comment" type="text" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Assets Queue Processor Limit</label>
+                    <validate>validate-number</validate>
+                    <comment>
+                        <![CDATA[Limit of how many asset queues entities should be processed in one batch action.]]></comment>
+                </field>
+            </group>
+        </section>
+        <section id="cron" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Cron Settings</label>
+            <tab>afas_magento_bridge</tab>
+            <resource>BigBridge_ProductImport::bigbridge</resource>
+            <group id="attribute_sets" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Removing Unused Attribute Sets</label>
+                <field id="frequency" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Frequency</label>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                </field>
+                <field id="time" translate="label comment" sortOrder="2" type="time" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Time</label>
+                </field>
+            </group>
+            <group id="attribute_options" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Removing Unused Attribute Options</label>
+                <field id="frequency" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Frequency</label>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                </field>
+                <field id="time" translate="label comment" sortOrder="2" type="time" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Time</label>
+                </field>
+            </group>
+            <group id="enable_products" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Enable Products</label>
+                <field id="is_active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Is enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

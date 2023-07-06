@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+ * NOTICE OF LICENSE
+ * You may not sell, distribute, sub-license, rent, lease or lend complete or portion of software to anyone.
+ *
+ * DISCLAIMER
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @package   RLTSquare_ProductImagesSlider
+ * @copyright Copyright (c) 2022 RLTSquare (https://www.rltsquare.com)
+ * @contacts  support@rltsquare.com
+ * @license  See the LICENSE.md file in module root directory
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="RLTSquare_ProductImagesSlider::css/product.css"/>
+        <css src="RLTSquare_ProductImagesSlider::css/slick.css"/>
+        <css src="RLTSquare_ProductImagesSlider::css/slick-theme.css"/>
+        <css src="RLTSquare_ProductImagesSlider::css/custom-slick.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="product.media.slider" htmlTag="div" htmlClass="media-slider-wrapper product media product-img-box clearfix col-md-5 col-sm-5 col-xs-12" before="-" />
+        </referenceContainer>
+        <referenceContainer name="product.media.slider">
+            <block class="RLTSquare\ProductImagesSlider\Block\Product" name="media.slider-inner" template="RLTSquare_ProductImagesSlider::product/media_slider.phtml" before="-" />
+        </referenceContainer>
+    </body>
+</page>

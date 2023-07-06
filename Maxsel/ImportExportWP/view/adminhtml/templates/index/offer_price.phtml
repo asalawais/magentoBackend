@@ -1,0 +1,17 @@
+
+<?php
+    $countries = ['be' => 'Belgium', 'nl' => 'Netherlands', 'de' => 'Germany'];
+?>
+<h3 id="update-status">Offer Shipping Classes and Prices</h3>
+<div id="log-result">
+    <?php if(count($block->getPrices()) > 0): ?>
+    <?php $i=0; foreach ($block->getPrices() as $class => $prices): ?>
+            <h4><?= $class ?></h4>
+        <?php foreach ($prices as $countryId => $price): ?>
+            <h5><?=$countries[$countryId].': '.($price/100)?></h5>
+        <?php endforeach; ?>
+    <?php $i++; endforeach; ?>
+    <?php else: ?>
+    <p>Please reload the prices</p>
+    <?php endif; ?>
+</div>

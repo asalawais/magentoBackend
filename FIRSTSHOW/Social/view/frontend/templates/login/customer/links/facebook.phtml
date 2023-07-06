@@ -1,0 +1,25 @@
+<?php $helper = $this->helper('FIRSTSHOW\Social\Helper\Data'); ?>
+<?php if ($helper->getConfig('facebook_settings/active')): ?>
+    <?php
+    require_once BP . '/app/code/FIRSTSHOW/Social/lib/facebook/src/facebook.php';
+    $appId = $helper->getConfig('facebook_settings/client_id');
+    $appSecret = $helper->getConfig('facebook_settings/client_secret');
+    $returnUrl = $helper->getUrl('social/facebook/connect');
+    $fbPermissions = 'email';
+    $facebook = new \Facebook(array(
+        'appId' => $appId,
+        'secret' => $appSecret
+
+    ));
+    $fbUser = $facebook->getUser();
+    ?>
+    <?php if (!$fbUser || !$helper->checkLoggedIn()): ?>
+        <?php
+        $fbUser = null;
+        $loginUrl = $facebook->getLoginUrl(array('redirect_uri' => $returnUrl, 'scope' => $fbPermissions, 'display' => 'popup'));
+        ?>
+        <div class="social-facebook">
+            <a class="facebook" title="<?php echo __('Login with Facebook'); ?>" href="#" onclick="socialLogin('<?php echo $loginUrl; ?>'); return false;"></a>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

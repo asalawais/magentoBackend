@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceContainer name="sidebar.additional">
+            <block class="FIRSTSHOW\Blog\Block\Sidebar" name="blog.sidebar" template="FIRSTSHOW_Blog::sidebar.phtml" after="-"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="FIRSTSHOW\Blog\Block\Post\View" name="post_view" template="FIRSTSHOW_Blog::post/view.phtml">
+                <block class="FIRSTSHOW\Blog\Block\Post\View\Comment" name="post_view_comment" template="FIRSTSHOW_Blog::post/view/comment.phtml">
+                    <block class="FIRSTSHOW\Blog\Block\Post\View\Commentlist" name="post_view_comment_list" template="FIRSTSHOW_Blog::post/view/comment/list.phtml"/>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

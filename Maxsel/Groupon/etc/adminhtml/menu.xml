@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Maxsel::groupon_api" title="Groupon API" module="Maxsel_Groupon" sortOrder="9999" resource="Magento_Backend::content"/>
+        <add id="Maxsel_Groupon::index_import" title="Product, Orders, Shipments" module="Maxsel_Groupon" sortOrder="90" parent="Maxsel::groupon_api" resource="Maxsel_Groupon::index_import" />
+		<add id="Maxsel_Groupon::index_index" title="Groupon Sync" module="Maxsel_Groupon" sortOrder="9999" resource="Maxsel_Groupon::index_index" parent="Maxsel_Groupon::index_import" action="groupon/index/index"/>
+    </menu>
+</config>

@@ -1,0 +1,65 @@
+<?php
+$helper = $this->helper('FIRSTSHOW\Blog\Helper\Data');
+$post = $block->getCurrentPost();
+$showImage = $this->getConfig('general_settings/show_image');
+if ($this->getConfig('general_settings/image_width') != '') {
+    $width = $this->getConfig('general_settings/image_width');
+} else {
+    $width = 1240;
+}
+if ($this->getConfig('general_settings/image_height') != '') {
+    $height = $this->getConfig('general_settings/image_height');
+} else {
+    $height = 600;
+}
+?>
+<div class="blog-post">
+    <div class="post-info">
+        <?php if ($showImage): ?>
+            <div class="post-image">
+                <img width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="<?php echo $post->getTitle(); ?>"
+                     src="<?php echo $post->getImageUrl(); ?>">
+            </div>
+        <?php endif; ?>
+        <?php if ($post->getUpdatedByUser()): ?>
+            <div class="published-by"><?php echo __('Published By: %1', $post->getUpdatedByUser()); ?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?></div>
+        <?php else: ?>
+            <div class="published-by"><?php echo __('Published By: %1', $post->getUser()); ?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?></div>
+        <?php endif; ?>
+        <?php $categories = $post->getCatetories(); ?>
+        <?php if (count($categories)): ?>
+            <div class="posted-in">
+                <?php echo __('Posted In: ') ?>
+                <?php foreach ($categories as $category): ?>
+                    <a title="<?php echo $category->getTitle(); ?>" href="<?php echo $category->getCategoryUrl(); ?>"><?php echo $category->getTitle(); ?></a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php if ($post->getContent()): ?>
+        <div class="post-content">
+            <?php echo $post->getContent(); ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($post->getTags()): ?>
+        <?php $tags = explode(',', $post->getTags()); ?>
+        <div class="post-tags">
+            <?php echo __('Tags: '); ?>
+            <?php foreach ($tags as $tag): ?>
+                <a title="<?php echo trim($tag); ?>" href="<?php echo $helper->getTagUrl(trim($tag)); ?>"><?php echo trim($tag); ?></a>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($this->getConfig('general_settings/use_sharethis')): ?>
+        <div class="post-sharethis">
+            <span class="title"> <?php echo __('Share This: ') ?></span>
+            <span class='st_facebook' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Facebook'); ?>'></span>
+            <span class='st_googleplus' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Google +'); ?>'></span>
+            <span class='st_twitter' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Tweet'); ?>'></span>
+            <span class='st_linkedin' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('LinkedIn'); ?>'></span>
+            <span class='st_pinterest' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Pinterest'); ?>'></span>
+            <span class='st_email' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Email'); ?>'></span>
+        </div>
+    <?php endif; ?>
+    <?php echo $block->getChildHtml('post_view_comment'); ?>
+</div>

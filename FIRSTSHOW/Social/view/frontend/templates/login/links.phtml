@@ -1,0 +1,8 @@
+<?php $helper = $this->helper('FIRSTSHOW\Social\Helper\Data'); ?>
+<?php if ($helper->getConfig('general_settings/active') && $helper->getConfig('general_settings/show_social_login_on_header_links') && !$helper->checkLoggedIn()): ?>
+    <div class="social-login-options">
+        <?php echo $block->getChildHtml('social.login.header.links.facebook'); ?>
+        <?php echo $block->getChildHtml('social.login.header.links.google'); ?>
+        <?php echo $block->getChildHtml('social.login.header.links.twitter'); ?>
+    </div>
+<?php endif; ?>

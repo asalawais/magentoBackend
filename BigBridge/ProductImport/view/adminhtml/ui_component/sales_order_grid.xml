@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_columns">
+        <column name="afas_order_nbr" class="BigBridge\ProductImport\Ui\Component\Listing\Column\AfasOrderNbr" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                     <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Afas Order#</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </column>
+        <column name="afas_error" class="BigBridge\ProductImport\Ui\Component\Listing\Column\Order\Error" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <label translate="true">Error Message</label>
+            </settings>
+        </column>
+        <column name="afas_import_status" component="Magento_Ui/js/grid/columns/select" sortOrder="30">
+            <settings>
+                <options class="BigBridge\ProductImport\Model\System\Config\Source\Status"/>
+                <filter>select</filter>
+                <label translate="true">Import Status</label>
+                <dataType>select</dataType>
+                <bodyTmpl>BigBridge_ProductImport/grid/afas_import_status</bodyTmpl>
+            </settings>
+        </column>
+        <column name="afas_packing_slip_nbr" class="BigBridge\ProductImport\Ui\Component\Listing\Column\AfasPackingSlipNbr" sortOrder="100">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Afas Packing Slip#</item>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                </item>
+            </argument>
+        </column>
+        <column name="afas_packing_error" class="BigBridge\ProductImport\Ui\Component\Listing\Column\Order\PackingError" sortOrder="110">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <label translate="true">Error Message</label>
+            </settings>
+        </column>
+        <column name="afas_packing_import_status" component="Magento_Ui/js/grid/columns/select" sortOrder="120">
+            <settings>
+                <options class="BigBridge\ProductImport\Model\System\Config\Source\Status"/>
+                <filter>select</filter>
+                <label translate="true">Packing Status</label>
+                <dataType>select</dataType>
+                <bodyTmpl>BigBridge_ProductImport/grid/afas_import_status</bodyTmpl>
+            </settings>
+        </column>
+        <column name="order_ref_nbr" class="BigBridge\ProductImport\Ui\Component\Listing\Column\OrderRefNbr" sortOrder="120">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                     <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Order Ref#</item>
+                    <item name="sortOrder" xsi:type="number">130</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="afas_import" class="BigBridge\ProductImport\Ui\Component\Listing\Column\Import" sortOrder="140">
+            <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">BigBridge_ProductImport/js/grid/columns/afasimport</item>
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                        <item name="sortable" xsi:type="boolean">false</item>
+                        <item name="label" xsi:type="string" translate="true">Afas Import</item>
+                        <item name="sortOrder" xsi:type="number">140</item>
+                    </item>
+            </argument>
+        </actionsColumn>
+        <!--<actionsColumn name="entity_id" class="BigBridge\ProductImport\Ui\Component\Listing\Column\AfasImport">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="viewUrlPath" xsi:type="string">aureatelabs/grid/view</item>
+                    <item name="urlEntityParamName" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </actionsColumn>-->
+        <column name="debtor_id" class="BigBridge\ProductImport\Ui\Component\Listing\Column\DebtorId">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Afas Customer ID</item>
+                    <item name="sortOrder" xsi:type="number">140</item>
+                </item>
+            </argument>
+        </column>
+        <column name="order_project" class="BigBridge\ProductImport\Ui\Component\Listing\Column\OrderProject">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                     <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Project</item>
+                    <item name="sortOrder" xsi:type="number">140</item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="order_cod" class="BigBridge\ProductImport\Ui\Component\Listing\Column\Cod">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                     <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Afas COD</item>
+                    <item name="sortOrder" xsi:type="number">150</item>
+                </item>
+            </argument>
+        </column>
+        <column name="order_cod" class="BigBridge\ProductImport\Ui\Component\Listing\Column\Cod">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                     <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Afas Order</item>
+                    <item name="sortOrder" xsi:type="number">160</item>
+                </item>
+            </argument>
+        </column>
+        <column name="order_dummy" class="BigBridge\ProductImport\Ui\Component\Listing\Column\OrderDummy">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="sortable" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Order Dummy</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">170</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">select</item>
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="afas_order_status" class="BigBridge\ProductImport\Ui\Component\Listing\Column\AfasOrderStatus">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                     <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Afas Status</item>
+                    <item name="sortOrder" xsi:type="number">180</item>
+                </item>
+            </argument>
+        </column>
+
+        <!--<column name="order_track_pod" class="BigBridge\ProductImport\Ui\Component\Listing\Column\TpOrder">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                     <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">TrackPod Order</item>
+                </item>
+            </argument>
+        </column>
+        <column name="order_track_delivery" class="BigBridge\ProductImport\Ui\Component\Listing\Column\TpOrderStatus">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                     <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">TrackPod Status</item>
+                </item>
+            </argument>
+        </column>
+        <column name="order_track_date" class="BigBridge\ProductImport\Ui\Component\Listing\Column\TpOrderDate">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                     <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">TrackPod Date</item>
+                </item>
+            </argument>
+        </column>-->
+    </columns>
+</listing>

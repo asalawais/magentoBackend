@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order" resource="sales" engine="innodb" comment="Sales Order">
+        <column xsi:type="varchar" name="afas_order_nbr" nullable="true" length="32" comment="Afas Order Number"/>
+        <column xsi:type="varchar" name="afas_packing_slip_nbr" nullable="true" length="32" comment="Afas Order Packing Slip Number"/>
+        <column xsi:type="varchar" name="afas_order_nbr_dummy" nullable="true" length="32" comment="Afas Order Number Dummy"/>
+        <column xsi:type="varchar" name="afas_order_status" nullable="true" length="5" comment="Afas Order Status"/>
+        <column xsi:type="varchar" name="afas_error" length="255" comment="Afas Error Status"/>
+        <column xsi:type="varchar" name="afas_import_status" length="20" comment="Afas Import Status"/>
+         <column xsi:type="varchar" name="order_ref_nbr" nullable="true" length="32" comment="Order Reference Number"/>
+         <column xsi:type="varchar" name="order_project" nullable="true" length="32" comment="Order Project"/>
+         <column xsi:type="varchar" name="debtor_id" nullable="true" length="32" comment="Debtor ID"/>
+         <column xsi:type="decimal" name="order_cod" scale="4" precision="12" nullable="true" comment="Cash on Delivery"/>
+         <column xsi:type="smallint" name="order_track_pod" padding="2" unsigned="true" nullable="false" default="0" comment="Track Pod Status"/>
+        <column xsi:type="smallint" name="order_dummy" padding="2" unsigned="true" nullable="false" default="0" comment="Order Dummy"/>
+    </table>
+    <table name="quote" resource="checkout" engine="innodb" comment="Quote">
+        <column xsi:type="varchar" name="afas_order_nbr" nullable="true" length="32" comment="Afas Order Number"/>
+        <column xsi:type="varchar" name="afas_packing_slip_nbr" nullable="true" length="32" comment="Afas Order Packing Slip Number"/>
+        <column xsi:type="varchar" name="afas_order_nbr_dummy" nullable="true" length="32" comment="Afas Order Number Dummy"/>
+        <column xsi:type="varchar" name="afas_order_status" nullable="true" length="5" comment="Afas Order Status"/>
+        <column xsi:type="varchar" name="order_ref_nbr" nullable="true" length="32" comment="Order Reference Number"/>
+        <column xsi:type="varchar" name="order_project" nullable="true" length="32" comment="Order Project"/>
+        <column xsi:type="varchar" name="debtor_id" nullable="true" length="32" comment="Debtor ID"/>
+        <column xsi:type="decimal" name="order_cod" scale="4" precision="12" nullable="true" comment="Cash on Delivery"/>
+        <column xsi:type="smallint" name="order_track_pod" padding="2" unsigned="true" nullable="false" default="0" comment="Track Pod Status"/>
+        <column xsi:type="smallint" name="order_dummy" padding="2" unsigned="true" nullable="false" default="0" comment="Order Dummy"/>
+    </table>
+    <table name="sales_order_grid" resource="sales" engine="innodb" comment="Sales Order Grid">
+        <column xsi:type="varchar" name="afas_order_nbr" nullable="true" length="32" comment="Afas Order Number"/>
+        <column xsi:type="varchar" name="afas_packing_slip_nbr" nullable="true" length="32" comment="Afas Order Packing Slip Number"/>
+        <column xsi:type="varchar" name="afas_order_nbr_dummy" nullable="true" length="32" comment="Afas Order Number Dummy"/>
+        <column xsi:type="varchar" name="afas_order_status" nullable="true" length="5" comment="Afas Order Status"/>
+        <column xsi:type="varchar" name="afas_error" length="255" comment="Afas Error Status"/>
+        <column xsi:type="varchar" name="afas_import_status" length="20" comment="Afas Import Status"/>
+        <column xsi:type="varchar" name="afas_packing_error" length="255" comment="Afas Packing Error Status"/>
+        <column xsi:type="varchar" name="afas_packing_import_status" length="20" comment="Afas Packing Import Status"/>
+        <column xsi:type="varchar" name="order_ref_nbr" nullable="true" length="32" comment="Order Reference Number"/>
+        <column xsi:type="varchar" name="order_project" nullable="true" length="32" comment="Order Project"/>
+        <column xsi:type="varchar" name="debtor_id" nullable="true" length="32" comment="Debtor ID"/>
+        <column xsi:type="decimal" name="order_cod" scale="4" precision="12" nullable="true" comment="Cash on Delivery"/>
+        <column xsi:type="smallint" name="order_track_pod" padding="2" unsigned="true" nullable="false" default="0" comment="Track Pod Status"/>
+        <column xsi:type="smallint" name="order_dummy" padding="2" unsigned="true" nullable="false" default="0" comment="Order Dummy"/>
+    </table>
+</schema>

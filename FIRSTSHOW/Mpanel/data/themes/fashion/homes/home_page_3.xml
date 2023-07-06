@@ -1,0 +1,129 @@
+<home>
+	<static_block>
+		<item>
+			<title>Fashion Owl Slider Home 3</title>
+			<identifier>firstshow_owl_slider_de</identifier>
+			<content><![CDATA[<div><img class="img-responsive" src="{{media url="wysiwyg/home_3_owl_img_1.jpg"}}" alt="" /></div><div><img class="img-responsive" src="{{media url="wysiwyg/home_3_owl_img_2.jpg"}}" alt="" /></p></div>]]></content>
+		</item>
+		<item>
+			<title>Home3 Fashion Counter</title>
+			<identifier>home3_fashion_counter</identifier>
+			<content><![CDATA[<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="number-count text-center first"><span class="icon pe-7s-smile" style="color: #e74c3c;">&nbsp;</span>
+<p class="text-desc">Happy Customers</p>
+<div class="counter">1503</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="number-count text-center"><span class="icon pe-7s-diamond" style="color: #e74c3c;">&nbsp;</span>
+<p class="text-desc">Shoes Sold</p>
+<div class="counter">1109</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="number-count text-center"><span class="icon pe-7s-coffee" style="color: #e74c3c;">&nbsp;</span>
+<p class="text-desc">Coffee Cups</p>
+<div class="counter">9193</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="number-count text-center"><span class="icon pe-7s-chat" style="color: #e74c3c;">&nbsp;</span>
+<p class="text-desc">Facebook Fans</p>
+<div class="counter">1908</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home1 Fashion Promo</title>
+			<identifier>home1_fashion_promo</identifier>
+			<content><![CDATA[<div class="promo-banner hidden-xs"><a><img class="img-responsive" src="http://magesolution.com/fashion/media/promobanners/banner_home_2.jpg" alt="Fashion Banner Buy Theme" /></a>
+<div class="text-container text-right">
+<div class="text-hover"><span class="h1 text-desc" style="font-weight: 300;"> <span style="font-style: normal; color: #72584b;">Do You Love Us?</span> <span style="color: #444444;">Purchase This Theme!</span> </span>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu pulvinar massa.</p>
+</div>
+<div class="view-more"><button class="btn btn-primary btn-lg btn-promo-banner" style="background-color: #a0522d; border-color: #A0522D;" onclick="setLocation('')"><span>Purchase</span></button></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Home2 Fashion Service</title>
+			<identifier>home2_fashion_service</identifier>
+			<content><![CDATA[<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-box2">&nbsp;</span>
+<h5 class="title">FREE SHIPPING ON ALL ORDRES</h5>
+<p class="content">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
+</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-wallet">&nbsp;</span>
+<h5 class="title">AMAZING CUSTOMER SERVICE</h5>
+<p class="content">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
+</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-delete-user">&nbsp;</span>
+<h5 class="title">NO CUSTOMS OR DUTY FEES</h5>
+<p class="content">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
+</div>
+</div>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Home Page 3</title>
+		<identifier>home-page-3</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<div class="home3">
+<div class="container">{{widget type="FIRSTSHOW\Mpanel\Block\Widget\Slider"}}
+<div class="padding30">&nbsp;</div>
+{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home2_fashion_service"}}
+<div class="padding30">&nbsp;</div>
+{{block class="FIRSTSHOW\Mpanel\Block\Products\Category\NewProducts" title="NEW ARRIVALS" category_ids="4,5,6" products_count="8" per_row="4" custom_class="tabs-colon" nav="true" dots="false" autoplay="0" note_text="Trending Fashion In This Season" template="products/category/tabs-slider-new.phtml}}
+<div class="padding30">&nbsp;</div>
+{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home1_fashion_promo"}}
+<div class="padding40">&nbsp;</div>
+{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home3_fashion_counter"}}
+<div class="clear">&nbsp;</div>
+<div class="padding40">&nbsp;</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="sale" title="On Sale" products_count="3" custom_class="attribute-slide" template="products/list.phtml"}}</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="featured_product" title="Featured" products_count="3" custom_class="attribute-slide" template="products/list.phtml"}}</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="new" title="New Products" products_count="3" custom_class="attribute-slide" template="products/list.phtml"}}</div>
+</div>
+</div>]]></content>
+	</cms_page>
+	
+	<theme_setting>
+		<general>
+			<header>header_3</header>
+		</general>
+		<custom_style>
+			<style><![CDATA[.cms-noroute-index .page-wrapper > #maincontent.container {
+	width: 100%;
+	padding: 0;
+}
+.slider_firstshow_carousel.owl-carousel .owl-item {
+padding: 0;
+}
+.cms-noroute-index .footer {
+	margin: 0;
+}
+
+.product-label { z-index: 1;}
+.switcher-language .dropdown span, .switcher-currency .dropdown span,.header .top-header-content .top-bar-right .switcher span { color: #fff; }]]></style>
+		</custom_style>
+		<banner_slider>
+			<identifier_block><![CDATA[firstshow_owl_slider_de]]></identifier_block>
+		</banner_slider>
+	</theme_setting>
+	
+	<color_setting>
+		<header>
+			<header_custom>1</header_custom> <!-- Use Custom -->
+			<!-- Menu Section -->
+			<background_color><![CDATA[#222222]]></background_color> <!-- Background color -->
+			<middle_background><![CDATA[#ffffff]]></middle_background> <!-- Background color -->
+			<lv1_color><![CDATA[#222222]]></lv1_color> <!-- Level 1 link color -->
+			<lv1_color_hover><![CDATA[#222222]]></lv1_color_hover> <!-- Level 1 link hover color -->
+		</header>
+	</color_setting>
+</home>

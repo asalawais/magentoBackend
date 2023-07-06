@@ -1,0 +1,21 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+ <fieldset name="general">
+ <field name="cms_block_list">
+ <argument name="data" xsi:type="array">
+ <item name="options" xsi:type="object">Magento\Catalog\Model\Category\Attribute\Source\Page</item>
+ <item name="config" xsi:type="array">
+ <item name="required" xsi:type="boolean">true</item>
+ <item name="validation" xsi:type="array">
+ <item name="required-entry" xsi:type="boolean">false</item>
+ </item>
+ <item name="sortOrder" xsi:type="number">100</item>
+ <item name="dataType" xsi:type="string">string</item>
+ <item name="formElement" xsi:type="string">select</item>
+ <item name="label" translate="true" xsi:type="string">Menu Dropdown Cms Block</item>
+ <item name="default" xsi:type="string">1</item>
+
+ </item>
+ </argument>
+ </field>
+ </fieldset>
+</form>

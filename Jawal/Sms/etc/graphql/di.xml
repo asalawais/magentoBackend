@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider">
+		<arguments>
+			<argument name="extendedConfigData" xsi:type="array">
+				<item name="sms_jawal_enabled" xsi:type="string">sms/jawal/enabled</item>
+				<item name="sms_jawal_username" xsi:type="string">sms/jawal/username</item>
+				<item name="sms_jawal_password" xsi:type="string">sms/jawal/password</item>
+				<item name="sms_jawal_order_new_created_template" xsi:type="string">sms/jawal/order_new_created_template</item>
+				<item name="sms_jawal_order_status_change_template" xsi:type="string">sms/jawal/order_status_change_template</item>
+				<item name="sms_jawal_order_tracking_number_template" xsi:type="string">sms/jawal/order_tracking_number_template</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

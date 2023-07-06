@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+		<!-- <add id="FIRSTSHOW_Portfolio::portfolio" title="Portfolio" module="FIRSTSHOW_Portfolio" sortOrder="50" parent="Magento_Backend::firstshow" resource="FIRSTSHOW_Portfolio::portfolio"/>
+		<add id="FIRSTSHOW_Portfolio::portfolio_category" title="Portfolio Categories" module="FIRSTSHOW_Portfolio" sortOrder="10" parent="FIRSTSHOW_Portfolio::portfolio" action="adminhtml/portfolio/category" resource="FIRSTSHOW_Portfolio::portfolio_category"/>
+		<add id="FIRSTSHOW_Portfolio::portfolio_items" title="Portfolio Items" module="FIRSTSHOW_Portfolio" sortOrder="20" parent="FIRSTSHOW_Portfolio::portfolio" action="adminhtml/portfolio" resource="FIRSTSHOW_Portfolio::portfolio_items"/> -->
+    </menu>
+</config>

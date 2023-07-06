@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<sms>
+			<jawal>
+				<enabled>1</enabled>
+				<!-- <username>firstshow</username>
+				<password>ali8520</password> -->
+				<oauth_token>0d6cedf381eaef8206b03051e61fbf73</oauth_token>
+				<sender_id>FIRSTSHO-AD</sender_id>
+				<order_new_created_template>Your order has created successfully. and use keys</order_new_created_template>
+				<order_status_change_template>Your order status has changed successfully.</order_status_change_template>
+				<order_tracking_number_template>Your order tracking number updated successfully.</order_tracking_number_template>
+			</jawal>
+		</sms>
+	</default>
+</config>

@@ -1,0 +1,208 @@
+<home>
+	<static_block>
+		<item>
+			<title>Fashion Owl Slider Electronic</title>
+			<identifier>fashion_owl_slider_electronic</identifier>
+			<content><![CDATA[<div><img class="img-responsive" src="{{media url="wysiwyg/slider_elt.jpg"}}" alt="" /></div>
+<div><img class="img-responsive" src="{{media url="wysiwyg/slider_elt.jpg"}}" alt="" /></div>]]></content>
+		</item>
+		<item>
+			<title>Fashion Tab Menu Product Electronic</title>
+			<identifier>fashion_tab_menu_product</identifier>
+			<content><![CDATA[<ul class="nav nav-tabs tab-product tab-electronic">
+<li class="active"><a href="#panel-product-80" data-toggle="tab" data-number="1"> <span class="pe-7s-monitor">&nbsp;</span> <span>Computer</span> </a></li>
+<li><a href="#panel-product-81" data-toggle="tab" data-number="2"> <span class="pe-7s-phone">&nbsp;</span> <span>Mobiles</span> </a></li>
+<li><a href="#panel-product-82" data-toggle="tab" data-number="3"> <span class="pe-7s-camera">&nbsp;</span> <span>Camera</span> </a></li>
+<li><a href="#panel-product-83" data-toggle="tab" data-number="4"> <span class="pe-7s-browser">&nbsp;</span> <span>Tablet</span> </a></li>
+<li><a href="#panel-product-84" data-toggle="tab" data-number="5"> <span class="pe-7s-airplay">&nbsp;</span> <span>Aircon</span> </a></li>
+<li><a href="#panel-product-85" data-toggle="tab" data-number="6"> <span class="pe-7s-plug">&nbsp;</span> <span>Home</span> </a></li>
+<li><a href="#panel-product-86" data-toggle="tab" data-number="7"> <span class="pe-7s-lintern">&nbsp;</span> <span>Cameras</span> </a></li>
+<li><a href="#panel-product-87" data-toggle="tab" data-number="8"> <span class="pe-7s-wristwatch">&nbsp;</span> <span>Watch</span> </a></li>
+<li><a href="#panel-product-88" data-toggle="tab" data-number="9"> <span class="pe-7s-headphones">&nbsp;</span> <span>Headphone</span> </a></li>
+<li><a href="#panel-product-89" data-toggle="tab" data-number="10"> <span class="pe-7s-album">&nbsp;</span> <span>Album</span> </a></li>
+</ul>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Home Electronic</title>
+		<identifier>home-electronic</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<!-- SLIDER -->
+<div style="padding-top: 20px;">
+<div class="container">
+<div class="row">
+<div class="col-lg-3 col-md-12 hidden-sm hidden-xs">&nbsp;</div>
+<div class="col-lg-6 col-md-8 col-xs-12">{{widget type="FIRSTSHOW\Mpanel\Block\Widget\Slider"}}</div>
+<div class="col-lg-3 col-md-4 hidden-sm hidden-xs">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="fashion_electronic_banner_1" template="banner.phtml"}}</div>
+</div>
+</div>
+</div>
+<!-- SECTION 1-->
+<div style="padding-top: 20px; padding-bottom: 30px;">
+<div class="container">
+<div class="row">
+<div class="col-md-3 col-xs-12">{{block class="FIRSTSHOW\Mpanel\Block\Products\Deals" title="Hot Deal Everyday" products_count="2" per_row="1" custom_class="" note_text="Get Free Shipping on all orders over $75 and free returns to our UK returns centre! " template="products/deals/sidebar.phtml"}}</div>
+<div class="col-md-9 col-sm-12 hidden-xs text-colour-white">
+<div style="margin-bottom: 50px;">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="fashion_electronic_banner_2" template="banner.phtml"}}</div>
+<div class="custom-electronic">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="smart_phone" title="SMARTPHONE" products_count="8" per_row="4" nav="true" dots="false" note_text="&nbsp;&nbsp;&nbsp;&nbsp;" autoplay="false" template="products/slide/simple.phtml"}}</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2-->
+<div style="margin-bottom: 31px;">
+<div class="container">
+<div class="row">
+<div class="col-md-6 col-sm-6 col-xs-12" style="margin-bottom: 30px;">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="fashion_electronic_banner_3" template="banner.phtml"}}</div>
+<div class="col-md-6 col-sm-6 col-xs-12" style="margin-bottom: 30px;">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="fashion_electronic_banner_4" template="banner.phtml"}}</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3 - LAPTOP -->
+<div class="container">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="lap_top" title="LAPTOP" products_count="8" per_row="5" nav="true" dots="false" note_text="Trending Fashion In This Season" autoplay="false" template="products/slide/simple.phtml"}}</div>
+<!-- SECTION 4 - TAB PRODUCT -->
+<div class="container tab-electronic"><!-- MENU TAB -->
+<div style="margin-bottom: 18px; margin-top: 25px;">
+<div class="title-inline">
+<h3 class="heading"><span>TOP SELLING</span></h3>
+<div class="text-desc"><span>Trending Fashion In This Season</span></div>
+</div>
+</div>
+{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="fashion_tab_menu_product"}} <!-- TAB PRODUCT --> {{widget type="Magento\CatalogWidget\Block\Product\ProductsList" products_count="10" template="product/widget/content/grid_tab.phtml" conditions_encoded="a:2:[i:1;a:4:[s:4:`type`;s:50:`Magento|CatalogWidget|Model|Rule|Condition|Combine`;s:10:`aggregator`;s:3:`all`;s:5:`value`;s:1:`1`;s:9:`new_child`;s:0:``;]s:4:`1--1`;a:4:[s:4:`type`;s:50:`Magento|CatalogWidget|Model|Rule|Condition|Product`;s:9:`attribute`;s:12:`category_ids`;s:8:`operator`;s:2:`==`;s:5:`value`;s:38:`80, 81, 82, 83, 84, 85, 86, 87, 88, 89`;]]"}}</div>
+<!-- BRAND -->
+<div class="owl-button-border" style="padding-bottom: 50px;">
+<div class="container">{{widget type="FIRSTSHOW\Brand\Block\Widget\Brand" brand_ids="1,2,3,4,5,6,9,10,11,12,13,14" view_as="owl_carousel" items="5" image_width="240" image_height="170" autoplay="1" navigation="1" template="widget/default.phtml"}}</div>
+</div>]]></content>
+	</cms_page>
+	
+	<promo_banner>
+		<item>
+			<title>Fashion Electronic Banner 4</title>
+			<filename>/p/r/promo4.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<p style="color: #000; margin: 0; font-weight: 700;">What the</p>
+<p style="color: #0059b2;font-size: 34px; margin: 0; font-weight: 900;" class="h1">BEST CAMERA</p>
+<p style="color: #000;font-size: 30px; margin: 0; font-weight: 700;" class="h2">FOR YOU?</p>]]></content>
+			<effect>mist</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>fashion_electronic_banner_4</identifier>
+		</item>
+		<item>
+			<title>Fashion Electronic Banner 3</title>
+			<filename>/p/r/promo3.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<p style="color: #0059b2;font-size: 34px; margin: 0; font-weight: 900;" class="h1">SMARTPHONE</p>
+<p style="color: #000;font-size: 30px; margin: 0; font-weight: 700;" class="h2">GENERATION</p>
+<p style="color: #000; margin: 0; font-weight: 700;">Buy 1 get 1 at Fashion Store</p>]]></content>
+			<effect></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>fashion_electronic_banner_3</identifier>
+		</item>
+		<item>
+			<title>Fashion Electronic Banner 2</title>
+			<filename>/p/r/promo2.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-center</text_align>
+			<content><![CDATA[<span style="font-size: 30px; font-weight: 700;" class="h2">FINAL <span style="color: #00ffff;">SALE OFF</span> UP TO 50%</span>]]></content>
+			<effect>mist</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>fashion_electronic_banner_2</identifier>
+		</item>
+		<item>
+			<title>Fashion Electronic Banner 1</title>
+			<filename>p/r/promo1.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>bottom-center</text_align>
+			<content><![CDATA[<p style="font-size: 30px; font-weight: 700; color: #000; margin: 0;" class="h2">Best Product</p>
+<p style="font-size: 30px; font-weight: 700; color: #000; margin: 0;" class="h2">in month</p>]]></content>
+			<effect>mist</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>fashion_electronic_banner_1</identifier>
+		</item>
+	</promo_banner>
+	
+	<theme_setting>
+		<general>
+			<header>header_5</header>
+		</general>
+		<custom_style>
+			<style><![CDATA[.cms-noroute-index .page-wrapper > #maincontent.container {
+	width: 100%;
+	padding: 0;
+}
+.slider_firstshow_carousel.owl-carousel .owl-item {
+padding: 0;
+}
+.cms-noroute-index .footer {
+	margin: 0;
+}
+
+.product-label { z-index: 1;}
+@media (max-width: 991px){
+#mainMenu .level0 a.level0 {
+color: #fff;
+}
+}
+.sidebar_deal .discount-save {
+position: absolute;
+top: 0px;
+left: 0;
+z-index: 1;}
+.sidebar_deal .product-content .top-desc .icon-links {
+right: 2px;
+}]]></style>
+		</custom_style>
+		<banner_slider>
+			<identifier_block><![CDATA[fashion_owl_slider_electronic]]></identifier_block>
+		</banner_slider>
+	</theme_setting>
+	<color_setting>
+		<general>
+			<theme_color><![CDATA[#0059b2]]></theme_color>
+		</general>
+		<header>
+			<header_custom>1</header_custom> <!-- Use Custom -->
+			
+			<!-- Top Links Section -->
+			<background_color><![CDATA[#f0f0f0]]></background_color> <!-- Background color -->
+			<text_color><![CDATA[#222222]]></text_color> <!-- Text color -->
+			<!-- Menu Section -->
+			<menu_background><![CDATA[transparent]]></menu_background> <!-- Section background color -->
+			<lv1_color><![CDATA[#222222]]></lv1_color> <!-- Level 1 link color -->
+			<lv1_color_hover><![CDATA[#0059b2]]></lv1_color_hover> <!-- Level 1 link hover color -->
+			<menu_dropdown_link_color_hover><![CDATA[#0059b2]]></menu_dropdown_link_color_hover> <!-- Dropdown link hover color -->
+		</header>
+		
+		<main>
+			<main_custom>1</main_custom>
+			
+			<!-- Text & Link -->
+			<link_color_hover><![CDATA[#0059b2]]></link_color_hover> <!-- Link color -->
+			
+			<!-- Default Button -->
+			<button_background_hover><![CDATA[#0059b2]]></button_background_hover> <!-- Hover background color -->
+			<button_border_hover><![CDATA[#0059b2]]></button_border_hover> <!-- Hover border color -->
+			
+			<!-- Primary Button -->
+			<primary_button_background><![CDATA[#0059b2]]></primary_button_background> <!-- Background color -->
+			<primary_button_background_hover><![CDATA[#0059b2]]></primary_button_background_hover> <!-- Hover background color -->
+			<primary_button_border><![CDATA[#0059b2]]></primary_button_border> <!-- Border color -->
+			<primary_button_border_hover><![CDATA[#0059b2]]></primary_button_border_hover> <!-- Hover border color -->
+			
+			<!-- Secondary Button -->
+			<secondary_button_background_hover><![CDATA[#0059b2]]></secondary_button_background_hover> <!-- Hover background color -->
+			<secondary_button_border_hover><![CDATA[#0059b2]]></secondary_button_border_hover> <!-- Hover border color -->
+		</main>
+	</color_setting>
+</home>

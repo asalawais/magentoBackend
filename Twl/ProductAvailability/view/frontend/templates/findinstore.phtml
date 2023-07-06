@@ -1,0 +1,17 @@
+<?php ?>
+<div class="find-in-store" style="display:none">
+<?php /** @var Magento\Catalog\Block\Product\View $block */ ?>
+<button type="button"
+        id="quickViewButton<?php /* @noEscape */ echo $block->getProduct()->getId() ?>"
+        class="button-quickview"
+        data-mage-init='{ "Twl_ProductAvailability/js/product/findinstore": { } }'
+        data-id="<?php /* @noEscape */ echo $block->getProduct()->getId() ?>"
+        data-url="<?php /* @noEscape */ echo $block->getProductUrl($block->getProduct()) ?>">
+    <?php /* @noEscape */ echo __('Find In Store') ?>
+</button>
+<div id="quickViewContainer<?php /* @noEscape */ echo $block->getProduct()->getId() ?>"></div>
+</div>
+<style type="text/css">
+.find-in-store-modal .modal-inner-wrap{width:800px}
+.find-in-store-modal iframe{ width:100%; height:400px;}
+</style>

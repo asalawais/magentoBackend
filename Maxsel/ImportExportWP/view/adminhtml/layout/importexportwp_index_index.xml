@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+     <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" template="Maxsel_ImportExportWP::js/js.phtml"
+                   name="import_js_backend_wp"/>
+        </referenceContainer>
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Backend\Block\Template" name="action_buttons_wp" template="Maxsel_ImportExportWP::actions/buttons.phtml"/>
+        </referenceContainer>
+		<referenceContainer name="content">
+			<block name="index.index.wp" class="Maxsel\ImportExportWP\Block\Adminhtml\Index\Index" template="Maxsel_ImportExportWP::index/index.phtml"/>
+		</referenceContainer>
+	</body>
+</page>

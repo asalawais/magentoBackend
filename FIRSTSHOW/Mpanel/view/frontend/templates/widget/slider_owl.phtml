@@ -1,0 +1,70 @@
+<?php $idenBlock = $this->getData('block_id'); ?>
+<?php if($idenBlock != null): ?>
+<?php $per_row = $this->getData('per_row'); ?>
+<?php
+if($this->getData('per_row_md') != null){
+	$per_row_md = $this->getData('per_row_md');
+}else {
+	$per_row_md = $per_row;
+}
+if($this->getData('per_row_sm') != null){
+	$per_row_sm = $this->getData('per_row_sm');
+}else {
+	$per_row_sm = $per_row_md;
+}
+if($this->getData('per_row_xs') != null){
+	$per_row_xs = $this->getData('per_row_xs');
+}else {
+	$per_row_xs = $per_row_sm;
+}
+if($this->getData('per_row_xsm') != null){
+	$per_row_xsm = $this->getData('per_row_xsm');
+}else {
+	$per_row_xsm = $per_row_xs;
+}
+?>
+	<?php $owlAuto = $this->getData('owl_auto'); ?>
+	<?php $autoSpeed = $this->getData('owl_speed'); ?>
+	<?php $owlNav = $this->getData('owl_nav'); ?>
+	<?php $owlDot = $this->getData('owl_dot'); ?>
+	<?php $owlLoop = $this->getData('owl_loop'); ?>
+	<?php
+		if ($owlAuto == 1) { $owlAuto = 'true'; } else { $owlAuto = 'false'; }
+		if ($owlNav == 1) { $owlNav = 'true'; } else { $owlNav = 'false'; }
+		if ($owlDot == 1) { $owlDot = 'true'; } else { $owlDot = 'false'; }
+		if ($owlLoop == 1) { $owlLoop = 'true'; } else { $owlLoop = 'false'; }
+	?>
+	<?php if($autoSpeed == null){ $autoSpeed = 3000; } ?>
+	<div class="slider_firstshow_carousel<?php echo $idenBlock ?> owl-carousel <?php echo $this->getData('custom_class'); ?>">
+		<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($idenBlock)->toHtml();?>
+	</div>
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'firstshow/owlcarousel'
+		], function(jQuery){
+			(function($) {
+				$(".slider_firstshow_carousel<?php echo $idenBlock ?>").owlCarousel({
+					items: <?php echo $per_row ?>,
+					loop: <?php echo $owlLoop ?>,
+					nav: <?php echo $owlNav ?>,
+					dots: <?php echo $owlDot ?>,
+					autoplayTimeout: <?php echo $autoSpeed ?>,
+					navText: ["<i class='fa fa-angle-left'	></i>","<i class='fa fa-angle-right'></i>"],
+					autoplay: <?php echo $owlAuto ?>,
+					responsive:{
+						0 : {items: <?php echo $per_row_xsm ?>},
+						480 : {items: <?php echo $per_row_xs ?>},
+						768 : {items: <?php echo $per_row_sm ?>},
+						980 : {items: <?php echo $per_row_md ?>},
+						1200 : {items: <?php echo $per_row ?>}
+					}
+				});
+			})(jQuery);
+		});
+	</script>
+<?php else: ?>
+	<div class="message-notice notice message">
+		<div><?php echo __('You need to input identifier for your slider.') ?></div>
+	</div>
+<?php endif ?>

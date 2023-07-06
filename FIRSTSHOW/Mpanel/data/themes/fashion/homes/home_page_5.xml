@@ -1,0 +1,178 @@
+<home>
+	<static_block>
+		<item>
+			<title>Fashion Owl Slider Home 5</title>
+			<identifier>firstshow_owl_slider_ca</identifier>
+			<content><![CDATA[<div><img class="img-responsive" src="{{media url="wysiwyg/home_5_owl_1.jpg"}}" alt="" /></div><div><img class="img-responsive" src="{{media url="wysiwyg/home_5_owl_2.jpg"}}" alt="" /></div>]]></content>
+		</item>
+		<item>
+			<title>Home5 Fashion Promo</title>
+			<identifier>home5_fashion_promo</identifier>
+			<content><![CDATA[<div class="title-inline" style="padding-left: 12px; padding-right: 12px;">
+<h3 class="heading"><span>FEATURED CATEGORIES</span></h3>
+<div class="text-desc"><span>Lorem ipsum dolor sit amet</span></div>
+</div>
+<div class="padding40">&nbsp;</div>
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="banner-fashion" template="banner.phtml"}}</div>
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="banner-interior" template="banner.phtml"}}</div>
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="banner-office" template="banner.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Home4 Fashion Service</title>
+			<identifier>home4_fashion_service</identifier>
+			<content><![CDATA[<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-wallet">&nbsp;</span>
+<h5 class="title">MONEY GUARANTEE</h5>
+<p class="text-desc">30 days money guarantee!</p>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-magic-wand">&nbsp;</span>
+<h5 class="title">ONLINE SUPPORT</h5>
+<p class="text-desc">We support online 24/7</p>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-rocket">&nbsp;</span>
+<h5 class="title">PAYMENT SECURE</h5>
+<p class="text-desc">Secure all your payment</p>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="service-inline"><span class="icon pe-7s-cloud-download">&nbsp;</span>
+<h5 class="title">UK FREE DELIVERY</h5>
+<p class="text-desc">Free on all orders over &pound;99.99</p>
+</div>
+</div>]]></content>
+		</item>
+	</static_block>
+
+	<cms_page>
+		<title>Fashion Home5</title>
+		<identifier>fashion_home5</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<div class="home5">{{widget type="FIRSTSHOW\Mpanel\Block\Widget\Slider"}}
+<div class="padding50">&nbsp;</div>
+<div class="container">
+<div class="row">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home5_fashion_promo"}}</div>
+</div>
+<div class="padding60">&nbsp;</div>
+<div class="container">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="featured_product" title="FEATURED PRODUCTS" products_count="8" per_row="4" custom_class="attribute-slide" note_text="Lorem ipsum dolor sit amet" nav="true" dots="false" autoplay="false" template="products/slide/simple.phtml"}}</div>
+<div class="padding30">&nbsp;</div>
+<div class="promo">
+<div class="container">
+<div class="row">
+<div class="col-md-6 col-sm-6 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="home5_banner_1" template="banner.phtml"}}</div>
+<div class="col-md-6 col-sm-6 col-xs-12">{{widget type="FIRSTSHOW\Promobanners\Block\Widget\Banner" banner_id="home5_banner_brand" template="banner.phtml"}}</div>
+</div>
+</div>
+</div>
+<div class="padding50">&nbsp;</div>
+<div class="container">{{block class="FIRSTSHOW\Mpanel\Block\Products\Attributes" attribute="back_in_stock" title="BACK IN STOCK" products_count="5" per_row="5" load_more="0" note_text="Lorem ipsum dolor sit amet" custom_class="custom-class" template="products/attribute.phtml"}}</div>
+<div>
+<div class="container">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="home4_fashion_service"}}</div>
+</div>
+</div>]]></content>
+	</cms_page>
+
+	<promo_banner>
+		<item>
+			<title>Home5 Banner Brand</title>
+			<filename>/b/a/banner_4_2.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<div class="text-hover">
+        <p class="text-desc" style="font-size: 30px; font-style: italic; line-height: 23px;">brand-new</p>
+<span class="h1">COLLECTION</span>
+<span class="h1">2015</span>		</div>]]></content>
+			<effect>mist</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier></identifier>
+		</item>
+		<item>
+			<title>Home5 Banner 1</title>
+			<filename>/b/a/banner_4_1.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align></text_align>
+			<content><![CDATA[]]></content>
+			<effect>mist</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>home5_banner_1</identifier>
+		</item>
+
+		<item>
+			<title>Home5 Banner Brand</title>
+			<filename>/b/a/banner_4_2.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[Show Now]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<div class="text-hover">
+        <p class="text-desc" style="font-size: 30px; font-style: italic; line-height: 23px;">brand-new</p>
+<span class="h1">COLLECTION</span>
+<span class="h1">2015</span>		</div>]]></content>
+			<effect>mist</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>home5_banner_brand</identifier>
+		</item>
+		<item>
+			<title>Home5 Banner Office</title>
+			<filename>/c/a/cate_4_3.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>top-middle</text_align>
+			<content><![CDATA[<h2 class="cate-name">Office</h2>
+<p class="text-desc">(9 products)</p>]]></content>
+			<effect>mist</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>banner-office</identifier>
+		</item>
+		<item>
+			<title>Home5 Banner Interior</title>
+			<filename>/c/a/cate_4_2.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>top-middle</text_align>
+			<content><![CDATA[<h2 class="cate-name">Interior</h2>
+<p class="text-desc">(25 products)</p>]]></content>
+			<effect>mist</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>banner-interior</identifier>
+		</item>
+		<item>
+			<title>Home5 Banner Fashion</title>
+			<filename>/c/a/cate_4_1.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>top-middle</text_align>
+			<content><![CDATA[<h2 class="cate-name">Fashion</h2>
+<p class="text-desc">(15 products)</p>]]></content>
+			<effect>mist</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>banner-fashion</identifier>
+		</item>
+	</promo_banner>
+
+	<theme_setting>
+		<general>
+			<header>header_4</header>
+			<footer>footer_2</footer>
+		</general>
+		<banner_slider>
+			<identifier_block><![CDATA[firstshow_owl_slider_ca]]></identifier_block>
+		</banner_slider>
+	</theme_setting>
+	<color_setting>
+		<header>
+			<header_custom>1</header_custom> <!-- Use Custom -->
+			<lv1_color_hover><![CDATA[#e74c3c]]></lv1_color_hover> <!-- Level 1 link hover color -->
+		</header>
+	</color_setting>
+</home>

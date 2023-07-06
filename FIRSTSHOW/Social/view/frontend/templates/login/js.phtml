@@ -1,0 +1,15 @@
+<?php $helper = $this->helper('FIRSTSHOW\Social\Helper\Data'); ?>
+<?php if ($helper->getConfig('general_settings/active') && !$helper->checkLoggedIn()): ?>
+    <script type="text/javascript">
+        //<![CDATA[
+        function socialLogin(url) {
+            var sX = screen.width / 2 - 580 / 2;
+            var sY = screen.height / 2 - 400 / 2;
+            sLogin = window.open(url, 'facebook-login', 'width=580,height=400,left=' + sX + ',top=' + sY);
+            if (window.focus) {
+                sLogin.focus();
+            }
+        }
+        //]]>
+    </script>
+<?php endif; ?>

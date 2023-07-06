@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="FIRSTSHOW_StoreLocator::css/firstshow_storelocator.css" media="all" />
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false" src_type="url"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="FIRSTSHOW\StoreLocator\Block\Stores" name="store.list" template="FIRSTSHOW_StoreLocator::stores.phtml">
+                <block class="Magento\Theme\Block\Html\Pager" name="store.list.pager"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

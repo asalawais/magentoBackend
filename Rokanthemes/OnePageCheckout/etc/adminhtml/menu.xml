@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Rokanthemes_OnePageCheckout::onepagecheckout" title="One Page Checkout" module="Rokanthemes_OnePageCheckout" sortOrder="20" parent="Rokanthemes_RokanBase::rokanbase" resource="Rokanthemes_OnePageCheckout::onepagecheckout" />
+        <add id="Rokanthemes_OnePageCheckout::onepagecheckout_menu_config" title="Configuration" module="Rokanthemes_OnePageCheckout" sortOrder="10" parent="Rokanthemes_OnePageCheckout::onepagecheckout" resource="Rokanthemes_OnePageCheckout::onepagecheckout_menu_config" action="adminhtml/system_config/edit/section/onepagecheckout" />
+        <add id="Rokanthemes_OnePageCheckout::onepagecheckout_sorting_fields" title="Sort Address Fields" module="Rokanthemes_OnePageCheckout" sortOrder="10" parent="Rokanthemes_OnePageCheckout::onepagecheckout" resource="Rokanthemes_OnePageCheckout::onepagecheckout_sorting_fields" action="onepagecheckout/field/manage" />
+    </menu>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+		<!-- <add id="FIRSTSHOW_StoreLocator::storelocator" title="Store Locator" module="FIRSTSHOW_StoreLocator" sortOrder="80" parent="Magento_Backend::firstshow" resource="FIRSTSHOW_StoreLocator::storelocator"/>
+        <add id="FIRSTSHOW_StoreLocator::locator_manage" title="Manage Stores" module="FIRSTSHOW_StoreLocator" sortOrder="10" parent="FIRSTSHOW_StoreLocator::storelocator" action="locator/locator/index/" resource="FIRSTSHOW_StoreLocator::locator_manage"/> -->
+    </menu>
+</config>

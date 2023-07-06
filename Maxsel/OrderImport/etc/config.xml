@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2019 Magmodules.eu. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <homeshopping>
+                <active>1</active>
+                <model>Maxsel\OrderImport\Model\Payment\Homeshopping</model>
+                <order_status>pending</order_status>
+                <title>HomeShopping24 Payment</title>
+                <allowspecific>0</allowspecific>
+            </homeshopping>
+        </payment>
+        <carriers>
+            <homeshopping>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>Maxsel\OrderImport\Model\Carrier\Homeshopping</model>
+                <name>HomeShopping24 Shipping</name>
+                <title>HomeShopping24</title>
+                <price>0.00</price>
+                <type>I</type>
+                <overwrite_title>0</overwrite_title>
+                <overwrite_name>0</overwrite_name>
+            </homeshopping>
+        </carriers>
+    </default>
+</config>

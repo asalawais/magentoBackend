@@ -1,0 +1,38 @@
+	<?php
+		$sliderContents = $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId("firstshow_homepage_slider")->toHtml();
+		$slideLen = explode('s-item', $sliderContents);
+		// echo 'count'.count($slideLen);
+
+		if (count($slideLen) > 2) {
+	 ?>
+	<div class="slider_firstshow_carousel owl-carousel">
+		<?php echo $sliderContents; ?>
+	</div>
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'firstshow/owlcarousel'
+		], function(jQuery){
+			(function($) {
+				$(".slider_firstshow_carousel").owlCarousel({
+					items: 1,
+					loop: true,
+					nav: true,
+					dots: true,
+					autoplayTimeout: 6000,
+					navText: ["<i class='fa fa-angle-left'	></i>","<i class='fa fa-angle-right'></i>"],
+					autoplay: true,
+					responsive:{
+						0 : {items: 1},
+						480 : {items: 1},
+						768 : {items: 1},
+						980 : {items: 1},
+						1200 : {items: 1}
+					}
+				});
+			})(jQuery);
+		});
+	</script>
+<?php }else {
+	echo $sliderContents;
+} ?>

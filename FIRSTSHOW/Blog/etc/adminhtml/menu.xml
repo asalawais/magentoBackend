@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <!-- <add id="FIRSTSHOW_Blog::blog" title="Blog" module="FIRSTSHOW_Blog" sortOrder="80" parent="Magento_Backend::firstshow" resource="FIRSTSHOW_Blog::blog"/>
+        <add id="FIRSTSHOW_Blog::manage_post" title="Manage Posts" module="FIRSTSHOW_Blog" sortOrder="10" parent="FIRSTSHOW_Blog::blog" action="blog/post/" resource="FIRSTSHOW_Blog::manage_post"/>
+        <add id="FIRSTSHOW_Blog::manage_comment" title="Manage Comments" module="FIRSTSHOW_Blog" sortOrder="20" parent="FIRSTSHOW_Blog::blog" action="blog/comment/" resource="FIRSTSHOW_Blog::manage_comment"/>
+        <add id="FIRSTSHOW_Blog::manage_category" title="Manage Categories" module="FIRSTSHOW_Blog" sortOrder="30" parent="FIRSTSHOW_Blog::blog" action="blog/category/" resource="FIRSTSHOW_Blog::manage_category"/>
+        <add id="FIRSTSHOW_Blog::configuration" title="Configuration" module="FIRSTSHOW_Blog" sortOrder="40" parent="FIRSTSHOW_Blog::blog" action="adminhtml/system_config/edit/section/blog" resource="FIRSTSHOW_Blog::configuration"/> -->
+    </menu>
+</config>

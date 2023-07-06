@@ -1,0 +1,223 @@
+<?php
+/**
+ * @package  BigBridge\ProductImport
+ * @license See LICENSE.txt for license details.
+ */
+
+namespace BigBridge\ProductImport\Cron;
+
+//use BigBridge\ProductImport\System\ConfigInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Model\Product\Attribute\Source\Status;
+use Magento\Catalog\Model\ProductRepositoryFactory;
+use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Framework\Api\SearchCriteriaBuilderFactory;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\InputException;
+use Magento\Framework\Exception\StateException;
+use Magento\Store\Model\StoreManagerInterface;
+use BigBridge\ProductImport\Helper\CurlFetch;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use BigBridge\ProductImport\Helper\RestCurlClientConfig;
+/**
+ * Class ProductPublisher
+ */
+class StockImporter //implements CronJobInterface
+{
+    /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
+     * @var SearchCriteriaBuilderFactory
+     */
+    private $criteriaBuilderFactory;
+
+    /**
+     * @var ProductRepositoryFactory
+     */
+    private $repositoryFactory;
+
+    /**
+     * @var ProductsArray
+     */
+    private $productsArray;
+
+    /**
+     * @var ConfigInterface
+     */
+    private $config;
+
+    private $directoryList;
+    protected $logger;
+    protected $_filesystem;
+    protected $_file;
+    private $_restCurlClient;
+
+    /**
+     * ProductPublisher constructor.
+     *
+     * @param SearchCriteriaBuilderFactory $criteriaBuilderFactory
+     * @param ProductRepositoryFactory $repositoryFactory
+     * @param ProductsArray $productsArray
+     * @param StoreManagerInterface $storeManager
+     * @param ConfigInterface $config
+     */
+    public function __construct(
+        SearchCriteriaBuilderFactory $criteriaBuilderFactory,
+        ProductRepositoryFactory $repositoryFactory,
+        StoreManagerInterface $storeManager,
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Framework\Module\Dir\Reader $moduleReader,
+        \Magento\Framework\Filesystem $filesystem,
+        \Magento\Framework\Filesystem\Driver\File $file,
+        RestCurlClientConfig $restCurlClient,
+        //ConfigInterface $config,
+        CurlFetch $productsArray
+
+    ) {
+        $this->storeManager = $storeManager;
+        $this->criteriaBuilderFactory = $criteriaBuilderFactory;
+        $this->repositoryFactory = $repositoryFactory;
+        $this->productsArray = $productsArray;
+        $this->_file = $file;
+        $this->_filesystem = $filesystem;
+        $this->logger = $logger;
+         $this->_restCurlClient = $restCurlClient;
+        //$this->config = $config;
+    }
+
+    /**
+     * Publish products
+     *
+     * @return void
+     */
+    public function execute()
+    {
+        $productXML = $this->createXMLProducts();
+        //print_r($productXML);
+        if($productXML!=''){
+        	$this->writeXML($productXML);
+        }
+
+    }
+
+    /**
+     * @throws CouldNotSaveException
+     * @throws InputException
+     * @throws StateException
+     *
+     * @return void
+     */
+    private function createXMLProducts()
+    {
+        $client = $this->_restCurlClient->getClient();
+        //local
+        //$stockSources = ['default'=>'PML Text Drops.'];
+        //$stockSources = ['pml_text_drops'=>'PML Text Drops.', 'pml'=>'PML'];
+        $stockSources = [8020 => 'pml_text_drops', 8010 =>'pml'];
+       // $stockSources = ['brouwers_indutex'=>'Brouwers Indutex', 'brouwers_text'=>'Brouwers Text', 'ommen'=>'Ommen', 'pml_text'=>'Perfect Meubel Logistics Text', 'tilburg_text'=>'Tilburg Text', 'warcoing_text'=>'Warcoing Text'];
+        $xml = '';
+        $importXML = '';
+        $articleGroup = array();
+        $generatedXml = '';
+        foreach ($stockSources as $code => $stockSource) {
+            //$rows = $this->getStockRows($client, $stockSource);
+            $rows = $this->getStockRows($client, $code);
+            //print_r($rows);
+
+             if($rows > 0){
+                foreach ($rows as $filteredArticle) {
+                $generatedXml .= $this->prepareStockProducts($filteredArticle, $stockSource);
+             }
+
+            }
+        }
+        $importXML = '<?xml version="1.0" encoding="UTF-8"?>
+                            <import>'.$generatedXml.'</import>';
+        return $importXML;
+
+
+
+    }
+
+    private function generateSimpleXML($data, $msiCode){
+        if($data['Op_voorraad'] == 0){
+            $stock = 0;
+        }
+        else {
+            $stock = 1;
+        }
+        //$stockSourcesCode = [8020 => 'pml_text_drops', 8010 =>'pml'];
+		$xmlSimple = '<simple sku="'.$data['Itemcode'].'">
+			<attribute_set_name>Default</attribute_set_name>
+			<website_codes>
+				<item>base</item>
+			</website_codes>
+			<stock>
+				<qty>'.$data['Op_voorraad'].'</qty>
+				<is_in_stock>'.$stock.'</is_in_stock>
+			</stock>
+            <source_item code="'.$msiCode.'">
+                <quantity>'.((int)$data['Op_voorraad']-2).'</quantity>
+                <status>1</status>
+            </source_item>
+		</simple>';
+
+		return $xmlSimple;
+    }
+
+    private function prepareStockProducts($articles, $code){
+
+        return $this->generateSimpleXML($articles, $code);
+    }
+
+
+    public function writeXML($content) {
+        //$dir = $this->directoryList->getPath('var');
+        $var = $this->_filesystem->getDirectoryRead(DirectoryList::VAR_DIR)->getAbsolutePath();
+        $fileName = $var.'import/afas_stock_products.xml';
+        $myfile = fopen($fileName, "w") or die("Unable to open file!");
+        try {
+          fwrite($myfile, $content);
+          fclose($myfile);
+        } catch (Exception $e) {
+
+        }
+        return;
+     }
+
+
+     public function getStockRows($client, $artikleGroep) {
+
+        $this->logger->debug('Stock Importer: start');
+
+        /*$get = $client->callAfas(
+                'GET',
+                'connectors/Voorraad__virtueel__per_magazijn',
+                [
+                    'take' => 2000,
+                    'filterfieldids' => 'Magazijn',
+                    'filtervalues' => $stockSource,
+                    'operatortypes' => '1'
+                ]
+        );*/
+         //$filtervalues = '8020,8010';
+         $get = $client->callAfas(
+             'GET',
+             'connectors/Voorraad__virtueel__per_magazijn',
+             [
+                 'take' => 3000,
+                 'filterfieldids' => 'Artikelgroep',
+                 'filtervalues' => $artikleGroep,
+                 'operatortypes' => '1'
+             ]
+         );
+        $dataResult = json_decode($get, true);
+        //print_r($dataResult);
+        return $dataResult['rows'];
+    }
+
+}

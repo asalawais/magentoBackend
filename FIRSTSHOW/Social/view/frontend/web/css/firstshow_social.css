@@ -1,0 +1,86 @@
+.social-facebook {
+    display: inline;
+    float: left;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    text-indent: -9999px;
+}
+
+.social-facebook a {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    border-radius: 2px;
+    display: block;
+    height: 28px;
+    transition: all 0.3s ease-in-out 0s;
+    width: 28px;
+}
+
+.social-facebook a:hover {
+    background-position: 0 -38px;
+}
+
+.social-facebook .facebook {
+    background: rgba(0, 0, 0, 0) url('../img/facebook.png') no-repeat scroll 0 0;
+}
+
+.social-google {
+    display: inline;
+    float: left;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    text-indent: -9999px;
+}
+
+.social-google a {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    border-radius: 2px;
+    display: block;
+    height: 28px;
+    transition: all 0.3s ease-in-out 0s;
+    width: 28px;
+}
+
+.social-google a:hover {
+    background-position: 0 -38px;
+}
+
+.social-google .google {
+    background: rgba(0, 0, 0, 0) url('../img/googleplus.png') no-repeat scroll 0 0;
+}
+
+.social-twitter {
+    display: inline;
+    float: left;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    text-indent: -9999px;
+}
+
+.social-twitter a {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    border-radius: 2px;
+    display: block;
+    height: 28px;
+    transition: all 0.3s ease-in-out 0s;
+    width: 28px;
+}
+
+.social-twitter a:hover {
+    background-position: 0 -38px;
+}
+
+.social-twitter .twitter {
+    background: rgba(0, 0, 0, 0) url('../img/twitter.png') no-repeat scroll 0 0;
+}
+
+.block-facebook-page-plugin .block-title {
+    margin: 0 0 20px;
+}
+
+.block-facebook-page-plugin .block-title strong {
+    font-size: 18px;
+    font-weight: 300;
+}

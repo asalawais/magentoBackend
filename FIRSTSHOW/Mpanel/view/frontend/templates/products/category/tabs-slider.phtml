@@ -1,0 +1,98 @@
+<?php $categories = $this->getCategoryByIds() ?>
+<?php $customClass = $this->getCustomClass() ?>
+<div class="title-inline">
+	<?php if($this->hasData('title')): ?>
+		<h3 class="heading"><span><?php echo $this->getData('title') ?></span></h3>
+	<?php endif; ?>
+	<?php if($this->hasData('note_text')): ?>
+		<div class="text-desc"><span><?php echo $this->getData('note_text') ?></span></div>
+	<?php endif; ?>
+</div>
+<?php if(count($categories)>0): ?>
+	<div class="category-tabs data items<?php if($customClass): ?> <?php echo $customClass ?><?php endif ?>" data-mage-init='{"tabs":{"openedState":"active"}}'>
+		<?php $i=0; foreach($categories as $category): $i++ ?>
+			<div class="data item title" aria-labeledby="tab-label-category-<?php echo $category->getId(); ?>-title" data-role="collapsible" id="tab-label-category-<?php echo $category->getId(); ?>">
+				<a class="data switch" tabindex="-1" data-toggle="switch" href="javascript:void(0);" id="tab-label-category-<?php echo $category->getId(); ?>-title" onclick="initSlider(<?php echo $category->getId(); ?>)">
+					<?php echo $category->getName(); ?>
+				</a>
+			</div>
+			
+			<div class="data item content" id="category<?php echo $category->getId(); ?>" data-role="content">
+				<?php $_productCollection = $this->getProductCollection($category); ?>
+				<?php if (!$_productCollection->count()): ?>
+					<div class="message info empty"><div><?php echo __('The category "%1" haven\'t product.', $category->getName()) ?></div></div>
+				<?php else: ?>
+					<div class="products wrapper grid products-grid">
+						<ol class="products list items product-items" id="<?php echo $category->getId(); ?>-carousel">
+							<?php 
+								$html = $this->getLayout()
+									->createBlock('FIRSTSHOW\Mpanel\Block\Products\Category\Tabs')
+									->setAdditionalData($category)
+									->setItemType('slider')
+									->setProductsCount($this->getProductsCount())
+									->setPerRow($this->getProductsPerRow())
+									->setTemplate('products/items.phtml')
+									->toHtml();
+								echo $html;
+							?>
+						</ol>
+					</div>
+					<?php if($i==1): ?>
+						<script type="text/javascript">
+							require([
+								'jquery',
+								'firstshow/owlcarousel'
+							], function(jQuery){
+								(function($) {
+									$("#<?php echo $category->getId(); ?>-carousel").owlCarousel({
+										//itemElement: 'li',
+										items: <?php echo $this->getProductsPerRow() ?>,
+										nav: <?php echo $this->getNav() ?>,
+										navText: ["<i class='fa fa-angle-left'	></i>","<i class='fa fa-angle-right'></i>"],
+										dots: <?php echo $this->getDots() ?>,
+										autoplay: <?php echo $this->getAutoplay() ?>,
+										responsive:{
+											0 : {items: 2},
+											480 : {items: 2},
+											768 : {items: 2},
+											991 : {items: 3},
+											1200 : {items: <?php echo $this->getProductsPerRow() ?>}
+										}
+									});
+								})(jQuery);
+							});
+						</script>
+					<?php endif ?>
+					
+				<?php endif ?>
+			</div>
+		<?php endforeach ?>
+		<script type="text/javascript">
+			function initSlider(el){
+				require([
+					'jquery',
+				], function(jQuery){
+					(function($) {
+						$("#"+el+"-carousel").owlCarousel({
+							//itemElement: 'li',
+							items: <?php echo $this->getProductsPerRow() ?>,
+							nav: <?php echo $this->getNav() ?>,
+							navText: ["<i class='fa fa-angle-left'	></i>","<i class='fa fa-angle-right'></i>"],
+							dots: <?php echo $this->getDots() ?>,
+							autoplay: <?php echo $this->getAutoplay() ?>,
+							responsive:{
+								0 : {items: 2},
+								480 : {items: 2},
+								768 : {items: 2},
+								991 : {items: 3},
+								1200 : {items: <?php echo $this->getProductsPerRow() ?>}
+							}
+						});
+					})(jQuery);
+				});
+			}
+		</script>
+	</div>
+<?php else: ?>
+	<div class="message info empty"><div><?php echo __('Categories with Id are %1 does not exist', $this->getData('category_ids')) ?></div></div>
+<?php endif ?>

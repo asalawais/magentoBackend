@@ -1,0 +1,13 @@
+<?php $helper = $this->helper('FIRSTSHOW\Social\Helper\Data'); ?>
+<?php if ($helper->getConfig('general_settings/active') && $helper->getConfig('facebook_settings/active')): ?>
+    <script type="text/javascript">
+        if (window.location.hash == '#_=_') {
+            if (history.replaceState) {
+                var cleanHref = window.location.href.split('#')[0];
+                history.replaceState(null, null, cleanHref);
+            } else {
+                window.location.hash = '';
+            }
+        }
+    </script>
+<?php endif; ?>

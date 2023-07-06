@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Rokanthemes\OnePageCheckout\Api\UpdateItemManagementInterface"
+                type="Rokanthemes\OnePageCheckout\Model\UpdateItemManagement"/>
+    <preference for="Rokanthemes\OnePageCheckout\Api\GuestUpdateItemManagementInterface"
+                type="Rokanthemes\OnePageCheckout\Model\GuestUpdateItemManagement"/>
+    <preference for="Rokanthemes\OnePageCheckout\Api\Data\UpdateItemDetailsInterface"
+                type="Rokanthemes\OnePageCheckout\Model\UpdateItemDetails"/>
+    <type name="Magento\Checkout\Api\PaymentInformationManagementInterface">
+        <plugin name="rokanthemes_opc_additional_data" type="Rokanthemes\OnePageCheckout\Plugin\Checkout\Model\CustomerAdditionalData"/>
+    </type>
+    <type name="Magento\Checkout\Api\GuestPaymentInformationManagementInterface">
+        <plugin name="rokanthemes_opc_guest_additional_data"
+                type="Rokanthemes\OnePageCheckout\Plugin\Checkout\Model\GuestAdditionalData"/>
+    </type>
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="customer_shipping_date" xsi:type="string">sales_order.customer_shipping_date</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Maxsel::HomeDeco_api" title="HomeDeco API" module="Maxsel_HomeDeco" sortOrder="9999" resource="Magento_Backend::content"/>
+        <add id="Maxsel_HomeDeco::index_import" title="Product, Orders, Shipments" module="Maxsel_HomeDeco" sortOrder="90" parent="Maxsel::HomeDeco_api" resource="Maxsel_Emesa::index_import" />
+		<add id="Maxsel_HomeDeco::index_index" title="HomeDeco Sync" module="Maxsel_HomeDeco" sortOrder="9999" resource="Maxsel_HomeDeco::index_index" parent="Maxsel_HomeDeco::index_import" action="homedeco/index/index"/>
+    </menu>
+</config>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <!--<job name="remove_unused_attribute_sets" instance="BigBridge\ProductImport\Cron\UnusedAttributeSetRemover" method="execute">
+            <config_path>crontab/default/jobs/remove_unused_attribute_sets/schedule/cron_expr</config_path>
+        </job>-->
+        <!--<job name="remove_unused_attribute_options" instance="BigBridge\ProductImport\Cron\UnusedAttributeOptionsRemover" method="execute">
+            <config_path>crontab/default/jobs/remove_unused_attribute_options/schedule/cron_expr</config_path>
+        </job>-->
+        <!--<job name="enable_products" instance="BigBridge\ProductImport\Cron\ProductPublisher" method="execute">
+            <schedule>*/20 * * * *</schedule>
+        </job>-->
+
+
+        <!--<job name="create_import_products" instance="BigBridge\ProductImport\Cron\ProductImporter" method="execute">
+            <schedule>0 0 * * *</schedule>
+        </job>
+        <job name="create_import_gallery" instance="BigBridge\ProductImport\Cron\GalleryImporter" method="execute">
+            <schedule>* */20 * * *</schedule>
+        </job>
+        <job name="create_import_gallery2" instance="BigBridge\ProductImport\Cron\GalleryImporterTwo" method="execute">
+            <schedule>* */30 * * *</schedule>
+        </job>
+        <job name="create_import_galleryxml" instance="BigBridge\ProductImport\Cron\GalleryImporterXML" method="execute">
+            <schedule>* */40 * * *</schedule>
+        </job>
+        <job name="create_import_products_stock" instance="BigBridge\ProductImport\Cron\StockImporter" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+        <job name="stock_import_xml" instance="BigBridge\ProductImport\Cron\StockImportXml" method="execute">
+            <schedule>*/7 * * * *</schedule>
+        </job>-->
+
+        <!--<job name="order_import" instance="BigBridge\ProductImport\Cron\Ordernew" method="execute">
+            <schedule>*/1 * * * *</schedule>
+        </job>-->
+       <!--<job name="order_push" instance="BigBridge\ProductImport\Cron\Orderpush" method="execute">
+            <schedule>*/1 * * * *</schedule>
+       </job>-->
+        <!--<job name="brouwer_push" instance="BigBridge\ProductImport\Cron\BrouwerAfas" method="execute">
+            <schedule>*/3 * * * *</schedule> -->
+        <!--</job>
+	       <job name="order_status" instance="BigBridge\ProductImport\Cron\OrderStatus" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>-->
+        <!--<job name="order_push_trackpod" instance="BigBridge\ProductImport\Cron\TpOrderPush" method="execute">
+            <schedule>*/6 * * * *</schedule>
+        </job>-->
+	   <!--<job name="order_push_trackpod_status" instance="BigBridge\ProductImport\Cron\TpOrderStatus" method="execute">
+            <schedule>*/2 * * * *</schedule>
+        </job>-->
+        <!--<job name="remove_old_queue_entries" instance="BigBridge\ProductImport\Cron\OldQueueEntriesRemover" method="execute">
+            <schedule>0 0 * * *</schedule>
+        </job>-->
+    </group>
+</config>

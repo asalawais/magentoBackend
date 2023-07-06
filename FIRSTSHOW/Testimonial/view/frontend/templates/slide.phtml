@@ -1,0 +1,71 @@
+<?php $customClass = $this->getCustomClass() ?>
+<?php if($this->hasData('title')): ?>
+	<div class="block-title<?php if($customClass): ?> <?php echo $customClass ?>-title<?php endif ?>">
+		<h3><?php echo $this->getData('title') ?></h3>
+	</div>
+<?php endif ?>
+<?php if($this->hasData('note_text')): ?>
+	<div class="note-text">
+		<span><?php echo $this->getData('note_text') ?></span>
+	</div>
+<?php endif ?>
+<div class="testimonial-carousel <?php if($customClass): ?> <?php echo $customClass ?><?php endif ?>">
+	<?php $_testimonialCollection = $this->getCollection(); ?>
+	<?php $_collectionSize = count($_testimonialCollection) ?>
+	
+	<?php $_columnCount = 1 ?>
+	<?php if($this->hasData('row')): ?>
+		<?php $_columnCount = $this->getData('row') ?>
+	<?php endif ?>
+	
+
+	<?php if (!count($_testimonialCollection)): ?>
+		<div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find testimonials matching the selection.') ?></div></div>
+	<?php else: ?>
+		
+		<div class="owl-carousel testimonials-carousel">
+			<?php $i=0; foreach($_testimonialCollection as $_item): ?>
+				<?php if ($i++%$_columnCount==0): ?>
+					<div class="testimonial-item">
+				<?php endif ?>
+					<div class="testimonial-author">
+						<?php if($this->getAvatarUrl($_item->getAvatar())): ?>
+							<div class="img-thumbnail img-thumbnail-small">							
+								<img src="<?php echo $this->getAvatarUrl($_item->getAvatar()) ?>" alt="">							
+							</div>
+						<?php endif;?>
+						<div class="testimonial-content">
+							<p><?php echo $_item->getContent() ?></p>
+						</div>
+						<p><span><?php echo __('from') ?></span><strong><?php echo $_item->getName() ?></strong></p>
+					</div>
+					
+				<?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+					</div>
+				<?php endif ?>
+			<?php endforeach ?>
+		</div>
+		<script type="text/javascript">
+			require([
+				'jquery',
+				'firstshow/owlcarousel'
+			], function(jQuery){
+				(function($) {
+					$(".testimonials-carousel").owlCarousel({
+						items: 1,
+						nav: <?php echo $this->getNav() ?>,
+						dots: <?php echo $this->getDots() ?>,
+						autoplay: <?php echo $this->getAutoplay() ?>,
+						responsive:{
+							0 : {items: 1},
+							480 : {items: 1},
+							768 : {items: 1},
+							980 : {items: 1},
+							1200 : {items: 1}
+						}
+					});
+				})(jQuery);
+			});
+		</script>
+	<?php endif ?>
+</div>

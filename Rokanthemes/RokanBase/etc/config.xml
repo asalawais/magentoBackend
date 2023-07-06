@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+	<default>
+		<cataloginventory>
+			<options>
+				<delivery_label>Ship In 3 - 5 days</delivery_label>
+			</options>
+		</cataloginventory>
+		<csp>
+		    <mode>
+		        <storefront>
+		            <report_only>0</report_only>
+		        </storefront>
+		        <admin>
+		            <report_only>0</report_only>
+		        </admin>
+		    </mode>
+		</csp>
+	</default>
+</config>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+ * NOTICE OF LICENSE
+ * You may not sell, distribute, sub-license, rent, lease or lend complete or portion of software to anyone.
+ *
+ * DISCLAIMER
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @package   RLTSquare_ProductImagesSlider
+ * @copyright Copyright (c) 2022 RLTSquare (https://www.rltsquare.com)
+ * @contacts  support@rltsquare.com
+ * @license  See the LICENSE.md file in module root directory
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <productImages>
+            <productImagesGroup>
+                <isEnableDisable>1</isEnableDisable>
+                <imageSlider>2</imageSlider>
+                <imageBreakpoint1>2</imageBreakpoint1>
+                <imageBreakpoint2>2</imageBreakpoint2>
+                <imageBreakpoint3>1</imageBreakpoint3>
+                <imageBreakpoint4>1</imageBreakpoint4>
+                <imagePopupSlider>1</imagePopupSlider>
+                <imagePopupBreakpoint1>1</imagePopupBreakpoint1>
+                <imagePopupBreakpoint2>1</imagePopupBreakpoint2>
+                <imagePopupBreakpoint3>1</imagePopupBreakpoint3>
+                <imagePopupBreakpoint4>1</imagePopupBreakpoint4>
+            </productImagesGroup>
+        </productImages>
+    </default>
+</config>
